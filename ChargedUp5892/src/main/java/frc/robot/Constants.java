@@ -17,9 +17,9 @@ public final class Constants {
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
     /* Drivetrain Constants */
-    public static final double trackWidth = Units.inchesToMeters(21.73);
-    public static final double wheelBase = Units.inchesToMeters(21.73);
-    public static final double wheelDiameter = Units.inchesToMeters(4.0);
+    public static final double trackWidth = Units.inchesToMeters(20.5);
+    public static final double wheelBase = Units.inchesToMeters(20.5);
+    public static final double wheelDiameter = Units.inchesToMeters(3.5);
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
     public static final double openLoopRamp = 0.25;
@@ -66,7 +66,7 @@ public final class Constants {
     public static final double angleConversionFactor = 360.0 / angleGearRatio;
 
     /* Swerve Profiling Values */
-    public static final double maxSpeed = 4.5; // meters per second
+    public static final double maxSpeed = 4.4196; // meters per second
     public static final double maxAngularVelocity = 11.5;
 
     /* Neutral Modes */
