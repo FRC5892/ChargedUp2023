@@ -18,6 +18,15 @@ import frc.lib.util.CANSparkMaxUtil.Usage;
 import frc.robot.Constants;
 import frc.robot.Robot;
 
+/**
+ * SwerveModule is a class used to control a swerve module on a robot.
+ * It contains one CANSparkMax angle motor, one CANSparkMax drive motor, one RelativeEncoder,
+ * one CANCoder, one SparkMaxPIDController, and one SimpleMotorFeedforward.
+ * It takes in a moduleNumber and a SwerveModuleConstants object as arguments
+ * and uses the constants to configure the angleEncoder, angleMotor, and driveMotor.
+ * It also stores a Rotation2d lastAngle, an Rotation2d angleOffset, and contains methods for 
+ * resetting the angle motor to absolute position and for setting the desired state of the swerve module.
+ */
 public class SwerveModule {
   public int moduleNumber;
   private Rotation2d lastAngle;
@@ -37,6 +46,12 @@ public class SwerveModule {
       new SimpleMotorFeedforward(
           Constants.Swerve.driveKS, Constants.Swerve.driveKV, Constants.Swerve.driveKA);
 
+  /**
+   * Constructor for the SwerveModule class
+   * 
+   * @param moduleNumber An integer representing the number of the module
+   * @param moduleConstants A SwerveModuleConstants object containing the necessary constants for the swerve module
+   */
   public SwerveModule(int moduleNumber, SwerveModuleConstants moduleConstants) {
     this.moduleNumber = moduleNumber;
     angleOffset = moduleConstants.angleOffset;
@@ -60,6 +75,12 @@ public class SwerveModule {
     lastAngle = getState().angle;
   }
 
+  /**
+   * Sets the desired state of the swerve module
+   * 
+   * @param desiredState The desired state of the swerve module
+   * @param isOpenLoop A boolean indicating whether or not the loop is open
+   */
   public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
     // Custom optimize command, since default WPILib optimize assumes continuous controller which
     // REV and CTRE are not
@@ -69,17 +90,26 @@ public class SwerveModule {
     setSpeed(desiredState, isOpenLoop);
   }
 
+  /**
+   * Resets the angle motor to its absolute position
+   */
   private void resetToAbsolute() {
     double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();
     integratedAngleEncoder.setPosition(absolutePosition);
   }
 
+  /**
+   * Configures the angle encoder
+   */
   private void configAngleEncoder() {
     angleEncoder.configFactoryDefault();
     CANCoderUtil.setCANCoderBusUsage(angleEncoder, CCUsage.kMinimal);
     angleEncoder.configAllSettings(Robot.ctreConfigs.swerveCanCoderConfig);
   }
 
+  /**
+   * Configures the angle motor
+   */
   private void configAngleMotor() {
     angleMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(angleMotor, Usage.kPositionOnly);
@@ -96,6 +126,9 @@ public class SwerveModule {
     resetToAbsolute();
   }
 
+  /**
+   * Configures the drive motor
+   */
   private void configDriveMotor() {
     driveMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kAll);
@@ -113,6 +146,12 @@ public class SwerveModule {
     driveEncoder.setPosition(0.0);
   }
 
+  /**
+   * Sets the speed of the swerve module
+   * 
+   * @param desiredState The desired state of the swerve module
+   * @param isOpenLoop A boolean indicating whether or not the loop is open
+   */
   private void setSpeed(SwerveModuleState desiredState, boolean isOpenLoop) {
     if (isOpenLoop) {
       double percentOutput = desiredState.speedMetersPerSecond / Constants.Swerve.maxSpeed;
@@ -126,6 +165,11 @@ public class SwerveModule {
     }
   }
 
+  /**
+   * Sets the angle of the swerve module
+   * 
+   * @param desiredState The desired state of the swerve module
+   */
   private void setAngle(SwerveModuleState desiredState) {
     // Prevent rotating module if speed is less then 1%. Prevents jittering.
     Rotation2d angle =
@@ -137,14 +181,29 @@ public class SwerveModule {
     lastAngle = angle;
   }
 
+  /**
+   * Gets the angle of the swerve module
+   * 
+   * @return The angle of the swerve module as a Rotation2d
+   */
   private Rotation2d getAngle() {
     return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
   }
 
+  /**
+   * Gets the CANCoder angle of the swerve module
+   * 
+   * @return The CANCoder angle of the swerve module as a Rotation2d
+   */
   public Rotation2d getCanCoder() {
     return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
   }
 
+  /**
+   * Gets the state of the swerve module
+   * 
+   * @return The state of the swerve module as a SwerveModuleState
+   */
   public SwerveModuleState getState() {
     return new SwerveModuleState(driveEncoder.getVelocity(), getAngle());
   }

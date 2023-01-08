@@ -9,7 +9,15 @@ import frc.robot.subsystems.Swerve;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
-public class TeleopSwerve extends CommandBase {
+/**
+ * This command uses an input from the driver station to control the swerve drive of the robot.
+ * It takes in the swerve from the swerve subsystem, a double supplier for translation, a double supplier for strafe, 
+ * a double supplier for rotation, and a boolean supplier for robot centric. 
+ * It applies a deadband to all the inputs, and then uses the slew rate limiter to limit the acceleration of the inputs.
+ * Finally, it uses the swerve subsystem to drive the robot with the given inputs.
+ */
+
+ public class TeleopSwerve extends CommandBase {
   private Swerve s_Swerve;
   private DoubleSupplier translationSup;
   private DoubleSupplier strafeSup;
