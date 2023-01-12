@@ -13,20 +13,21 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;
 
-    public static final int pigeonID = 6;
+    public static final int pigeonID = 6; //TODO: Set pidgeonid
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
+    
 
     /* Drivetrain Constants */
-    public static final double trackWidth = Units.inchesToMeters(20.75);
-    public static final double wheelBase = Units.inchesToMeters(20.75);
-    public static final double wheelDiameter = Units.inchesToMeters(4.0);
+    public static final double trackWidth = Units.inchesToMeters(20.5); //TODO: Double Check
+    public static final double wheelBase = Units.inchesToMeters(20.5); //TODO: Double Check
+    public static final double wheelDiameter = Units.inchesToMeters(4.0); //TODO: Double Check
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-    public static final double openLoopRamp = 0.25;
-    public static final double closedLoopRamp = 0.0;
+    //public static final double openLoopRamp = 0.25;
+    //public static final double closedLoopRamp = 0.0; seem to be useless
 
-    public static final double driveGearRatio = (6.12 / 1.0); // 6.12:1
-    public static final double angleGearRatio = ((150.0 / 7.0) / 1.0); // 150/7:1
+    public static final double driveGearRatio = (6.75 / 1.0); // 6.75:1 for L2
+    public static final double angleGearRatio = (12.8/ 1.0); // 12.8:1 for all L's
 
     public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
         new Translation2d(wheelBase / 2.0, trackWidth / 2.0),
@@ -41,19 +42,19 @@ public final class Constants {
     public static final int angleContinuousCurrentLimit = 20;
     public static final int driveContinuousCurrentLimit = 80;
 
-    /* Angle Motor PID Values */
-    public static final double angleKP = 0.01;
+    /* TODO: test Angle Motor PID Values (these are default, may tune if needed) */
+    public static final double angleKP = 0.02;
     public static final double angleKI = 0.0;
-    public static final double angleKD = 0.005;
+    public static final double angleKD = 0.000;
     public static final double angleKFF = 0.0;
 
     /* Drive Motor PID Values */
-    public static final double driveKP = 0.0;
-    public static final double driveKI = 0.0;
-    public static final double driveKD = 0.0;
-    public static final double driveKFF = 0.0;
+    public static final double driveKP = 0.0; //TODO: Tune after charactarization
+    public static final double driveKI = 0.0; //leave
+    public static final double driveKD = 0.0; //leave
+    public static final double driveKFF = 0.0; //leave
 
-    /* Drive Motor Characterization Values */
+    /* TODO: Charactarize drivetrain Drive Motor Characterization Values */
     public static final double driveKS = 0.11979;
     public static final double driveKV = 2.3823;
     public static final double driveKA = 0.30034;
@@ -70,11 +71,11 @@ public final class Constants {
     public static final IdleMode angleNeutralMode = IdleMode.kBrake;
     public static final IdleMode driveNeutralMode = IdleMode.kBrake;
 
-    /* Motor Inverts */
+    /* TODO: check Motor Inverts */
     public static final boolean driveInvert = false;
-    public static final boolean angleInvert = true;
+    public static final boolean angleInvert = false;
 
-    /* Angle Encoder Invert */
+    /* TODO: check Angle Encoder Invert */
     public static final boolean canCoderInvert = false;
 
     /* Module Specific Constants */
