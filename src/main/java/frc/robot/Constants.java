@@ -63,7 +63,7 @@ public final class Constants {
     public static final double driveConversionVelocityFactor = ((wheelDiameter * Math.PI) / driveGearRatio) / 60.0;
     public static final double angleConversionFactor = 360.0 / angleGearRatio;
 
-    /* Swerve Profiling Values */
+    /* TODO: set Swerve Profiling Values */
     public static final double maxSpeed = 4.5; // meters per second
     public static final double maxAngularVelocity = 11.5;
 
@@ -78,6 +78,7 @@ public final class Constants {
     /* TODO: check Angle Encoder Invert */
     public static final boolean canCoderInvert = false;
 
+    //TODO: Set motor ID's
     /* Module Specific Constants */
     /* Front Left Module - Module 0 */
     public static final class Mod0 {
