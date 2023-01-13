@@ -20,6 +20,11 @@ import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
+/* 
+Summary:
+This code is for the robot container and has a joy stick, joystick buttons, swerve subsystem, a sendable chooser for autonomous modes, autonomous modes, and methods for configuring button bindings and smart dashboard options. 
+*/
+
 public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
