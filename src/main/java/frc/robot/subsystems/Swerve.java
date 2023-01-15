@@ -14,10 +14,11 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.SPI;
 import frc.robot.Constants;
 
 /*
-This is a class for the swerve drive system on the robot. It utilizes a Pigeon2 gyro to measure the angle of the robot and a SwerveDriveOdometry to measure the position of the robot. There are four SwerveModule objects, each of which is responsible for the individual swerve module. The class also holds a Field2d object which is used for the robot's position with respect to the field.
+This is a class for the swerve drive system on the robot. It utilizes a navX gyro to measure the angle of the robot and a SwerveDriveOdometry to measure the position of the robot. There are four SwerveModule objects, each of which is responsible for the individual swerve module. The class also holds a Field2d object which is used for the robot's position with respect to the field.
 
 The drive() method is used to set the desired speed and angle for the robot. The user can decide if they want the desired rotation and speed to be relative to the field or the robot. The setModuleStates() and setModuleRotation() methods are used to set the desired states of each swerve module. The getPose() method returns the pose of the robot in meters. The resetOdometry() method resets the odometry of the robot to the given pose. The resetToAbsolute() method resets all of the swerve modules to the absolute position. The getStates() and getModulePositions() methods return the current states and positions of each swerve module. The zeroGyro() method sets the yaw of the robot to 0. The getYaw() method returns the yaw of the robot.
 
