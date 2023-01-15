@@ -13,7 +13,7 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;
 
-    public static final int navxID = 6; //TODO: Set pidgeonid
+    
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
     
 
@@ -23,8 +23,8 @@ public final class Constants {
     public static final double wheelDiameter = Units.inchesToMeters(4.0); //TODO: Double Check
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-    //public static final double openLoopRamp = 0.25;
-    //public static final double closedLoopRamp = 0.0; seem to be useless
+    public static final double openLoopRamp = 0.25;
+    public static final double closedLoopRamp = 0.0; //seem to be useless
 
     public static final double driveGearRatio = (6.75 / 1.0); // 6.75:1 for L2
     public static final double angleGearRatio = (12.8/ 1.0); // 12.8:1 for all L's
