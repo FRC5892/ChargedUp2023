@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+//import com.ctre.phoenixpro.hardware.Pigeon2;
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -25,7 +27,7 @@ In the periodic() method, the robot's odometry is updated, and the yaw of the ro
 */
 
 public class Swerve extends SubsystemBase {
-  private AHRS gyro;
+  private Pigeon2 gyro;
 
   private SwerveDriveOdometry swerveOdometry;
   private SwerveModule[] mSwerveMods;
@@ -33,18 +35,19 @@ public class Swerve extends SubsystemBase {
   private Field2d field;
 
   public Swerve() {
-    gyro = new AHRS(SPI.Port.kMXP);
+    gyro = new Pigeon2(Constants.Swerve.pigeonID);
+    gyro.configFactoryDefault();
     zeroGyro();
 
-    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getModulePositions());
-
+    
     mSwerveMods = new SwerveModule[] {
-        new SwerveModule(0, Constants.Swerve.Mod0.constants),
-        new SwerveModule(1, Constants.Swerve.Mod1.constants),
-        new SwerveModule(2, Constants.Swerve.Mod2.constants),
-        new SwerveModule(3, Constants.Swerve.Mod3.constants)
+      new SwerveModule(0, Constants.Swerve.Mod0.constants),
+      new SwerveModule(1, Constants.Swerve.Mod1.constants),
+      new SwerveModule(2, Constants.Swerve.Mod2.constants),
+      new SwerveModule(3, Constants.Swerve.Mod3.constants)
     };
-
+    swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getModulePositions());
+    
     field = new Field2d();
     SmartDashboard.putData(field);
   }
@@ -153,7 +156,7 @@ public class Swerve extends SubsystemBase {
    * Sets the yaw of the robot to 0.
    */
   public void zeroGyro() {
-    gyro.zeroYaw();
+    gyro.setYaw(0);
   }
 
   /**
