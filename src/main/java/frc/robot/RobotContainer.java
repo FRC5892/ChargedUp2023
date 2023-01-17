@@ -7,7 +7,6 @@ package frc.robot;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -96,7 +95,7 @@ public class RobotContainer {
     SmartDashboard.putData(autoChooser);
   }
 
-  public void dd() {
+  public void disabledInit() {
     s_Swerve.resetToAbsolute();
   }
 
