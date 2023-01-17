@@ -18,9 +18,9 @@ public final class Constants {
     
 
     /* Drivetrain Constants */
-    public static final double trackWidth = Units.inchesToMeters(20.5); //TODO: Double Check
-    public static final double wheelBase = Units.inchesToMeters(20.5); //TODO: Double Check
-    public static final double wheelDiameter = Units.inchesToMeters(4.0); //TODO: Double Check
+    public static final double trackWidth = Units.inchesToMeters(20.5); 
+    public static final double wheelBase = Units.inchesToMeters(20.5); 
+    public static final double wheelDiameter = Units.inchesToMeters(4.0); 
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
     public static final double openLoopRamp = 0.25;
@@ -78,7 +78,7 @@ public final class Constants {
     /* TODO: check Angle Encoder Invert */
     public static final boolean canCoderInvert = false;
 
-    //TODO: Set motor ID's
+    
     /* Module Specific Constants */
     /* Front Left Module - Module 0 */
     public static final class Mod0 {
