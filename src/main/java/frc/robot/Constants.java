@@ -62,16 +62,17 @@ public final class Constants {
     /* Drive Motor Conversion Factors */
     public static final double driveConversionVelocityFactor = ((wheelDiameter * Math.PI) / driveGearRatio) / 60.0;
     public static final double angleConversionFactor = 360.0 / angleGearRatio;
-
+    
     /* TODO: set Swerve Profiling Values */
-    public static final double maxSpeed = 4.5; // meters per second
-    public static final double maxAngularVelocity = 11.5;
+    private static final double SPEED_MULTIPLIER = 0.2;
+    public static final double maxSpeed = 4.4196*SPEED_MULTIPLIER; // meters per second
+    public static final double maxAngularVelocity = 11.5; //TODO: Tune
 
     /* Neutral Modes */
     public static final IdleMode angleNeutralMode = IdleMode.kBrake;
     public static final IdleMode driveNeutralMode = IdleMode.kBrake;
 
-    /* TODO: check Motor Inverts */
+    
     public static final boolean driveInvert = true;
     public static final boolean angleInvert = false;
 
