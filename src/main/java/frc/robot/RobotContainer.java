@@ -46,7 +46,7 @@ public class RobotContainer {
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
 
   /* Autonomous Modes */
-  PathPlannerTrajectory moveForward = PathPlanner.loadPath("Move Forward",
+  PathPlannerTrajectory moveForward = PathPlanner.loadPath("New",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory sCurve = PathPlanner.loadPath("S Curve",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
