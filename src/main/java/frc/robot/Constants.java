@@ -43,7 +43,7 @@ public final class Constants {
     public static final int driveContinuousCurrentLimit = 80;
 
     /* TODO: test Angle Motor PID Values (these are default, may tune if needed) */
-    public static final double angleKP = 0.2;
+    public static final double angleKP = 0.02;
     public static final double angleKI = 0.0;
     public static final double angleKD = 0.000;
     public static final double angleKFF = 0.0;
