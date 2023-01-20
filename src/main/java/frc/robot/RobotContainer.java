@@ -38,6 +38,7 @@ public class RobotContainer {
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
   private static final int strafeAxis = XboxController.Axis.kLeftX.value;
   private static final int rotationAxis = XboxController.Axis.kRightX.value;
+  private double SPEED_MULTIPLIER = 1.0;
 
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
@@ -69,13 +70,13 @@ public class RobotContainer {
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve, 
-            () -> -driver.getRawAxis(translationAxis), 
-            () -> -driver.getRawAxis(strafeAxis), 
-            () -> -driver.getRawAxis(rotationAxis), 
+            () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER, 
+            () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER, 
+            () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER, 
             () -> robotCentric.getAsBoolean()
         )
     );
-
+    SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
     // Configure the button bindings
     configureButtonBindings();
 
