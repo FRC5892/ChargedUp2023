@@ -3,7 +3,7 @@
   "encoder type": "Encoder Port",
   "encoding": false,
   "gearing denominator": 1.0,
-  "gearing numerator": 6.75,
+  "gearing numerator": 5.14,
   "gyro": "Pigeon2",
   "gyro ctor": "13",
   "is drivetrain": true,
