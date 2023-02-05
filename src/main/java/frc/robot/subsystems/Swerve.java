@@ -73,6 +73,12 @@ public class Swerve extends SubsystemBase {
     }
   }
 
+  public void stop() {
+    drive(new Translation2d(0, 0).times(Constants.Swerve.maxSpeed),
+    0 * Constants.Swerve.maxAngularVelocity,
+    true, false); 
+  }
+
   /* Used by SwerveControllerCommand in Auto */
   /**
    * Sets the desired states for each SwerveModule.
