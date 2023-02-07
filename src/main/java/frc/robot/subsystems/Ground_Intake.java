@@ -4,9 +4,6 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -18,55 +15,65 @@ import frc.robot.Constants;
 public class Ground_Intake extends SubsystemBase {
   /** Creates a new Ground_Intake. */
 
-  private CANSparkMax gIntakeMotor(int motorID, boolean inverted){
-    CANSparkMax sparkMax = new CANSparkMax(motorID, MotorType.kBrushed);
-		sparkMax.restoreFactoryDefaults();
-		sparkMax.setInverted(inverted);
-		sparkMax.setIdleMode(IdleMode.kBrake);
-    return sparkMax;
-  }
 
-  private CANSparkMax leftMotor = gIntakeMotor(Constants.GROUND_INTAKE_PORTS[0], false);
-  private CANSparkMax rightMotor = gIntakeMotor(Constants.GROUND_INTAKE_PORTS[0], true);
-  private DoubleSolenoid actuationSolenoid;
-  boolean actuated = false;
+
+  private DoubleSolenoid clampSolenoid;
+  private DoubleSolenoid kickerSolenoid;
+  private DoubleSolenoid tiltSolenoid;
+  
   public Ground_Intake() {
-    actuationSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 
+    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 
     Constants.GROUND_INTAKE_SOLENOID_PORTS[0], Constants.GROUND_INTAKE_SOLENOID_PORTS[1]);
+	/* PORT[0] forward channel
+	 * PORT[1] backward channel
+	 */
+	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+	Constants.GROUND_INTAKE_SOLENOID_PORTS[2], Constants.GROUND_INTAKE_SOLENOID_PORTS[3]);
+	/* PORT[2] forward channel
+	 * PORT[3] backward channel
+	 */
+	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+	Constants.GROUND_INTAKE_SOLENOID_PORTS[4], Constants.GROUND_INTAKE_SOLENOID_PORTS[5]);
+	/* PORT[4] forward channel
+	 * PORT[5] backward channel
+	 */
 
   }
 
-  public void driveArms(double leftSpeed, double rightSpeed) {
-		leftMotor.set(leftSpeed);
-		rightMotor.set(rightSpeed);
-	}
 
-	public void togglePistons(){
-		if (actuated){
-			actuationSolenoid.set(Value.kReverse);
-			actuated = false;
+	public void toggleClamp(){
+		if (clampSolenoid.get() == Value.kForward){
+			clampSolenoid.set(Value.kReverse);
+			
 		}
 		else{
-			actuationSolenoid.set(Value.kForward);
-			actuated=true;
+			clampSolenoid.set(Value.kForward);
 		}
 	}
 
-	public void pistonForward() {
-		actuationSolenoid.set(Value.kForward);
+	public void toggleKicker(){
+		if (kickerSolenoid.get() == Value.kForward){
+			kickerSolenoid.set(Value.kReverse);
+		}
+		else{
+			kickerSolenoid.set(Value.kForward);
+		}
 	}
 
-	public void pistonReverse() {
-		actuationSolenoid.set(Value.kReverse);
+	public void toggleTilt(){
+		if (tiltSolenoid.get() == Value.kForward){
+			tiltSolenoid.set(Value.kReverse);
+		}
+		else{
+			tiltSolenoid.set(Value.kForward);
+		}
 	}
 
-	public void stopMotors() {
-		leftMotor.stopMotor();
-		rightMotor.stopMotor();
-	}
 
   @Override
   public void periodic() {
-    SmartDashboard.putData("Ground Intake Piston", actuationSolenoid);
+    SmartDashboard.putData("Clamp Piston/s", clampSolenoid);
+	SmartDashboard.putData("Kicker Piston", kickerSolenoid);
+	SmartDashboard.putData("Tilt Piston", tiltSolenoid);
   }
 }
