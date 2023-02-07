@@ -132,4 +132,11 @@ public final class Constants {
     public static final double kPYController = 1;
     public static final double kPThetaController = 1;
   }
+
+  public static final class ArmConstants {
+    public static final int LEFT_INTAKE_MOTOR_PORT = 0;
+    public static final int RIGHT_INTAKE_MOTOR_PORT = 0;
+    public static final int[] INTAKE_POSITION_SOLENOID_PORT = new int[] { 1, 2};
+    public static final int[] EXTEND_SOLENOID_PORT = new int[] { 3, 4};
+  }
 }
