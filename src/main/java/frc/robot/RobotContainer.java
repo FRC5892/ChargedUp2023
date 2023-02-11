@@ -7,6 +7,7 @@ package frc.robot;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -30,6 +31,10 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 public class RobotContainer {
   /* Controllers */
   public static final XboxController driver = new XboxController(0);
+
+  /* Compressor */
+  private Compressor compressor;
+
 
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -71,6 +76,9 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    compressor = new Compressor(1, PneumaticsModuleType.REVPH);
+    compressor.enableDigital();
+
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve, 
