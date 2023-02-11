@@ -138,5 +138,12 @@ public final class Constants {
     public static final int RIGHT_INTAKE_MOTOR_PORT = 0;
     public static final int[] INTAKE_POSITION_SOLENOID_PORT = new int[] { 1, 2};
     public static final int[] EXTEND_SOLENOID_PORT = new int[] { 3, 4};
+    public static final double INTAKE_SPEED = 0;
+    public static final int ARM_MOTOR_PORT = 0;
+    public static final double ARM_MOTOR_SPEED = 0;
+    public static final int ARM_ENCODER = 0;
+    public static final Double ARM_MAX_HEIGHT = null;
+    public static final double WITH_GAMEPIECE_SPEED = 0;
+    public static final int SPIT_OUT_SPEED = 0;
   }
 }

@@ -17,6 +17,9 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.Intake.RetractIntake;
+import frc.robot.commands.Intake.RunIntakeRollars;
+import frc.robot.commands.Intake.scoreGamePiece;
 import frc.robot.subsystems.*;
 
 /* 
@@ -26,7 +29,7 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 
 public class RobotContainer {
   /* Controllers */
-  private final Joystick driver = new Joystick(0);
+  public static final XboxController driver = new XboxController(0);
 
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -36,11 +39,19 @@ public class RobotContainer {
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
+
+  private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
+  private final Arm arm = new Arm();
+  private final Intake intake = new Intake();
+
+  /* Commands */
+  private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(intake, arm);
+  private final RetractIntake retractIntake = new RetractIntake(arm);
+  private final scoreGamePiece scoreGamePiece = new scoreGamePiece();
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -85,6 +96,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+    retractIntakeButton.onTrue(retractIntake);
 }
 
   private void configureSmartDashboard() {

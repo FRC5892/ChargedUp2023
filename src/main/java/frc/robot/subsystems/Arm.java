@@ -6,6 +6,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
+
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,6 +19,8 @@ import frc.robot.Constants;
 public class Arm extends SubsystemBase {
   private DoubleSolenoid positionSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[0], Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[1]);
   private DoubleSolenoid extendSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.EXTEND_SOLENOID_PORT[0], Constants.ArmConstants.EXTEND_SOLENOID_PORT[1]);
+  private CANSparkMax armMotor = new CANSparkMax(Constants.ArmConstants.ARM_MOTOR_PORT, MotorType.kBrushed);
+  private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
   private Timer timer;
   /** Creates a new Arm. */
   public Arm() {
@@ -23,6 +30,7 @@ public class Arm extends SubsystemBase {
 		timer.reset();
   }
 
+  /* toggle pistons */
   public void togglePositionPistons() {
     if (positionSolenoid.get() == Value.kForward) {
       positionSolenoid.set(Value.kReverse);
@@ -39,6 +47,7 @@ public class Arm extends SubsystemBase {
     }
   }
 
+  /* open, close, set */  
   public void openPositionPistons() {
     positionSolenoid.set(Value.kForward);
   }
@@ -63,12 +72,26 @@ public class Arm extends SubsystemBase {
 		extendSolenoid.set(value);
 	}
 
+  /* return values */
   public Value returnPositionPistons() {
     return positionSolenoid.get();
   }
 
   public Value returnExtendPistons() {
     return extendSolenoid.get();
+  }
+
+  public Double returnEncoderValue() {
+    return armEncoder.get();
+  }
+
+  /*Mootroz */
+  public void setArmMotor(double speed) {
+		armMotor.set(speed);
+	}
+
+  public double getArmMotor(double speed) {
+    return armMotor.get();
   }
 
   @Override
