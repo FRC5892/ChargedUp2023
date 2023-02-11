@@ -9,8 +9,6 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,6 +17,10 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.Intake.RetractIntake;
+import frc.robot.commands.Intake.RunIntakeRollars;
+import frc.robot.commands.Intake.ScoreLow;
+import frc.robot.commands.Intake.ScoreMid;
 import frc.robot.subsystems.*;
 
 /* 
@@ -28,7 +30,7 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 
 public class RobotContainer {
   /* Controllers */
-  private final Joystick driver = new Joystick(0);
+  public static final XboxController driver = new XboxController(0);
 
   /* Compressor */
   private Compressor compressor;
@@ -42,11 +44,22 @@ public class RobotContainer {
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
+
+  private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
+  private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
+  private final Arm arm = new Arm();
+  private final Intake intake = new Intake();
+
+  /* Commands */
+  private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(intake, arm);
+  private final RetractIntake retractIntake = new RetractIntake(arm);
+  private final ScoreMid scoreMid = new ScoreMid(intake, arm);
+  private final ScoreLow scoreLow = new ScoreLow(intake, arm);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -94,6 +107,9 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+    retractIntakeButton.onTrue(retractIntake);
+    scoreMidButton.onTrue(scoreMid);
+    scoreLowButton.onTrue(scoreLow);
 }
 
   private void configureSmartDashboard() {
