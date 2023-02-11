@@ -4,8 +4,6 @@
 
 package frc.robot.commands.Intake;
 
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -13,17 +11,15 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Intake;
 
-public class ScoreMid extends CommandBase {
+public class ScoreLow extends CommandBase {
   private Intake intake;
   private Arm arm;
-  boolean stopping;
-
-  /** Creates a new scoreGamePiece. */
-  public ScoreMid(Intake intake, Arm arm) {
+  /** Creates a new ScoreLow. */
+  public ScoreLow(Intake intake, Arm arm) {
     this.intake = intake;
     this.arm = arm;
-    stopping = false;
-    addRequirements(intake, arm);
+    
+    addRequirements(intake);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -34,29 +30,16 @@ public class ScoreMid extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT) {
-      //TODO pid
-      arm.setArmMotor(Constants.ArmConstants.ARM_MOTOR_SPEED);
-      //TODO:test 
-      intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
-    } 
-
-    if (arm.returnEncoderValue() == Constants.ArmConstants.ARM_MAX_HEIGHT) {
-      arm.setExtendPistons(Value.kForward);
-      arm.setPositionPistons(Value.kForward);
-      intake.setMotors(-Constants.ArmConstants.SPIT_OUT_SPEED);
+    if (arm.returnPositionPistons() == Value.kForward) {
+      intake.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
       Timer.delay(5);
       intake.setMotors(0);
-      stopping = true;
-    }
-
-    if (stopping) {
+      }else {
       arm.setPositionPistons(Value.kReverse);
-      arm.setExtendPistons(Value.kReverse);
-      // TODO:pid
-      arm.setArmMotor(-Constants.ArmConstants.ARM_MOTOR_SPEED);
-    }
-
+      intake.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
+      Timer.delay(5);
+      intake.setMotors(0);
+      }
   }
 
   // Called once the command ends or is interrupted.
