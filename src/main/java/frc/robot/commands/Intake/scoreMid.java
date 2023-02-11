@@ -16,6 +16,7 @@ import frc.robot.subsystems.Intake;
 public class ScoreMid extends CommandBase {
   private Intake intake;
   private Arm arm;
+
   boolean stopping;
 
   /** Creates a new scoreGamePiece. */
@@ -36,7 +37,7 @@ public class ScoreMid extends CommandBase {
   public void execute() {
     if(arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT) {
       //TODO pid
-      arm.setArmMotor(Constants.ArmConstants.ARM_MOTOR_SPEED);
+      arm.setArmMotor();
       //TODO:test 
       intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
     } 

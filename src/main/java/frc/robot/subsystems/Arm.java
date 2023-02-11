@@ -20,8 +20,11 @@ public class Arm extends SubsystemBase {
   private DoubleSolenoid positionSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[0], Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[1]);
   private DoubleSolenoid extendSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.EXTEND_SOLENOID_PORT[0], Constants.ArmConstants.EXTEND_SOLENOID_PORT[1]);
   private CANSparkMax armMotor = new CANSparkMax(Constants.ArmConstants.ARM_MOTOR_PORT, MotorType.kBrushed);
+  
   private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
   private Timer timer;
+  private PIDController pid = new PIDController(kP, kI, kD);
+
   /** Creates a new Arm. */
   public Arm() {
     positionSolenoid.set(Value.kReverse);
@@ -87,11 +90,14 @@ public class Arm extends SubsystemBase {
 
   /*Mootroz */
   public void setArmMotor(double speed) {
-		armMotor.set(speed);
+		armMotor.set(pid.calculate(armEncoder.getDistance, setpoint));
 	}
 
   public double getArmMotor(double speed) {
+    pid.setTolerance(5, 10);
+    pid.atSetpoint();
     return armMotor.get();
+    return pid.atSetpoint;
   }
 
   @Override
