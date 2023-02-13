@@ -9,6 +9,7 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -19,8 +20,8 @@ import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.commands.Intake.RetractIntake;
 import frc.robot.commands.Intake.RunIntakeRollars;
-import frc.robot.commands.Intake.ScoreLow;
-import frc.robot.commands.Intake.ScoreMid;
+import frc.robot.commands.Scoring.ScoreLow;
+import frc.robot.commands.Scoring.ScoreMid;
 import frc.robot.subsystems.*;
 
 /* 
@@ -46,6 +47,7 @@ public class RobotContainer {
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
 
+  private final JoystickButton runIntakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
   private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
   private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
@@ -110,6 +112,8 @@ public class RobotContainer {
     retractIntakeButton.onTrue(retractIntake);
     scoreMidButton.onTrue(scoreMid);
     scoreLowButton.onTrue(scoreLow);
+    runIntakeButton.onTrue(runIntakeRollars);
+    retractIntakeButton.onTrue(retractIntake);
 }
 
   private void configureSmartDashboard() {

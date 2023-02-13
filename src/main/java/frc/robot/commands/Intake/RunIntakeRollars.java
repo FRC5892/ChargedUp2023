@@ -42,6 +42,7 @@ public class RunIntakeRollars extends CommandBase {
       }
     } else {
       if (RobotContainer.driver.getRightTriggerAxis() > 0.05) {
+        arm.setPositionPistons(Value.kForward);
         intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
       }else {
         intake.setMotors(0);

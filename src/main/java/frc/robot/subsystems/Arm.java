@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -23,12 +24,13 @@ public class Arm extends SubsystemBase {
   
   private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
   private Timer timer;
-  private PIDController pid = new PIDController(kP, kI, kD);
+  private PIDController pid = new PIDController(Constants.ArmConstants.ARM_PIDF[0], Constants.ArmConstants.ARM_PIDF[1], Constants.ArmConstants.ARM_PIDF[2]);
 
   /** Creates a new Arm. */
   public Arm() {
     positionSolenoid.set(Value.kReverse);
     extendSolenoid.set(Value.kReverse);
+    pid.setTolerance(Constants.ArmConstants.PID_POSITION_TOLERANCE);
 		timer = new Timer();
 		timer.reset();
   }
@@ -89,15 +91,22 @@ public class Arm extends SubsystemBase {
   }
 
   /*Mootroz */
-  public void setArmMotor(double speed) {
-		armMotor.set(pid.calculate(armEncoder.getDistance, setpoint));
+  public void setArmMotorUp() {
+		armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_UP));
 	}
 
-  public double getArmMotor(double speed) {
+  public void setArmMotorDown() {
+		armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_DOWN));
+	}
+
+  public double getArmMotor() {
     pid.setTolerance(5, 10);
     pid.atSetpoint();
     return armMotor.get();
-    return pid.atSetpoint;
+  }
+
+  public boolean armAtSetpoint() {
+    return pid.atSetpoint();
   }
 
   @Override

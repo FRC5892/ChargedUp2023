@@ -2,9 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Intake;
-
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity;
+package frc.robot.commands.Scoring;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -37,7 +35,7 @@ public class ScoreMid extends CommandBase {
   public void execute() {
     if(arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT) {
       //TODO pid
-      arm.setArmMotor();
+      arm.setArmMotorUp();
       //TODO:test 
       intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
     } 
@@ -54,8 +52,7 @@ public class ScoreMid extends CommandBase {
     if (stopping) {
       arm.setPositionPistons(Value.kReverse);
       arm.setExtendPistons(Value.kReverse);
-      // TODO:pid
-      arm.setArmMotor(-Constants.ArmConstants.ARM_MOTOR_SPEED);
+      arm.setArmMotorDown();
     }
 
   }

@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Intake;
+package frc.robot.commands.Scoring;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -35,7 +35,7 @@ public class ScoreLow extends CommandBase {
       Timer.delay(5);
       intake.setMotors(0);
       }else {
-      arm.setPositionPistons(Value.kReverse);
+      arm.setPositionPistons(Value.kForward);
       intake.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
       Timer.delay(5);
       intake.setMotors(0);

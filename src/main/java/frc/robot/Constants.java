@@ -141,11 +141,17 @@ public final class Constants {
     public static final int ARM_MOTOR_PORT = 0;
     public static final int ARM_ENCODER = 0;
 
-    public static final Double ARM_MAX_HEIGHT = null;
+    public static final double ARM_MAX_HEIGHT = 5.5;
+    public static final int[] ARM_PIDF = new int [] {0, 0, 0};
+
 
     public static final double INTAKE_SPEED = 0;
     public static final double ARM_MOTOR_SPEED = 0;
     public static final double WITH_GAMEPIECE_SPEED = 0;
     public static final int SPIT_OUT_SPEED = 0;
+    public static final double PID_POSITION_TOLERANCE = 0;
+    public static final double ARM_SETPOINT = 0;
+    public static final double ARM_SETPOINT_UP = 0;
+    public static final double ARM_SETPOINT_DOWN = 0;
   }
 }
