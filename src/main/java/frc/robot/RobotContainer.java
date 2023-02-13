@@ -46,7 +46,8 @@ public class RobotContainer {
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
 
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve();
+  public final static Swerve s_Swerve = new Swerve();
+  public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
