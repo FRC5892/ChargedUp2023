@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
@@ -33,6 +34,9 @@ public class RobotContainer {
   /* Compressor */
   private Compressor compressor;
 
+  // Gyro Sensor
+  private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
+
 
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -46,7 +50,7 @@ public class RobotContainer {
   private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
 
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve();
+  private final Swerve s_Swerve = new Swerve(gyro);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -94,6 +98,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
 }
 
   private void configureSmartDashboard() {

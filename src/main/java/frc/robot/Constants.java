@@ -23,6 +23,7 @@ public final class Constants {
     public static final double wheelDiameter = Units.inchesToMeters(4.0); 
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
+
     public static final double openLoopRamp = 0.25;
     public static final double closedLoopRamp = 0.0; //seem to be useless
 
@@ -132,4 +133,10 @@ public final class Constants {
     public static final double kPYController = 1;
     public static final double kPThetaController = 1;
   }
+  // Balancing Constants
+  public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 1.35;
+  public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
+  public static final double BEAM_BALANACED_DRIVE_KP = 0.015; // P (Proportional) constant of a PID loop
+  public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
+  
 }
