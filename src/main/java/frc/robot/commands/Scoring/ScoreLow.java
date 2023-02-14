@@ -19,7 +19,7 @@ public class ScoreLow extends CommandBase {
     this.intake = intake;
     this.arm = arm;
     
-    addRequirements(intake);
+    addRequirements(intake, arm);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -30,12 +30,14 @@ public class ScoreLow extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (arm.returnPositionPistons() == Value.kForward) {
+    boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
+
+    if (isClawDeployed) {
       intake.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
       Timer.delay(5);
       intake.setMotors(0);
       }else {
-      arm.setPositionPistons(Value.kForward);
+      arm.setClawPosition(Value.kForward);
       intake.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
       Timer.delay(5);
       intake.setMotors(0);

@@ -34,21 +34,20 @@ public class RunIntakeRollars extends CommandBase {
   @Override
   public void execute() {
     this.finished = false;
-    if (arm.returnPositionPistons() == Value.kForward) {
-      if (RobotContainer.driver.getRightTriggerAxis() > 0.05) {
-        intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
-      }else {
-        intake.setMotors(0);
-      }
-    } else {
-      if (RobotContainer.driver.getRightTriggerAxis() > 0.05) {
-        arm.setPositionPistons(Value.kForward);
-        intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
-      }else {
-        intake.setMotors(0);
-      }
-      this.finished = true;
+    boolean isTriggerActive = RobotContainer.driver.getRightTriggerAxis() > 0.05;
+    boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
+
+    if (!isClawDeployed && isTriggerActive) {
+      arm.setClawPosition(Value.kForward);
     }
+
+    if (isTriggerActive) {
+      intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
+    }else {
+      intake.setMotors(0);
+    }
+    
+    this.finished = true;
   }
 
   // Called once the command ends or is interrupted.

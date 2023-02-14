@@ -24,8 +24,8 @@ public class ReleaseIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(arm.returnPositionPistons() != Value.kForward) {
-      arm.setPositionPistons(Value.kForward);
+    if(arm.returnClawPosition() != Value.kForward) {
+      arm.setClawPosition(Value.kForward);
     }
   }
 

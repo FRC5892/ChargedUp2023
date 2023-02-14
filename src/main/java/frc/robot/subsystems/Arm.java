@@ -53,11 +53,11 @@ public class Arm extends SubsystemBase {
   }
 
   /* open, close, set */  
-  public void openPositionPistons() {
+  public void releaseClawPiston() {
     positionSolenoid.set(Value.kForward);
   }
 
-  public void closePositionPistons() {
+  public void retractClawPiston() {
     positionSolenoid.set(Value.kReverse);
   }
 
@@ -69,7 +69,7 @@ public class Arm extends SubsystemBase {
     extendSolenoid.set(Value.kReverse);
   }
 
-  public void setPositionPistons(DoubleSolenoid.Value value) {
+  public void setClawPosition(DoubleSolenoid.Value value) {
 		positionSolenoid.set(value);
 	}
 
@@ -78,11 +78,11 @@ public class Arm extends SubsystemBase {
 	}
 
   /* return values */
-  public Value returnPositionPistons() {
+  public Value returnClawPosition() {
     return positionSolenoid.get();
   }
 
-  public Value returnExtendPistons() {
+  public Value returnExtendPistonValue() {
     return extendSolenoid.get();
   }
 
