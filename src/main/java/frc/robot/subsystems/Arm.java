@@ -39,17 +39,13 @@ public class Arm extends SubsystemBase {
   public void togglePositionPistons() {
     if (positionSolenoid.get() == Value.kForward) {
       positionSolenoid.set(Value.kReverse);
-    } else {
-      positionSolenoid.set(Value.kForward);
-    }
   }
+}
 
   public void toggleExtendPistons() {
     if (positionSolenoid.get() == Value.kForward) {
       positionSolenoid.set(Value.kReverse);
-    } else {
-      positionSolenoid.set(Value.kForward);
-    }
+    } 
   }
 
   /* open, close, set */  
@@ -91,11 +87,11 @@ public class Arm extends SubsystemBase {
   }
 
   /*Mootroz */
-  public void setArmMotorUp() {
+  public void setArmUp() {
 		armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_UP));
 	}
 
-  public void setArmMotorDown() {
+  public void setArmDown() {
 		armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_DOWN));
 	}
 

@@ -33,16 +33,17 @@ public class ScoreMid extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean encoderUnderMaxHeight = arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT;
-    boolean encoderAtMaxHeight = arm.returnEncoderValue() == Constants.ArmConstants.ARM_MAX_HEIGHT;
-    if(encoderUnderMaxHeight) {
+    boolean armUnderMaxHeight = arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT;
+    boolean armAtMaxHeight = arm.returnEncoderValue() == Constants.ArmConstants.ARM_MAX_HEIGHT;
+    
+    if(armUnderMaxHeight) {
       //TODO pid
-      arm.setArmMotorUp();
+      arm.setArmUp();
       //TODO:test 
       intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
     } 
 
-    if (encoderAtMaxHeight) {
+    if (armAtMaxHeight) {
       arm.setExtendPistons(Value.kForward);
       arm.setClawPosition(Value.kForward);
       intake.setMotors(-Constants.ArmConstants.SPIT_OUT_SPEED);
@@ -54,7 +55,7 @@ public class ScoreMid extends CommandBase {
     if (stopping) {
       arm.setClawPosition(Value.kReverse);
       arm.setExtendPistons(Value.kReverse);
-      arm.setArmMotorDown();
+      arm.setArmDown();
     }
 
   }
