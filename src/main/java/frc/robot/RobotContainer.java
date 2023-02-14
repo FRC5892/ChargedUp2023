@@ -36,7 +36,6 @@ public class RobotContainer {
   /* Compressor */
   private Compressor compressor;
 
-
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
   private static final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -55,13 +54,13 @@ public class RobotContainer {
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
   private final Arm arm = new Arm();
-  private final Intake intake = new Intake();
+  private final Claw claw = new Claw();
 
   /* Commands */
-  private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(intake, arm);
+  private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(claw, arm);
   private final RetractIntake retractIntake = new RetractIntake(arm);
-  private final ScoreMid scoreMid = new ScoreMid(intake, arm);
-  private final ScoreLow scoreLow = new ScoreLow(intake, arm);
+  private final ScoreMid scoreMid = new ScoreMid(claw, arm);
+  private final ScoreLow scoreLow = new ScoreLow(claw, arm);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -83,13 +82,11 @@ public class RobotContainer {
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
-            s_Swerve, 
-            () -> -driver.getRawAxis(translationAxis), 
-            () -> -driver.getRawAxis(strafeAxis), 
-            () -> -driver.getRawAxis(rotationAxis), 
-            () -> robotCentric.getAsBoolean()
-        )
-    );
+            s_Swerve,
+            () -> -driver.getRawAxis(translationAxis),
+            () -> -driver.getRawAxis(strafeAxis),
+            () -> -driver.getRawAxis(rotationAxis),
+            () -> robotCentric.getAsBoolean()));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -114,7 +111,7 @@ public class RobotContainer {
     scoreLowButton.onTrue(scoreLow);
     runIntakeButton.onTrue(runIntakeRollars);
     retractIntakeButton.onTrue(retractIntake);
-}
+  }
 
   private void configureSmartDashboard() {
     autoChooser.setDefaultOption("Move forward", moveForward);
