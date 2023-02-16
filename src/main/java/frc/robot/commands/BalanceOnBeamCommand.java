@@ -24,7 +24,7 @@ public class BalanceOnBeamCommand extends CommandBase {
   private double error;
   private double currentAngle;
   private double drivePower;
-  private Pigeon2 pigeon;
+  private Pigeon2 gyro;
 
   /**
    * Command to use Gyro data to resist the tip angle from the beam - to stabalize
@@ -33,7 +33,7 @@ public class BalanceOnBeamCommand extends CommandBase {
   public BalanceOnBeamCommand(Swerve s_Swerve, SwerveModule s_Module, Pigeon2 gyro) {
     this.m_Swerve = s_Swerve;
     this.m_Module = s_Module;
-    this.pigeon = gyro;
+    this.gyro = gyro;
     addRequirements(s_Swerve);
   }
 
@@ -49,7 +49,7 @@ public class BalanceOnBeamCommand extends CommandBase {
     // controller joystick
     // Double currentAngle = -1 *
     // Robot.controller.getRawAxis(Constants.LEFT_VERTICAL_JOYSTICK_AXIS) * 45;
-    this.currentAngle = pigeon.getPitch();
+    this.currentAngle = gyro.getPitch();
 
     error = Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES - currentAngle;
     drivePower = -Math.min(Constants.BEAM_BALANACED_DRIVE_KP * error, 1);
