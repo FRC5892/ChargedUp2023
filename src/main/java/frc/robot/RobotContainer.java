@@ -30,13 +30,9 @@ public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
 
-<<<<<<< Updated upstream
   /* Compressor */
-  private Compressor compressor;
+  // private Compressor compressor;
 
-
-=======
->>>>>>> Stashed changes
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
   private static final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -55,15 +51,12 @@ public class RobotContainer {
   private Compressor compressor;
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
-<<<<<<< Updated upstream
-=======
   private final Ground_Intake ground_intake = new Ground_Intake();
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
->>>>>>> Stashed changes
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -113,15 +106,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-<<<<<<< Updated upstream
-}
-=======
     /* Pneumatics Buttons */
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
   }
->>>>>>> Stashed changes
 
   private void configureSmartDashboard() {
     autoChooser.setDefaultOption("Move forward", moveForward);
