@@ -187,6 +187,7 @@ public class Swerve extends SubsystemBase {
     field.setRobotPose(getPose());
 
     SmartDashboard.putNumber("Pigeon2 Yaw", gyro.getYaw());
+    SmartDashboard.putNumber("Pigeon2 Pitch", gyro.getPitch());
 
     for (SwerveModule mod : mSwerveMods) {
       SmartDashboard.putNumber(

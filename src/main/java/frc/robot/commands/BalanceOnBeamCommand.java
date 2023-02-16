@@ -12,6 +12,8 @@ import frc.robot.RobotContainer;
 import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -19,7 +21,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class BalanceOnBeamCommand extends CommandBase {
 
   private Swerve m_Swerve;
-  private SwerveModule m_Module;
 
   private double error;
   private double currentAngle;
@@ -30,9 +31,8 @@ public class BalanceOnBeamCommand extends CommandBase {
    * Command to use Gyro data to resist the tip angle from the beam - to stabalize
    * and balanace
    */
-  public BalanceOnBeamCommand(Swerve s_Swerve, SwerveModule s_Module, Pigeon2 gyro) {
+  public BalanceOnBeamCommand(Swerve s_Swerve, Pigeon2 gyro) {
     this.m_Swerve = s_Swerve;
-    this.m_Module = s_Module;
     this.gyro = gyro;
     addRequirements(s_Swerve);
   }
@@ -65,8 +65,8 @@ public class BalanceOnBeamCommand extends CommandBase {
       drivePower = Math.copySign(0.4, drivePower);
     }
 
-    SwerveModuleState desiredState = new SwerveModuleState(drivePower, new Rotation2d(0));
-    m_Module.setDesiredState(desiredState, true);
+    Translation2d translation = new Translation2d(drivePower, new Rotation2d(0));
+    m_Swerve.drive(translation, 0, true, true);
 
     // Debugging Print Statments
     System.out.println("Current Angle: " + currentAngle);
@@ -77,9 +77,7 @@ public class BalanceOnBeamCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SwerveModuleState desiredState = new SwerveModuleState(0, new Rotation2d(0));
-    m_Module.setDesiredState(desiredState, interrupted);
-    ;
+    m_Swerve.drive(new Translation2d(0, 0), 0, true, true);
   }
 
   // Returns true when the command should end.
