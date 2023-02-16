@@ -26,7 +26,10 @@ public class BalanceOnBeamCommand extends CommandBase {
   private double drivePower;
   private Pigeon2 pigeon;
 
-  /** Command to use Gyro data to resist the tip angle from the beam - to stabalize and balanace */
+  /**
+   * Command to use Gyro data to resist the tip angle from the beam - to stabalize
+   * and balanace
+   */
   public BalanceOnBeamCommand(Swerve s_Swerve, SwerveModule s_Module, Pigeon2 gyro) {
     this.m_Swerve = s_Swerve;
     this.m_Module = s_Module;
@@ -36,19 +39,23 @@ public class BalanceOnBeamCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // Uncomment the line below this to simulate the gyroscope axis with a controller joystick
-    // Double currentAngle = -1 * Robot.controller.getRawAxis(Constants.LEFT_VERTICAL_JOYSTICK_AXIS) * 45;
-    this.currentAngle = m_Swerve.getPitch();
+    // Uncomment the line below this to simulate the gyroscope axis with a
+    // controller joystick
+    // Double currentAngle = -1 *
+    // Robot.controller.getRawAxis(Constants.LEFT_VERTICAL_JOYSTICK_AXIS) * 45;
+    this.currentAngle = pigeon.getPitch();
 
     error = Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES - currentAngle;
     drivePower = -Math.min(Constants.BEAM_BALANACED_DRIVE_KP * error, 1);
 
-    // Our robot needed an extra push to drive up in reverse, probably due to weight imbalances
+    // Our robot needed an extra push to drive up in reverse, probably due to weight
+    // imbalances
     if (drivePower < 0) {
       drivePower *= Constants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
     }
@@ -60,7 +67,7 @@ public class BalanceOnBeamCommand extends CommandBase {
 
     SwerveModuleState desiredState = new SwerveModuleState(drivePower, new Rotation2d(0));
     m_Module.setDesiredState(desiredState, true);
-    
+
     // Debugging Print Statments
     System.out.println("Current Angle: " + currentAngle);
     System.out.println("Error " + error);
@@ -71,12 +78,15 @@ public class BalanceOnBeamCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     SwerveModuleState desiredState = new SwerveModuleState(0, new Rotation2d(0));
-    m_Module.setDesiredState(desiredState, interrupted);;
+    m_Module.setDesiredState(desiredState, interrupted);
+    ;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(error) < Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES; // End the command when we are within the specified threshold of being 'flat' (gyroscope pitch of 0 degrees)
+    return Math.abs(error) < Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES; // End the command when we are within the
+                                                                             // specified threshold of being 'flat'
+                                                                             // (gyroscope pitch of 0 degrees)
   }
 }
