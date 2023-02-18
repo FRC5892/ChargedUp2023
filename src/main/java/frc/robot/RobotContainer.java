@@ -56,6 +56,9 @@ public class RobotContainer {
   // private Compressor compressor;
   /* Subsystems */
 
+  public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
+
+
   /* Commands */
 
   private final Swerve s_Swerve = new Swerve(gyro);
@@ -66,6 +69,7 @@ public class RobotContainer {
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
   private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
+
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
