@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.sensors.Pigeon2;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
@@ -31,7 +32,11 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
 
   /* Compressor */
-  // private Compressor compressor;
+
+  private Compressor compressor;
+
+  // Gyro Sensor
+  private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
 
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -50,13 +55,20 @@ public class RobotContainer {
   private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
   private Compressor compressor;
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve();
+
+  
+
+  /* Commands */
+  private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
+
+  private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
+
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -83,11 +95,13 @@ public class RobotContainer {
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve,
+
             () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
             () -> robotCentric.getAsBoolean()));
     SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
+
     // Configure the button bindings
     configureButtonBindings();
 
@@ -106,10 +120,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
     /* Pneumatics Buttons */
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
+
   }
 
   private void configureSmartDashboard() {

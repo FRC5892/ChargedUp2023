@@ -25,7 +25,8 @@ public final class Constants {
     public static final double openLoopRamp = 0.25;
     public static final double closedLoopRamp = 0.0; // seem to be useless
 
-    public static final double driveGearRatio = (6.75 / 1.0); // 6.75:1 for L2
+    public static final double driveGearRatio = (5.14 / 1.0); // 6.75:1 for L2
+
     public static final double angleGearRatio = (12.8 / 1.0); // 12.8:1 for all L's
 
     public static final SwerveDriveKinematics swerveKinematics = new SwerveDriveKinematics(
@@ -118,7 +119,6 @@ public final class Constants {
           canCoderID, angleOffset);
     }
   }
-
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 3;
     public static final double kMaxAccelerationMetersPerSecondSquared = 3;
@@ -130,6 +130,14 @@ public final class Constants {
     public static final double kPThetaController = 1;
   }
 
+  // Balancing Constants
+  public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 1.35;
+  public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
+  public static final double BEAM_BALANACED_DRIVE_KP = 0.015; // P (Proportional) constant of a PID loop
+  public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 1;
+
+
   // public static final int[] GROUND_INTAKE_PORTS = {0, 0};
   public static final int[] GROUND_INTAKE_SOLENOID_PORTS = { 0, 1, 2, 3, 4, 5 };
+
 }

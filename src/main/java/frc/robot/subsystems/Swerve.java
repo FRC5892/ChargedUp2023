@@ -34,8 +34,8 @@ public class Swerve extends SubsystemBase {
 
   private Field2d field;
 
-  public Swerve() {
-    gyro = new Pigeon2(Constants.Swerve.pigeonID);
+  public Swerve(Pigeon2 gyro) {
+    this.gyro = gyro;
     gyro.configFactoryDefault();
     zeroGyro();
 
@@ -188,7 +188,9 @@ public class Swerve extends SubsystemBase {
 
     SmartDashboard.putNumber("Pigeon2 Yaw", gyro.getYaw());
     SmartDashboard.putNumber("Pigeon2 Pitch", gyro.getPitch());
+
     SmartDashboard.putNumber("Pigeon2 Roll", gyro.getRoll());
+
 
     for (SwerveModule mod : mSwerveMods) {
       SmartDashboard.putNumber(
