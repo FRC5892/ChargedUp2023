@@ -145,17 +145,15 @@ public class SwerveModule {
   private Rotation2d getAngle() {
     return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
   }
-  
 
   public SwerveModuleState getState() {
     double velocity = driveEncoder.getVelocity();
     return new SwerveModuleState(velocity, getAngle());
   }
-  public SwerveModulePosition getPosition(){
-    double position = driveEncoder.getPosition();
-    return new SwerveModulePosition(position, getAngle() 
-    );
-  }
-  
-}
 
+  public SwerveModulePosition getPosition() {
+    double position = driveEncoder.getPosition();
+    return new SwerveModulePosition(position, getAngle());
+  }
+
+}

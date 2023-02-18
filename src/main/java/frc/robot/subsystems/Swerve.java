@@ -34,30 +34,33 @@ public class Swerve extends SubsystemBase {
 
   private Field2d field;
 
-  public Swerve() {
-    gyro = new Pigeon2(Constants.Swerve.pigeonID);
+  public Swerve(Pigeon2 gyro) {
+    this.gyro = gyro;
     gyro.configFactoryDefault();
     zeroGyro();
 
-    
     mSwerveMods = new SwerveModule[] {
-      new SwerveModule(0, Constants.Swerve.Mod0.constants),
-      new SwerveModule(1, Constants.Swerve.Mod1.constants),
-      new SwerveModule(2, Constants.Swerve.Mod2.constants),
-      new SwerveModule(3, Constants.Swerve.Mod3.constants)
+        new SwerveModule(0, Constants.Swerve.Mod0.constants),
+        new SwerveModule(1, Constants.Swerve.Mod1.constants),
+        new SwerveModule(2, Constants.Swerve.Mod2.constants),
+        new SwerveModule(3, Constants.Swerve.Mod3.constants)
     };
     swerveOdometry = new SwerveDriveOdometry(Constants.Swerve.swerveKinematics, getYaw(), getModulePositions());
-    
+
     field = new Field2d();
     SmartDashboard.putData(field);
   }
 
   /**
-   * Sets the desired speed and angle for the robot. The desired rotation and speed can be relative to the field or the robot.
-   * @param translation The desired translation.
-   * @param rotation The desired rotation.
-   * @param fieldRelative Whether the desired rotation and speed should be relative to the field or the robot.
-   * @param isOpenLoop Whether the desired speed should be open loop or closed loop.
+   * Sets the desired speed and angle for the robot. The desired rotation and
+   * speed can be relative to the field or the robot.
+   * 
+   * @param translation   The desired translation.
+   * @param rotation      The desired rotation.
+   * @param fieldRelative Whether the desired rotation and speed should be
+   *                      relative to the field or the robot.
+   * @param isOpenLoop    Whether the desired speed should be open loop or closed
+   *                      loop.
    */
   public void drive(
       Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
@@ -82,6 +85,7 @@ public class Swerve extends SubsystemBase {
   /* Used by SwerveControllerCommand in Auto */
   /**
    * Sets the desired states for each SwerveModule.
+   * 
    * @param desiredStates The desired states for each SwerveModule.
    */
   public void setModuleStates(SwerveModuleState[] desiredStates) {
@@ -94,6 +98,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Sets the desired rotation for each SwerveModule.
+   * 
    * @param rotation The desired rotation.
    */
   public void setModuleRotation(Rotation2d rotation) {
@@ -104,6 +109,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Returns the pose of the robot in meters.
+   * 
    * @return The pose of the robot in meters.
    */
   public Pose2d getPose() {
@@ -112,6 +118,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Returns the Field2d object.
+   * 
    * @return The Field2d object.
    */
   public Field2d getField() {
@@ -120,6 +127,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Resets the odometry of the robot to the given pose.
+   * 
    * @param pose The pose to reset the odometry to.
    */
   public void resetOdometry(Pose2d pose) {
@@ -137,6 +145,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Returns the current states of each SwerveModule.
+   * 
    * @return The current states of each SwerveModule.
    */
   public SwerveModuleState[] getStates() {
@@ -146,17 +155,19 @@ public class Swerve extends SubsystemBase {
     }
     return states;
   }
+
   /**
    * Returns the current positions of each SwerveModule.
+   * 
    * @return The current positions of each SwerveModule.
    */
-  public SwerveModulePosition[] getModulePositions(){
+  public SwerveModulePosition[] getModulePositions() {
     SwerveModulePosition[] positions = new SwerveModulePosition[4];
-    for(SwerveModule mod : mSwerveMods){
-        positions[mod.moduleNumber] = mod.getPosition();
+    for (SwerveModule mod : mSwerveMods) {
+      positions[mod.moduleNumber] = mod.getPosition();
     }
     return positions;
-}
+  }
 
   /**
    * Sets the yaw of the robot to 0.
@@ -167,6 +178,7 @@ public class Swerve extends SubsystemBase {
 
   /**
    * Returns the yaw of the robot.
+   * 
    * @return The yaw of the robot.
    */
   public Rotation2d getYaw() {
@@ -174,7 +186,6 @@ public class Swerve extends SubsystemBase {
         ? Rotation2d.fromDegrees(360 - gyro.getYaw())
         : Rotation2d.fromDegrees(gyro.getYaw());
   }
-  
 
   @Override
   public void periodic() {
@@ -182,6 +193,10 @@ public class Swerve extends SubsystemBase {
     field.setRobotPose(getPose());
 
     SmartDashboard.putNumber("Pigeon2 Yaw", gyro.getYaw());
+    SmartDashboard.putNumber("Pigeon2 Pitch", gyro.getPitch());
+
+    SmartDashboard.putNumber("Pigeon2 Roll", gyro.getRoll());
+
 
     for (SwerveModule mod : mSwerveMods) {
       SmartDashboard.putNumber(
