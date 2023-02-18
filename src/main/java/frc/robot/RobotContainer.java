@@ -53,13 +53,10 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(driver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
-  private Compressor compressor;
+  // private Compressor compressor;
   /* Subsystems */
 
-  
-
   /* Commands */
-  private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
 
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
@@ -68,7 +65,7 @@ public class RobotContainer {
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
-
+  private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
