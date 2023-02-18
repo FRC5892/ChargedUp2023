@@ -32,6 +32,7 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
 
   /* Compressor */
+
   private Compressor compressor;
 
   // Gyro Sensor
@@ -41,18 +42,33 @@ public class RobotContainer {
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
   private static final int strafeAxis = XboxController.Axis.kLeftX.value;
   private static final int rotationAxis = XboxController.Axis.kRightX.value;
+  private double SPEED_MULTIPLIER = 1.0;
 
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
-  private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
-
+  // private final JoystickButton rotation0 = new JoystickButton(driver,
+  // XboxController.Button.kA.value);
+  private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
+  private final JoystickButton retractButton = new JoystickButton(driver, XboxController.Button.kA.value);
+  private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
+  private Compressor compressor;
   /* Subsystems */
-  private final Swerve s_Swerve = new Swerve(gyro);
+
+  
 
   /* Commands */
   private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
+
+  private final Swerve s_Swerve = new Swerve(gyro);
+  private final Ground_Intake ground_intake = new Ground_Intake();
+
+  /* Pneumatics Commands */
+  public final Command intake = new intake(ground_intake);
+  public final Command outtake = new score(ground_intake);
+  public final Command retract = new retract(ground_intake);
+
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -69,16 +85,22 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    compressor = new Compressor(1, PneumaticsModuleType.REVPH);
-    compressor.enableDigital();
+    compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+    // compressor.enableDigital();
+    // compressor.disable();
+    // boolean pressureSwitch = compressor.getPressureSwitchValue();
+    // System.out.println(pressureSwitch);
+    // compressor.disable();
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve,
-            () -> -driver.getRawAxis(translationAxis),
-            () -> -driver.getRawAxis(strafeAxis),
-            () -> -driver.getRawAxis(rotationAxis),
+
+            () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
+            () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
+            () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
             () -> robotCentric.getAsBoolean()));
+    SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -98,6 +120,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+
+    /* Pneumatics Buttons */
+    intakeButton.onTrue(intake);
+    outtakeButton.onTrue(outtake);
+    retractButton.onTrue(retract);
 
   }
 
