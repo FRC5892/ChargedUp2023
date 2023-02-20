@@ -3,7 +3,10 @@ package frc.robot;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.util.Units;
 import frc.lib.config.SwerveModuleConstants;
@@ -133,25 +136,12 @@ public final class Constants {
     public static final double kPThetaController = 1;
   }
 
-  public static final class ArmConstants {
-    public static final int LEFT_INTAKE_MOTOR_PORT = 0;
-    public static final int RIGHT_INTAKE_MOTOR_PORT = 0;
-    public static final int[] INTAKE_POSITION_SOLENOID_PORT = new int[] { 1, 2};
-    public static final int[] EXTEND_SOLENOID_PORT = new int[] { 3, 4};
-    public static final int ARM_MOTOR_PORT = 0;
-    public static final int ARM_ENCODER = 0;
+  public static final class VisionConstants {
+    public static final String USB_CAMERA_NAME = null;
+    public static final Transform3d CAMERA_TO_ROBOT =
+    new Transform3d(new Translation3d(-0.3425, 0.0, -0.233), new Rotation3d());
+  public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
 
-    public static final double ARM_MAX_HEIGHT = 5.5;
-    public static final int[] ARM_PIDF = new int [] {0, 0, 0};
-
-
-    public static final double INTAKE_SPEED = 0;
-    public static final double ARM_MOTOR_SPEED = 0;
-    public static final double WITH_GAMEPIECE_SPEED = 0;
-    public static final int SPIT_OUT_SPEED = 0;
-    public static final double PID_POSITION_TOLERANCE = 0;
-    public static final double ARM_SETPOINT = 0;
-    public static final double ARM_SETPOINT_UP = 0;
-    public static final double ARM_SETPOINT_DOWN = 0;
   }
+
 }
