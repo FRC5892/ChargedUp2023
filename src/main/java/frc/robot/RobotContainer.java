@@ -36,7 +36,6 @@ public class RobotContainer {
   /* Compressor */
   private Compressor compressor;
 
-
   /* Drive Controls */
   private static final int translationAxis = XboxController.Axis.kLeftY.value;
   private static final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -83,13 +82,11 @@ public class RobotContainer {
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
-            s_Swerve, 
-            () -> -driver.getRawAxis(translationAxis), 
-            () -> -driver.getRawAxis(strafeAxis), 
-            () -> -driver.getRawAxis(rotationAxis), 
-            () -> robotCentric.getAsBoolean()
-        )
-    );
+            s_Swerve,
+            () -> -driver.getRawAxis(translationAxis),
+            () -> -driver.getRawAxis(strafeAxis),
+            () -> -driver.getRawAxis(rotationAxis),
+            () -> robotCentric.getAsBoolean()));
 
     // Configure the button bindings
     configureButtonBindings();
@@ -114,7 +111,7 @@ public class RobotContainer {
     scoreLowButton.onTrue(scoreLow);
     runIntakeButton.onTrue(runIntakeRollars);
     retractIntakeButton.onTrue(retractIntake);
-}
+  }
 
   private void configureSmartDashboard() {
     autoChooser.setDefaultOption("Move forward", moveForward);

@@ -4,7 +4,6 @@
 
 package frc.robot.commands.Scoring;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -28,27 +27,24 @@ public class ScoreMid extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     boolean armUnderMaxHeight = arm.returnEncoderValue() < Constants.ArmConstants.ARM_MAX_HEIGHT;
     boolean armAtMaxHeight = arm.returnEncoderValue() == Constants.ArmConstants.ARM_MAX_HEIGHT;
-    
-    if(armUnderMaxHeight) {
-      //TODO pid
+
+    if (armUnderMaxHeight) {
       arm.setArmUp();
-      //TODO:test 
       intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
-    } 
+    }
 
     if (armAtMaxHeight) {
       arm.setExtendPistons(Value.kForward);
       arm.setClawPosition(Value.kForward);
-      intake.setMotors(-Constants.ArmConstants.SPIT_OUT_SPEED);
-      Timer.delay(5);
-      intake.setMotors(0);
+      intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
       stopping = true;
     }
 
@@ -62,7 +58,8 @@ public class ScoreMid extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
