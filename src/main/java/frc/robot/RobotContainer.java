@@ -8,6 +8,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -32,8 +33,10 @@ public class RobotContainer {
   private final Joystick driver = new Joystick(0);
 
   /* Compressor */
-
   private Compressor compressor;
+
+  // LEDs
+  private AddressableLEDBuffer kicker_Buffer = new AddressableLEDBuffer(69);
 
   // Gyro Sensor
   private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
@@ -58,7 +61,6 @@ public class RobotContainer {
 
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
 
-
   /* Commands */
 
   private final Swerve s_Swerve = new Swerve(gyro);
@@ -69,7 +71,6 @@ public class RobotContainer {
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
   private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
-
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();

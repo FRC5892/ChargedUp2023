@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LED;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
@@ -37,9 +38,11 @@ public class intake extends CommandBase {
     // Timer.delay(1);
     // delay(3.5);
     ground_Intake.tiltUpward();
-    finish = true;
+    // for (var i = 0;i < kicker_Buffer.getLength(); i++){
 
-    // We can also use: new WaitCommand(5.0) if needed
+  }finish=true;
+
+  // We can also use: new WaitCommand(5.0) if needed
   }
 
   // Called once the command ends or is interrupted.
