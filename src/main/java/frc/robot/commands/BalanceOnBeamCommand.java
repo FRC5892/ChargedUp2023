@@ -48,12 +48,6 @@ public class BalanceOnBeamCommand extends CommandBase {
     error = Constants.BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES - currentAngle;
     drivePower = -Math.min(Constants.BEAM_BALANACED_DRIVE_KP * error, 1);
 
-    // Our robot needed an extra push to drive up in reverse, probably due to weight
-    // imbalances
-    if (drivePower < 0) {
-      drivePower *= Constants.BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER;
-    }
-
     // Limit the max power
     if (Math.abs(drivePower) > 0.4) {
       drivePower = Math.copySign(0.4, drivePower);

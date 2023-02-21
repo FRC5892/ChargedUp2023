@@ -53,6 +53,7 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(driver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
+  private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   // private Compressor compressor;
   /* Subsystems */
 
@@ -122,6 +123,7 @@ public class RobotContainer {
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
+    balanceButton.onTrue(autobalance);
 
   }
 
