@@ -5,17 +5,10 @@ import java.util.HashMap;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
-import com.pathplanner.lib.commands.PPSwerveControllerCommand;
-
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.intake;
-import frc.robot.commands.retract;
-import frc.robot.commands.score;
-import frc.robot.subsystems.Ground_Intake;
 import frc.robot.subsystems.Swerve;
 
 public class executeTrajectory extends SequentialCommandGroup {
@@ -27,11 +20,6 @@ public class executeTrajectory extends SequentialCommandGroup {
     eventMap.put("retract", r);
     eventMap.put("intake", i);
 
-
-    PIDController thetaController = new PIDController(
-        Constants.AutoConstants.kPThetaController,
-        0,
-        0);
 
     SwerveAutoBuilder swerveControllerCommand = new SwerveAutoBuilder(
         s_Swerve::getPose,

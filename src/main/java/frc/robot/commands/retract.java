@@ -4,14 +4,12 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
 public class retract extends CommandBase {
   private Ground_Intake ground_Intake;
-  private double d;
   private Timer timer;
   private boolean finish;
 
@@ -40,9 +38,6 @@ public class retract extends CommandBase {
 
   // delay(1.5);
   // ground_Intake.returnKicker();
-
-  private void delay(double d) {
-  }
 
   // Called once the command ends or is interrupted.
   @Override
