@@ -30,6 +30,7 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 public class RobotContainer {
   /* Controllers */
   private final Joystick driver = new Joystick(0);
+  private final Joystick codriver = new Joystick(1);
 
   /* Compressor */
 
@@ -46,15 +47,11 @@ public class RobotContainer {
 
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
-  // private final JoystickButton rotation0 = new JoystickButton(driver,
-  // XboxController.Button.kA.value);
-  private final JoystickButton outtakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
-  private final JoystickButton retractButton = new JoystickButton(driver, XboxController.Button.kA.value);
-  private final JoystickButton intakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
+  private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
+  private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
+  private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
   private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-  // private Compressor compressor;
   /* Subsystems */
 
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
@@ -76,14 +73,31 @@ public class RobotContainer {
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
 
   /* Autonomous Modes */
-  PathPlannerTrajectory alyssa = PathPlanner.loadPath("Alyssa",
+  PathPlannerTrajectory Score1 = PathPlanner.loadPath("1 Score",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory sCurve = PathPlanner.loadPath("S Curve",
+  PathPlannerTrajectory Score1andLineCrossShort = PathPlanner.loadPath("1 Score + Line Cross Short",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory sussy = PathPlanner.loadPath("sussy",
+  PathPlannerTrajectory Score1andLineCross = PathPlanner.loadPath("1 Score + Line Cross",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-
-  /**
+  PathPlannerTrajectory Score1ChargeStation = PathPlanner.loadPath("1 Score + Charge Station",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score2ChargeStation = PathPlanner.loadPath("2 Score + Charge Station",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score3ChargeStation = PathPlanner.loadPath("3 Score + Charge Station",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score3 = PathPlanner.loadPath("3 Score",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score4ChargeStation = PathPlanner.loadPath("4 Score + Charge Station",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score4 = PathPlanner.loadPath("4 Score",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score5 = PathPlanner.loadPath("5 Score",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, 7);
+      
+      
+      /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
@@ -97,8 +111,8 @@ public class RobotContainer {
             () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
-            () -> robotCentric.getAsBoolean()));
-    SmartDashboard.putNumber("Max Speed", SPEED_MULTIPLIER);
+            () -> false));
+    SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -128,9 +142,17 @@ public class RobotContainer {
   }
 
   private void configureSmartDashboard() {
-    autoChooser.setDefaultOption("Alyssa", alyssa);
-    autoChooser.addOption("S curve", sCurve);
-    autoChooser.addOption("SUSSY - CADEN", sussy);
+    autoChooser.setDefaultOption("1 Score", Score1);
+    autoChooser.addOption("1 Score + Line Cross", Score1andLineCross);
+    autoChooser.addOption("1 Score + Line Cross Short", Score1andLineCrossShort);
+    autoChooser.addOption("1 Score + Charge Station", Score1ChargeStation);
+    autoChooser.addOption("2 Score + Charge Station", Score2ChargeStation);
+    autoChooser.addOption("2 Score", Score2);
+    autoChooser.addOption("3 Score + Charge Station", Score3ChargeStation);
+    autoChooser.addOption("3 Score", Score3);
+    autoChooser.addOption("4 Score + Charge Station", Score4ChargeStation);
+    autoChooser.addOption("4 Score", Score4);
+    autoChooser.addOption("5 Score", Score5);
 
     SmartDashboard.putData(autoChooser);
   }
