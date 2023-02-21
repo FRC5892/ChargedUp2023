@@ -5,33 +5,22 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Arm extends SubsystemBase {
+public class Pneumatics extends SubsystemBase {
   private DoubleSolenoid positionSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
       Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[0], Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[1]);
   private DoubleSolenoid extendSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
       Constants.ArmConstants.EXTEND_SOLENOID_PORT[0], Constants.ArmConstants.EXTEND_SOLENOID_PORT[1]);
-  private CANSparkMax armMotor = new CANSparkMax(Constants.ArmConstants.ARM_MOTOR_PORT, MotorType.kBrushed);
-
-  private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
-  private PIDController pid = new PIDController(Constants.ArmConstants.ARM_PIDF[0], Constants.ArmConstants.ARM_PIDF[1],
-      Constants.ArmConstants.ARM_PIDF[2]);
 
   /** Creates a new Arm. */
-  public Arm() {
+  public Pneumatics() {
     positionSolenoid.set(Value.kReverse);
     extendSolenoid.set(Value.kReverse);
-    pid.setTolerance(Constants.ArmConstants.PID_POSITION_TOLERANCE);
   }
 
   /* toggle pistons */
@@ -79,29 +68,6 @@ public class Arm extends SubsystemBase {
 
   public Value returnExtendPistonValue() {
     return extendSolenoid.get();
-  }
-
-  public Double returnEncoderValue() {
-    return armEncoder.get();
-  }
-
-  /* Mootroz */
-  public void setArmUp() {
-    armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_UP));
-  }
-
-  public void setArmDown() {
-    armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_DOWN));
-  }
-
-  public double getArmMotor() {
-    pid.setTolerance(5, 10);
-    pid.atSetpoint();
-    return armMotor.get();
-  }
-
-  public boolean armAtSetpoint() {
-    return pid.atSetpoint();
   }
 
   @Override

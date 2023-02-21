@@ -6,12 +6,12 @@ package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Pneumatics;
 
 public class RetractIntake extends CommandBase {
-  private Arm arm;
+  private Pneumatics arm;
   /** Creates a new RetractIntake. */
-  public RetractIntake(Arm arm) {
+  public RetractIntake(Pneumatics arm) {
     this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);

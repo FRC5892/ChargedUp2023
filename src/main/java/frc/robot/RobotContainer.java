@@ -20,8 +20,7 @@ import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.commands.Intake.RetractIntake;
 import frc.robot.commands.Intake.RunIntakeRollars;
-import frc.robot.commands.Scoring.ScoreLow;
-import frc.robot.commands.Scoring.ScoreMid;
+import frc.robot.commands.Intake.ScoreLow;
 import frc.robot.subsystems.*;
 
 /* 
@@ -48,18 +47,16 @@ public class RobotContainer {
 
   private final JoystickButton runIntakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
   private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
-  private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
-  private final Arm arm = new Arm();
+  private final Pneumatics arm = new Pneumatics();
   private final Intake intake = new Intake();
 
   /* Commands */
   private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(intake, arm);
   private final RetractIntake retractIntake = new RetractIntake(arm);
-  private final ScoreMid scoreMid = new ScoreMid(intake, arm);
   private final ScoreLow scoreLow = new ScoreLow(intake, arm);
 
   /* Autonomous Mode Chooser */
@@ -107,9 +104,8 @@ public class RobotContainer {
     /* Driver Buttons */
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
     retractIntakeButton.onTrue(retractIntake);
-    scoreMidButton.onTrue(scoreMid);
-    scoreLowButton.onTrue(scoreLow);
-    runIntakeButton.onTrue(runIntakeRollars);
+    scoreLowButton.whileTrue(scoreLow);
+    runIntakeButton.whileTrue(runIntakeRollars);
     retractIntakeButton.onTrue(retractIntake);
   }
 

@@ -2,20 +2,20 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.Scoring;
+package frc.robot.commands.Intake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Intake;
 
 public class ScoreLow extends CommandBase {
   private Intake intake;
-  private Arm arm;
+  private Pneumatics arm;
 
   /** Creates a new ScoreLow. */
-  public ScoreLow(Intake intake, Arm arm) {
+  public ScoreLow(Intake intake, Pneumatics arm) {
     this.intake = intake;
     this.arm = arm;
 

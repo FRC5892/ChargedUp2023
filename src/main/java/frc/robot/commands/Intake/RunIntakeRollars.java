@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.Pneumatics;
 import frc.robot.subsystems.Intake;
 
 public class RunIntakeRollars extends CommandBase {
   private Intake intake;
-  private Arm arm;
+  private Pneumatics arm;
   private boolean finished;
   
   /** Creates a new RunIntakeRollars. */
-  public RunIntakeRollars(Intake intake, Arm arm) {
+  public RunIntakeRollars(Intake intake, Pneumatics arm) {
     this.intake = intake;
     this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
