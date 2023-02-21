@@ -49,12 +49,12 @@ public class Ground_Intake extends SubsystemBase {
 
 	//push kicker out
 	public void sendKicker(){
-		kickerSolenoid.set(Value.kReverse);
+		kickerSolenoid.set(Value.kForward);
 	}
 
 	//bring kicker back in
 	public void returnKicker(){
-		kickerSolenoid.set(Value.kForward);
+		kickerSolenoid.set(Value.kReverse);
 	}
 	
 
