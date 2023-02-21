@@ -75,7 +75,7 @@ public class RobotContainer {
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
 
   /* Autonomous Modes */
-  PathPlannerTrajectory moveForward = PathPlanner.loadPath("New",
+  PathPlannerTrajectory alyssa = PathPlanner.loadPath("Alyssa",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory sCurve = PathPlanner.loadPath("S Curve",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
@@ -130,7 +130,7 @@ public class RobotContainer {
   }
 
   private void configureSmartDashboard() {
-    autoChooser.setDefaultOption("Move forward", moveForward);
+    autoChooser.setDefaultOption("Alyssa", alyssa);
     autoChooser.addOption("S curve", sCurve);
     autoChooser.addOption("SUSSY - CADEN", sussy);
 
@@ -148,6 +148,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
-    return new executeTrajectory(s_Swerve, autoChooser.getSelected());
+    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake);
   }
 }

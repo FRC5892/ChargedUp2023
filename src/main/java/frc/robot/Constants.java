@@ -25,7 +25,7 @@ public final class Constants {
     public static final double wheelDiameter = Units.inchesToMeters(4.0);
     public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-    public static final double openLoopRamp = 0.25;
+    public static final double openLoopRamp = 2;
     public static final double closedLoopRamp = 0.0; // seem to be useless
 
     public static final double driveGearRatio = (5.14 / 1.0); // 6.75:1 for L2
