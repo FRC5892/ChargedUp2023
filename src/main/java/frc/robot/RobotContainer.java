@@ -47,26 +47,27 @@ public class RobotContainer {
 
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-
   private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
   private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+  
   /* Subsystems */
-
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
 
 
   /* Commands */
-
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
+  private final ActiveBalance autobalance = new ActiveBalance(s_Swerve, gyro);
+  private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
+
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new score(ground_intake);
   public final Command retract = new retract(ground_intake);
-  private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
 
 
   /* Autonomous Mode Chooser */
@@ -138,6 +139,7 @@ public class RobotContainer {
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
     balanceButton.onTrue(autobalance);
+    passiveBalanceButton.onTrue(passiveBalance);
 
   }
 

@@ -92,7 +92,7 @@ public class Swerve extends SubsystemBase {
       mod.setDesiredState(desiredStates[mod.moduleNumber], false);
     }
   }
-
+  
   /**
    * Sets the desired rotation for each SwerveModule.
    * 
@@ -102,6 +102,20 @@ public class Swerve extends SubsystemBase {
     for (SwerveModule mod : mSwerveMods) {
       mod.setDesiredState(new SwerveModuleState(0, rotation), false);
     }
+  }
+
+  /* Set individual rotation */
+  public void setModule0(Rotation2d rotation) {
+    mSwerveMods[0].setDesiredState(new SwerveModuleState(0, rotation), false);
+  }
+  public void setModule1(Rotation2d rotation) {
+    mSwerveMods[1].setDesiredState(new SwerveModuleState(0, rotation), false);
+  }
+  public void setModule2(Rotation2d rotation) {
+    mSwerveMods[2].setDesiredState(new SwerveModuleState(0, rotation), false);
+  }
+  public void setModule3(Rotation2d rotation) {
+    mSwerveMods[3].setDesiredState(new SwerveModuleState(0, rotation), false);
   }
 
   /**
