@@ -17,7 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "retract"
+          "score"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -85,12 +85,12 @@
         "y": 1.9271381399905658
       },
       "prevControl": {
-        "x": 7.477740319117001,
-        "y": 0.8107349851063351
+        "x": 7.514177846537511,
+        "y": 0.7287505484101892
       },
       "nextControl": {
-        "x": 7.477740319117001,
-        "y": 0.8107349851063351
+        "x": 7.514177846537511,
+        "y": 0.7287505484101892
       },
       "holonomicAngle": 90.0,
       "isReversal": true,
@@ -106,16 +106,16 @@
     },
     {
       "anchorPoint": {
-        "x": 1.837161315522441,
-        "y": 1.6030638291318065
+        "x": 1.8390329507931746,
+        "y": 1.5759230609370318
       },
       "prevControl": {
-        "x": 2.6862054633200176,
-        "y": 0.04554690927563747
+        "x": 1.8663610963585566,
+        "y": 0.01821876371025545
       },
       "nextControl": {
-        "x": 2.6862054633200176,
-        "y": 0.04554690927563747
+        "x": 1.8663610963585566,
+        "y": 0.01821876371025545
       },
       "holonomicAngle": 180.0,
       "isReversal": true,
@@ -131,18 +131,18 @@
     },
     {
       "anchorPoint": {
-        "x": 7.048514097028194,
-        "y": 3.1287419717696583
+        "x": 7.250005772738818,
+        "y": 3.115408594453553
       },
       "prevControl": {
-        "x": 7.123879202168702,
-        "y": 0.5019433126746651
+        "x": 9.053663380054031,
+        "y": 0.592109820583279
       },
       "nextControl": {
-        "x": 6.96761493522987,
-        "y": 5.948426351398157
+        "x": 5.344136094387593,
+        "y": 5.781701023258044
       },
-      "holonomicAngle": 90.0,
+      "holonomicAngle": 126.25383773744473,
       "isReversal": false,
       "velOverride": 1.0,
       "isLocked": false,
@@ -230,5 +230,78 @@
   "maxVelocity": 5.0,
   "maxAcceleration": 7.0,
   "isReversed": null,
-  "markers": []
+  "markers": [
+    {
+      "position": 0.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 1.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 2.0,
+      "names": [
+        "score"
+      ]
+    },
+    {
+      "position": 2.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 3.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 4.0,
+      "names": [
+        "score"
+      ]
+    },
+    {
+      "position": 4.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 5.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 6.0,
+      "names": [
+        "score"
+      ]
+    },
+    {
+      "position": 6.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 7.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 8.0,
+      "names": [
+        "score"
+      ]
+    }
+  ]
 }

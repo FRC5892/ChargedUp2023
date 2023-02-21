@@ -94,7 +94,7 @@ public class RobotContainer {
   PathPlannerTrajectory Score4 = PathPlanner.loadPath("4 Score",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory Score5 = PathPlanner.loadPath("5 Score",
-      Constants.AutoConstants.kMaxSpeedMetersPerSecond, 7);
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
       
       
       /**
