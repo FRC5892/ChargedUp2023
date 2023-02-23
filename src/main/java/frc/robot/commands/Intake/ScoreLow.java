@@ -13,11 +13,13 @@ import frc.robot.subsystems.Intake;
 public class ScoreLow extends CommandBase {
   private Intake intake;
   private Pneumatics arm;
+  private boolean finish;
 
   /** Creates a new ScoreLow. */
   public ScoreLow(Intake intake, Pneumatics arm) {
     this.intake = intake;
     this.arm = arm;
+    finish = false;
 
     addRequirements(intake, arm);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -40,6 +42,8 @@ public class ScoreLow extends CommandBase {
     if (isClawDeployed) {
       intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
     }
+
+    finish = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -50,6 +54,6 @@ public class ScoreLow extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }
