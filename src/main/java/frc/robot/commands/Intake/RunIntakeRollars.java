@@ -14,12 +14,13 @@ import frc.robot.subsystems.Intake;
 public class RunIntakeRollars extends CommandBase {
   private Intake intake;
   private Arm arm;
-  private boolean finished;
+  private boolean finish;
   
   /** Creates a new RunIntakeRollars. */
   public RunIntakeRollars(Intake intake, Arm arm) {
     this.intake = intake;
     this.arm = arm;
+    finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
   }
@@ -27,13 +28,11 @@ public class RunIntakeRollars extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.finished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.finished = false;
     boolean isTriggerActive = RobotContainer.driver.getRightTriggerAxis() > 0.05;
     boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
 
@@ -47,7 +46,7 @@ public class RunIntakeRollars extends CommandBase {
       intake.setMotors(0);
     }
     
-    this.finished = true;
+    finish = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -57,6 +56,6 @@ public class RunIntakeRollars extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.finished;
+    return finish;
   }
 }

@@ -13,14 +13,16 @@ import frc.robot.subsystems.Intake;
 public class ScoreMid extends CommandBase {
   private Intake intake;
   private Arm arm;
+  private boolean finish;
 
-  boolean stopping;
+  private boolean stopping;
 
   /** Creates a new scoreGamePiece. */
   public ScoreMid(Intake intake, Arm arm) {
     this.intake = intake;
     this.arm = arm;
     stopping = false;
+    finish = false;
     addRequirements(intake, arm);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -54,6 +56,8 @@ public class ScoreMid extends CommandBase {
       arm.setArmDown();
     }
 
+    finish = true;
+
   }
 
   // Called once the command ends or is interrupted.
@@ -64,6 +68,6 @@ public class ScoreMid extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }
