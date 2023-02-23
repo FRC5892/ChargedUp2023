@@ -65,11 +65,12 @@ public class RobotContainer {
 
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
+  private final LED LED = new LED(kicker_Buffer);
 
   /* Pneumatics Commands */
-  public final Command intake = new intake(ground_intake);
-  public final Command outtake = new score(ground_intake);
-  public final Command retract = new retract(ground_intake);
+  public final Command intake = new intake(ground_intake, LED);
+  public final Command outtake = new score(ground_intake, LED);
+  public final Command retract = new retract(ground_intake, LED);
   private BalanceOnBeamCommand autobalance = new BalanceOnBeamCommand(s_Swerve, gyro);
 
   /* Autonomous Mode Chooser */

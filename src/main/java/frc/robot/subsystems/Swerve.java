@@ -78,8 +78,8 @@ public class Swerve extends SubsystemBase {
 
   public void stop() {
     drive(new Translation2d(0, 0).times(Constants.Swerve.maxSpeed),
-    0 * Constants.Swerve.maxAngularVelocity,
-    true, false); 
+        0 * Constants.Swerve.maxAngularVelocity,
+        true, false);
   }
 
   /* Used by SwerveControllerCommand in Auto */
@@ -196,7 +196,6 @@ public class Swerve extends SubsystemBase {
     SmartDashboard.putNumber("Pigeon2 Pitch", gyro.getPitch());
 
     SmartDashboard.putNumber("Pigeon2 Roll", gyro.getRoll());
-
 
     for (SwerveModule mod : mSwerveMods) {
       SmartDashboard.putNumber(

@@ -4,24 +4,30 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LED;
 
 public class score extends CommandBase {
   private Ground_Intake ground_Intake;
   private double d;
   private Timer timer;
+  private LED kicker_Buffer;
+  private AddressableLEDBuffer LEDs;
   private boolean finish;
 
   /** Creates a new score. */
-  public score(Ground_Intake intake) {
+  public score(Ground_Intake intake, LED kicker_Buffer_) {
     this.ground_Intake = intake;
+    kicker_Buffer = kicker_Buffer_;
     timer = new Timer();
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake);
+    addRequirements(ground_Intake, kicker_Buffer);
   }
 
   // Called when the command is initially scheduled.
@@ -43,6 +49,9 @@ public class score extends CommandBase {
     ground_Intake.returnKicker();
     // Timer.delay(1);
     // ground_Intake.sendKicker();
+    for (var i = 0; i < LEDs.getLength(); i++) {
+      LEDs.setRGB(i, 0, 255, 0);
+    }
     finish = true;
   }
 

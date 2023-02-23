@@ -4,24 +4,30 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Ground_Intake;
 import frc.robot.subsystems.LED;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
+  private LED kicker_Buffer;
+  private AddressableLEDBuffer LEDs;
   private boolean finish;
 
   /** Creates a new intake. */
-  public intake(Ground_Intake intake) {
+  public intake(Ground_Intake intake, LED kicker_Buffer_) {
     ground_Intake = intake;
+    kicker_Buffer = kicker_Buffer_;
     finish = false;
     // this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake);
+    addRequirements(ground_Intake, kicker_Buffer);
 
   }
 
@@ -38,11 +44,13 @@ public class intake extends CommandBase {
     // Timer.delay(1);
     // delay(3.5);
     ground_Intake.tiltUpward();
-    // for (var i = 0;i < kicker_Buffer.getLength(); i++){
 
-  }finish=true;
+    for (var i = 0; i < LEDs.getLength(); i++) {
+      LEDs.setRGB(i, 255, 0, 0);
+    }
+    finish = true;
 
-  // We can also use: new WaitCommand(5.0) if needed
+    // We can also use: new WaitCommand(5.0) if needed
   }
 
   // Called once the command ends or is interrupted.
