@@ -31,6 +31,7 @@ public class intake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    ground_Intake.sendKicker();
     // delay(3.5);
     ground_Intake.closeClamp();
     // Timer.delay(1);

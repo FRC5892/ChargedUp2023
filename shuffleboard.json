@@ -1,0 +1,242 @@
+{
+  "tabPane": [
+    {
+      "title": "SmartDashboard",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "SmartDashboard/",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "10,3": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
+              "_title": "Auton Chooser",
+              "_glyph": 318,
+              "_showGlyph": true
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              3
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "IMU",
+              "_glyph": 139,
+              "_showGlyph": true,
+              "Layout/Label position": "TOP",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
+                  "_title": "Pigeon2 Yaw",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
+                  "_title": "Pigeon2 Pitch",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
+                  "_title": "Pigeon2 Roll",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
+            }
+          },
+          "10,0": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Grid Layout",
+              "_title": "Swerve Modules",
+              "_glyph": 242,
+              "_showGlyph": true,
+              "Layout/Number of columns": 3,
+              "Layout/Number of rows": 4,
+              "Layout/Label position": "TOP",
+              "_children": {
+                "0,1": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 1 Velocity",
+                  "_title": "Mod 1 Velocity",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 0 Velocity",
+                  "_title": "Mod 0 Velocity",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,2": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 2 Velocity",
+                  "_title": "Mod 2 Velocity",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,1": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 1 Position",
+                  "_title": "Mod 1 Position",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,2": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 2 Position",
+                  "_title": "Mod 2 Position",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,3": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 3 Position",
+                  "_title": "Mod 3 Position",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,1": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 1 Integrated",
+                  "_title": "Mod 1 Angle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,2": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 2 Integrated",
+                  "_title": "Mod 2 Angle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,3": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 3 Integrated",
+                  "_title": "Mod 3 Angle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,3": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 3 Velocity",
+                  "_title": "Mod 3 Velocity",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 0 Integrated",
+                  "_title": "Mod 0 Angle",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 0 Position",
+                  "_title": "Mod 0 Position",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              }
+            }
+          },
+          "0,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Max Speed",
+              "_title": "Max Speed",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              3
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Pneumatics",
+              "_glyph": 530,
+              "_showGlyph": true,
+              "Layout/Label position": "TOP",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Clamp Piston/s/Value",
+                  "_title": "Clamp Piston",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Kicker Piston/Value",
+                  "_title": "Kicker Piston",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Tilt Piston/Value",
+                  "_title": "Tilt Piston",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "LiveWindow",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "LiveWindow/",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {}
+      }
+    }
+  ],
+  "windowGeometry": {
+    "x": 0.0,
+    "y": 0.0,
+    "width": 1920.0,
+    "height": 1032.0
+  }
+}

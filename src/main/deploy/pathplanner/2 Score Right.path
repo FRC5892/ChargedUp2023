@@ -17,7 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "score"
+          "retract"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -30,12 +30,12 @@
         "y": 0.9470590369752175
       },
       "prevControl": {
-        "x": 5.9099861672625815,
-        "y": 0.8528383846067047
+        "x": 5.920751841503683,
+        "y": 0.6852570847998849
       },
       "nextControl": {
-        "x": 5.9099861672625815,
-        "y": 0.8528383846067047
+        "x": 5.920751841503683,
+        "y": 0.6852570847998849
       },
       "holonomicAngle": 0.0,
       "isReversal": true,
@@ -54,42 +54,15 @@
     },
     {
       "anchorPoint": {
-        "x": 1.8155664675947323,
-        "y": 1.034428549661233
+        "x": 1.8213092057330724,
+        "y": 1.0330473580397814
       },
       "prevControl": {
-        "x": 1.8054025800452191,
-        "y": 0.5160702846360475
-      },
-      "nextControl": {
-        "x": 1.8370476534142464,
-        "y": 2.1299690264564726
-      },
-      "holonomicAngle": 180.0,
-      "isReversal": false,
-      "velOverride": null,
-      "isLocked": false,
-      "isStopPoint": true,
-      "stopEvent": {
-        "names": [
-          "score"
-        ],
-        "executionBehavior": "parallel",
-        "waitBehavior": "none",
-        "waitTime": 0
-      }
-    },
-    {
-      "anchorPoint": {
-        "x": 3.839761965238216,
-        "y": 2.014405457382344
-      },
-      "prevControl": {
-        "x": 1.8719545803709576,
-        "y": 2.0252482455863396
+        "x": 2.1636656047315848,
+        "y": 0.6437008650610814
       },
       "nextControl": null,
-      "holonomicAngle": 179.59651526494127,
+      "holonomicAngle": 180.0,
       "isReversal": false,
       "velOverride": null,
       "isLocked": false,
@@ -107,21 +80,15 @@
   "isReversed": null,
   "markers": [
     {
-      "position": 0.5,
-      "names": [
-        "retract"
-      ]
-    },
-    {
-      "position": 1.0,
+      "position": 1.0000000000000002,
       "names": [
         "intake"
       ]
     },
     {
-      "position": 2.5,
+      "position": 0.49090909090909096,
       "names": [
-        "intake"
+        "score"
       ]
     }
   ]

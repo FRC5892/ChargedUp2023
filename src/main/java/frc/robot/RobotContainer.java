@@ -8,6 +8,7 @@ import com.ctre.phoenix.sensors.Pigeon2;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -82,19 +83,31 @@ public class RobotContainer {
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory Score1ChargeStation = PathPlanner.loadPath("1 Score + Charge Station",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score2ChargeStation = PathPlanner.loadPath("2 Score + Charge Station",
+  PathPlannerTrajectory Score2ChargeStationRight = PathPlanner.loadPath("2 Score + Charge Station",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
+  PathPlannerTrajectory Score2Right = PathPlanner.loadPath("2 Score Right",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score3ChargeStation = PathPlanner.loadPath("3 Score + Charge Station",
+  PathPlannerTrajectory Score3ChargeStationRight = PathPlanner.loadPath("3 Score + Charge Station Right",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score3 = PathPlanner.loadPath("3 Score",
+  PathPlannerTrajectory Score3Right = PathPlanner.loadPath("3 Score Right",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score4ChargeStation = PathPlanner.loadPath("4 Score + Charge Station",
+  PathPlannerTrajectory Score4ChargeStationRight = PathPlanner.loadPath("4 Score + Charge Station Right",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-  PathPlannerTrajectory Score4 = PathPlanner.loadPath("4 Score",
+  PathPlannerTrajectory Score4Right = PathPlanner.loadPath("4 Score Right",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory Score5 = PathPlanner.loadPath("5 Score",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score2ChargeStationLeft = PathPlanner.loadPath("2 Score + Charge Station Left",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score2Left = PathPlanner.loadPath("2 Score Left",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score3ChargeStationLeft = PathPlanner.loadPath("3 Score + Charge Station Left",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score3Left = PathPlanner.loadPath("3 Score Left",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score4ChargeStationLeft = PathPlanner.loadPath("4 Score + Charge Station Left",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score4Left = PathPlanner.loadPath("4 Score Left",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
       
       
@@ -102,6 +115,7 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    CameraServer.startAutomaticCapture();
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
 
@@ -148,13 +162,19 @@ public class RobotContainer {
     autoChooser.addOption("1 Score + Line Cross", Score1andLineCross);
     autoChooser.addOption("1 Score + Line Cross Short", Score1andLineCrossShort);
     autoChooser.addOption("1 Score + Charge Station", Score1ChargeStation);
-    autoChooser.addOption("2 Score + Charge Station", Score2ChargeStation);
-    autoChooser.addOption("2 Score", Score2);
-    autoChooser.addOption("3 Score + Charge Station", Score3ChargeStation);
-    autoChooser.addOption("3 Score", Score3);
-    autoChooser.addOption("4 Score + Charge Station", Score4ChargeStation);
-    autoChooser.addOption("4 Score", Score4);
+    autoChooser.addOption("2 Score + Charge Station Right", Score2ChargeStationRight);
+    autoChooser.addOption("2 Score Right", Score2Right);
+    autoChooser.addOption("3 Score + Charge Station Right", Score3ChargeStationRight);
+    autoChooser.addOption("3 Score Right", Score3Right);
+    autoChooser.addOption("4 Score + Charge Station Right", Score4ChargeStationRight);
+    autoChooser.addOption("4 Score Right", Score4Right);
     autoChooser.addOption("5 Score", Score5);
+    autoChooser.addOption("2 Score Left", Score2Left);
+    autoChooser.addOption("2 Score + Charge Station Left", Score2ChargeStationLeft);
+    autoChooser.addOption("3 Score Left", Score3Left);
+    autoChooser.addOption("3 Score + Charge Station Left", Score3ChargeStationLeft);
+    autoChooser.addOption("4 Score Left", Score4Left);
+    autoChooser.addOption("4 Score + Charge Station Left", Score4ChargeStationLeft);
 
     SmartDashboard.putData(autoChooser);
   }
