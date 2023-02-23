@@ -36,7 +36,6 @@ public class RobotContainer {
   private Compressor compressor;
 
   // LEDs
-  private AddressableLEDBuffer kicker_Buffer = new AddressableLEDBuffer(69);
 
   // Gyro Sensor
   private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
@@ -65,7 +64,7 @@ public class RobotContainer {
 
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
-  private final LED LED = new LED(kicker_Buffer);
+  private final LED LED = new LED();
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake, LED);

@@ -10,14 +10,19 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class LED extends SubsystemBase {
   /** Creates a new LED. */
-  private AddressableLED kicker_LED = new AddressableLED(0);
-  public AddressableLEDBuffer kicker_Buffer;
+  private AddressableLED LEDs = new AddressableLED(0);
+  private AddressableLEDBuffer LED_Buffer = new AddressableLEDBuffer(69);
 
-  public LED(AddressableLEDBuffer kicker_Buffer_) {
-    this.kicker_Buffer = kicker_Buffer_;
-    kicker_LED.setLength(kicker_Buffer.getLength());
-    kicker_LED.setData(kicker_Buffer);
-    kicker_LED.start();
+  public LED() {
+    LEDs.setLength(LED_Buffer.getLength());
+    LEDs.setData(LED_Buffer);
+    LEDs.start();
+  }
+
+  public void setColor(int r, int g, int b) {
+    for (var i = 0; i < LED_Buffer.getLength(); i++) {
+      LED_Buffer.setRGB(i, r, g, b);
+    }
   }
 
   @Override

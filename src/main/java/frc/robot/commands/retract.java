@@ -16,17 +16,16 @@ public class retract extends CommandBase {
   private double d;
   private Timer timer;
   private boolean finish;
-  private LED kicker_Buffer;
-  AddressableLEDBuffer LEDs;
+  private LED leds;
 
   /** Creates a new score. */
-  public retract(Ground_Intake intake, LED kicker_Buffer_) {
+  public retract(Ground_Intake intake, LED leds) {
     this.ground_Intake = intake;
-    kicker_Buffer = kicker_Buffer_;
+    this.leds = leds;
     timer = new Timer();
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake, kicker_Buffer);
+    addRequirements(ground_Intake, leds);
   }
 
   // Called when the command is initially scheduled.
@@ -40,9 +39,8 @@ public class retract extends CommandBase {
   public void execute() {
 
     ground_Intake.sendKicker();
-    for (var i = 0; i < LEDs.getLength(); i++) {
-      LEDs.setRGB(i, 255, 126, 0);
-    }
+
+    leds.setColor(255, 191, 0);
     finish = true;
   }
 

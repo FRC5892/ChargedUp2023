@@ -16,18 +16,17 @@ import frc.robot.subsystems.LED;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
-  private LED kicker_Buffer;
-  private AddressableLEDBuffer LEDs;
+  private LED leds;
   private boolean finish;
 
   /** Creates a new intake. */
-  public intake(Ground_Intake intake, LED kicker_Buffer_) {
+  public intake(Ground_Intake intake, LED leds) {
     ground_Intake = intake;
-    kicker_Buffer = kicker_Buffer_;
+    this.leds = leds;
     finish = false;
     // this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake, kicker_Buffer);
+    addRequirements(ground_Intake, leds);
 
   }
 
@@ -45,9 +44,8 @@ public class intake extends CommandBase {
     // delay(3.5);
     ground_Intake.tiltUpward();
 
-    for (var i = 0; i < LEDs.getLength(); i++) {
-      LEDs.setRGB(i, 255, 0, 0);
-    }
+    leds.setColor(255, 0, 0);
+
     finish = true;
 
     // We can also use: new WaitCommand(5.0) if needed

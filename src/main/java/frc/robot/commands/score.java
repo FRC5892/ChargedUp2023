@@ -16,18 +16,16 @@ public class score extends CommandBase {
   private Ground_Intake ground_Intake;
   private double d;
   private Timer timer;
-  private LED kicker_Buffer;
-  private AddressableLEDBuffer LEDs;
+  private LED leds;
   private boolean finish;
 
   /** Creates a new score. */
-  public score(Ground_Intake intake, LED kicker_Buffer_) {
+  public score(Ground_Intake intake, LED leds) {
     this.ground_Intake = intake;
-    kicker_Buffer = kicker_Buffer_;
     timer = new Timer();
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake, kicker_Buffer);
+    addRequirements(ground_Intake, leds);
   }
 
   // Called when the command is initially scheduled.
@@ -49,9 +47,8 @@ public class score extends CommandBase {
     ground_Intake.returnKicker();
     // Timer.delay(1);
     // ground_Intake.sendKicker();
-    for (var i = 0; i < LEDs.getLength(); i++) {
-      LEDs.setRGB(i, 0, 255, 0);
-    }
+
+    leds.setColor(0, 255, 0);
     finish = true;
   }
 
