@@ -29,7 +29,7 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 
 public class RobotContainer {
   /* Controllers */
-  private final Joystick driver = new Joystick(0);
+  public final static Joystick driver = new Joystick(0);
   private final Joystick codriver = new Joystick(1);
 
   /* Compressor */
