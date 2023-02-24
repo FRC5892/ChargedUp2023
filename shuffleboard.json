@@ -1,20 +1,20 @@
 {
   "tabPane": [
     {
-      "title": "SmartDashboard",
+      "title": "5892 Dashboard",
       "autoPopulate": true,
       "autoPopulatePrefix": "SmartDashboard/",
       "widgetPane": {
-        "gridSize": 128.0,
+        "gridSize": 47.0,
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
         "titleType": 0,
         "tiles": {
-          "10,3": {
+          "23,7": {
             "size": [
-              3,
-              1
+              7,
+              3
             ],
             "content": {
               "_type": "ComboBox Chooser",
@@ -26,8 +26,8 @@
           },
           "0,0": {
             "size": [
-              2,
-              3
+              3,
+              7
             ],
             "content": {
               "_type": "List Layout",
@@ -37,33 +37,49 @@
               "Layout/Label position": "TOP",
               "_children": [
                 {
-                  "_type": "Text View",
+                  "_type": "Simple Dial",
                   "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
                   "_title": "Pigeon2 Yaw",
                   "_glyph": 148,
-                  "_showGlyph": false
+                  "_showGlyph": false,
+                  "Range/Min": 0.0,
+                  "Range/Max": 100.0,
+                  "Visuals/Show value": true
                 },
                 {
-                  "_type": "Text View",
+                  "_type": "Simple Dial",
                   "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
                   "_title": "Pigeon2 Pitch",
                   "_glyph": 148,
-                  "_showGlyph": false
+                  "_showGlyph": false,
+                  "Range/Min": 0.0,
+                  "Range/Max": 100.0,
+                  "Visuals/Show value": true
+                },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
+                  "_title": "Pigeon2 Roll",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Range/Min": 0.0,
+                  "Range/Max": 100.0,
+                  "Visuals/Show value": true
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
-                  "_title": "Pigeon2 Roll",
+                  "_source0": "network_table:///SmartDashboard/Acceleration",
+                  "_title": "Acceleration",
                   "_glyph": 148,
                   "_showGlyph": false
                 }
               ]
             }
           },
-          "10,0": {
+          "23,0": {
             "size": [
-              3,
-              3
+              7,
+              7
             ],
             "content": {
               "_type": "Grid Layout",
@@ -161,28 +177,15 @@
               }
             }
           },
-          "0,3": {
+          "23,10": {
             "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Max Speed",
-              "_title": "Max Speed",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "2,0": {
-            "size": [
-              1,
-              3
+              3,
+              5
             ],
             "content": {
               "_type": "List Layout",
               "_title": "Pneumatics",
-              "_glyph": 530,
+              "_glyph": 178,
               "_showGlyph": true,
               "Layout/Label position": "TOP",
               "_children": [
@@ -215,6 +218,35 @@
                 }
               ]
             }
+          },
+          "3,0": {
+            "size": [
+              20,
+              10
+            ],
+            "content": {
+              "_type": "Field",
+              "_source0": "network_table:///SmartDashboard/Field",
+              "_title": "Field",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Game/Game": "A2023_Charged_Up",
+              "Visuals/Robot Icon Size": 50.0,
+              "Visuals/Show Outside Circles": false
+            }
+          },
+          "0,12": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Speed Multipler",
+              "_title": "Speed Multipler",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
           }
         }
       }
@@ -234,9 +266,9 @@
     }
   ],
   "windowGeometry": {
-    "x": 0.0,
-    "y": 0.0,
-    "width": 1920.0,
-    "height": 1032.0
+    "x": -8.0,
+    "y": -8.0,
+    "width": 1936.0,
+    "height": 1048.0
   }
 }
