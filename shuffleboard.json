@@ -24,58 +24,6 @@
               "_showGlyph": true
             }
           },
-          "0,0": {
-            "size": [
-              3,
-              7
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "IMU",
-              "_glyph": 139,
-              "_showGlyph": true,
-              "Layout/Label position": "TOP",
-              "_children": [
-                {
-                  "_type": "Simple Dial",
-                  "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
-                  "_title": "Pigeon2 Yaw",
-                  "_glyph": 148,
-                  "_showGlyph": false,
-                  "Range/Min": 0.0,
-                  "Range/Max": 100.0,
-                  "Visuals/Show value": true
-                },
-                {
-                  "_type": "Simple Dial",
-                  "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
-                  "_title": "Pigeon2 Pitch",
-                  "_glyph": 148,
-                  "_showGlyph": false,
-                  "Range/Min": 0.0,
-                  "Range/Max": 100.0,
-                  "Visuals/Show value": true
-                },
-                {
-                  "_type": "Simple Dial",
-                  "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
-                  "_title": "Pigeon2 Roll",
-                  "_glyph": 148,
-                  "_showGlyph": false,
-                  "Range/Min": 0.0,
-                  "Range/Max": 100.0,
-                  "Visuals/Show value": true
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Acceleration",
-                  "_title": "Acceleration",
-                  "_glyph": 148,
-                  "_showGlyph": false
-                }
-              ]
-            }
-          },
           "23,0": {
             "size": [
               7,
@@ -84,8 +32,8 @@
             "content": {
               "_type": "Grid Layout",
               "_title": "Swerve Modules",
-              "_glyph": 242,
-              "_showGlyph": true,
+              "_glyph": 149,
+              "_showGlyph": false,
               "Layout/Number of columns": 3,
               "Layout/Number of rows": 4,
               "Layout/Label position": "TOP",
@@ -177,10 +125,10 @@
               }
             }
           },
-          "23,10": {
+          "3,6": {
             "size": [
-              3,
-              5
+              5,
+              4
             ],
             "content": {
               "_type": "List Layout",
@@ -221,8 +169,8 @@
           },
           "3,0": {
             "size": [
-              20,
-              10
+              10,
+              6
             ],
             "content": {
               "_type": "Field",
@@ -232,10 +180,11 @@
               "_showGlyph": false,
               "Game/Game": "A2023_Charged_Up",
               "Visuals/Robot Icon Size": 50.0,
-              "Visuals/Show Outside Circles": false
+              "Visuals/Show Outside Circles": false,
+              "Colors/Field": "#FFFFFFFF"
             }
           },
-          "0,12": {
+          "10,6": {
             "size": [
               3,
               2
@@ -246,6 +195,56 @@
               "_title": "Speed Multipler",
               "_glyph": 148,
               "_showGlyph": false
+            }
+          },
+          "13,0": {
+            "size": [
+              10,
+              9
+            ],
+            "content": {
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Crosshair/Show crosshair": true,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": true,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": -1,
+              "imageWidth": -1,
+              "imageHeight": -1
+            }
+          },
+          "8,6": {
+            "size": [
+              2,
+              3
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Pose",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "TOP",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Robot Pose X",
+                  "_title": "Robot Pose X",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Robot Pose Y",
+                  "_title": "Robot Pose Y",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              ]
             }
           }
         }

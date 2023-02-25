@@ -53,6 +53,7 @@ public class RobotContainer {
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
   private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
   
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
@@ -67,8 +68,9 @@ public class RobotContainer {
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
-  public final Command outtake = new score(ground_intake);
+  public final Command outtake = new scoreShort(ground_intake);
   public final Command retract = new retract(ground_intake);
+  public final Command outtakeFull = new scoreFull(ground_intake);
 
 
   /* Autonomous Mode Chooser */
@@ -109,8 +111,6 @@ public class RobotContainer {
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory Score4Left = PathPlanner.loadPath("4 Score Left",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-      
-      
       /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -154,6 +154,7 @@ public class RobotContainer {
     retractButton.onTrue(retract);
     balanceButton.onTrue(autobalance);
     passiveBalanceButton.onTrue(passiveBalance);
+    intakeFullButton.onTrue(outtakeFull);
 
   }
 

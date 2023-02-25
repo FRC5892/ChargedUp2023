@@ -11,10 +11,12 @@ import frc.robot.subsystems.Swerve;
 public class PassiveBalance extends CommandBase {
   
   private Swerve m_Swerve;
+  private boolean finish;
 
   /** Creates a new PassiveBalance. */
   public PassiveBalance(Swerve s_Swerve) {
     this.m_Swerve = s_Swerve;
+    finish = false;
     addRequirements(s_Swerve);
   }
 
@@ -26,9 +28,11 @@ public class PassiveBalance extends CommandBase {
   @Override
   public void execute() {
     m_Swerve.setModule0(Constants.Swerve.Mod0.balanceOffset);
-    m_Swerve.setModule1(Constants.Swerve.Mod1.angleOffset);
-    m_Swerve.setModule2(Constants.Swerve.Mod2.angleOffset);
-    m_Swerve.setModule3(Constants.Swerve.Mod3.angleOffset);
+    m_Swerve.setModule1(Constants.Swerve.Mod1.balanceOffset);
+    m_Swerve.setModule2(Constants.Swerve.Mod2.balanceOffset);
+    m_Swerve.setModule3(Constants.Swerve.Mod3.balanceOffset);
+    finish = true;
+
   }
 
   // Called once the command ends or is interrupted.
@@ -38,6 +42,6 @@ public class PassiveBalance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }
