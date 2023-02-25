@@ -8,16 +8,16 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Claw;
 
 public class ScoreLow extends CommandBase {
-  private Intake intake;
+  private Claw claw;
   private Arm arm;
   private boolean finish;
 
   /** Creates a new ScoreLow. */
-  public ScoreLow(Intake intake, Arm arm) {
-    this.intake = intake;
+  public ScoreLow(Claw intake, Arm arm) {
+    this.claw = intake;
     this.arm = arm;
     finish = false;
 
@@ -39,7 +39,7 @@ public class ScoreLow extends CommandBase {
       arm.setClawPosition(Value.kForward);
     }
     if (isClawDeployed) {
-      intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
+      claw.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
     }
 
     finish = true;

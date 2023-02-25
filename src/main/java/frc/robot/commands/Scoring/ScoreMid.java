@@ -8,18 +8,18 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Claw;
 
 public class ScoreMid extends CommandBase {
-  private Intake intake;
+  private Claw claw;
   private Arm arm;
   private boolean finish;
 
   private boolean stopping;
 
   /** Creates a new scoreGamePiece. */
-  public ScoreMid(Intake intake, Arm arm) {
-    this.intake = intake;
+  public ScoreMid(Claw intake, Arm arm) {
+    this.claw = intake;
     this.arm = arm;
     stopping = false;
     finish = false;
@@ -40,13 +40,13 @@ public class ScoreMid extends CommandBase {
 
     if (armUnderMaxHeight) {
       arm.setArmUp();
-      intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
+      claw.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
     }
 
     if (armAtMaxHeight) {
       arm.setExtendPistons(Value.kForward);
       arm.setClawPosition(Value.kForward);
-      intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
+      claw.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
       stopping = true;
     }
 

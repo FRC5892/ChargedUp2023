@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.Claw;
 
 public class RunIntakeRollars extends CommandBase {
-  private Intake intake;
+  private Claw claw;
   private Arm arm;
   private boolean finish;
-  
+
   /** Creates a new RunIntakeRollars. */
-  public RunIntakeRollars(Intake intake, Arm arm) {
-    this.intake = intake;
+  public RunIntakeRollars(Claw intake, Arm arm) {
+    this.claw = intake;
     this.arm = arm;
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -41,17 +41,18 @@ public class RunIntakeRollars extends CommandBase {
     }
 
     if (isTriggerActive) {
-      intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
-    }else {
-      intake.setMotors(0);
+      claw.setMotors(Constants.ArmConstants.INTAKE_SPEED);
+    } else {
+      claw.setMotors(0);
     }
-    
+
     finish = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
