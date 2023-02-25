@@ -4,23 +4,24 @@
 
 package frc.robot.commands.Scoring;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Intake;
 
 public class ScoreLow extends CommandBase {
-  private Claw claw;
+  private Intake intake;
   private Arm arm;
+  private boolean finish;
 
   /** Creates a new ScoreLow. */
-  public ScoreLow(Claw claw, Arm arm) {
-    this.claw = claw;
+  public ScoreLow(Intake intake, Arm arm) {
+    this.intake = intake;
     this.arm = arm;
+    finish = false;
 
-    addRequirements(claw, arm);
+    addRequirements(intake, arm);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -37,11 +38,11 @@ public class ScoreLow extends CommandBase {
     if (!isClawDeployed) {
       arm.setClawPosition(Value.kForward);
     }
+    if (isClawDeployed) {
+      intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
+    }
 
-    claw.setMotors(Constants.ArmConstants.SPIT_OUT_SPEED);
-    Timer.delay(5);
-    claw.setMotors(0);
-
+    finish = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -52,6 +53,6 @@ public class ScoreLow extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }

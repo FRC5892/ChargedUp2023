@@ -9,17 +9,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Intake;
 
 public class RunIntakeRollars extends CommandBase {
-  private Claw intake;
+  private Intake intake;
   private Arm arm;
-  private boolean finished;
-
+  private boolean finish;
+  
   /** Creates a new RunIntakeRollars. */
-  public RunIntakeRollars(Claw intake, Arm arm) {
+  public RunIntakeRollars(Intake intake, Arm arm) {
     this.intake = intake;
     this.arm = arm;
+    finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
   }
@@ -27,13 +28,11 @@ public class RunIntakeRollars extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    this.finished = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.finished = false;
     boolean isTriggerActive = RobotContainer.driver.getRightTriggerAxis() > 0.05;
     boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
 
@@ -43,21 +42,20 @@ public class RunIntakeRollars extends CommandBase {
 
     if (isTriggerActive) {
       intake.setMotors(Constants.ArmConstants.INTAKE_SPEED);
-    } else {
+    }else {
       intake.setMotors(0);
     }
-
-    this.finished = true;
+    
+    finish = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return this.finished;
+    return finish;
   }
 }

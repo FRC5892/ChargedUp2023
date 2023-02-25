@@ -4,25 +4,26 @@
 
 package frc.robot.commands.Scoring;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Arm;
-import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.Intake;
 
 public class ScoreMid extends CommandBase {
-  private Claw claw;
+  private Intake intake;
   private Arm arm;
+  private boolean finish;
 
-  boolean stopping;
+  private boolean stopping;
 
   /** Creates a new scoreGamePiece. */
-  public ScoreMid(Claw claw, Arm arm) {
-    this.claw = claw;
+  public ScoreMid(Intake intake, Arm arm) {
+    this.intake = intake;
     this.arm = arm;
     stopping = false;
-    addRequirements(claw, arm);
+    finish = false;
+    addRequirements(intake, arm);
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -38,25 +39,24 @@ public class ScoreMid extends CommandBase {
     boolean armAtMaxHeight = arm.returnEncoderValue() == Constants.ArmConstants.ARM_MAX_HEIGHT;
 
     if (armUnderMaxHeight) {
-      // TODO pid
-      arm.raiseArm();
+      arm.setArmUp();
+      intake.setMotors(Constants.ArmConstants.WITH_GAMEPIECE_SPEED);
     }
 
     if (armAtMaxHeight) {
-      // Score game piece
       arm.setExtendPistons(Value.kForward);
       arm.setClawPosition(Value.kForward);
-      claw.setMotors(-Constants.ArmConstants.SPIT_OUT_SPEED);
-      Timer.delay(5);
-      claw.setMotors(0);
+      intake.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
       stopping = true;
     }
 
     if (stopping) {
       arm.setClawPosition(Value.kReverse);
       arm.setExtendPistons(Value.kReverse);
-      arm.lowerArm();
+      arm.setArmDown();
     }
+
+    finish = true;
 
   }
 
@@ -68,6 +68,6 @@ public class ScoreMid extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }

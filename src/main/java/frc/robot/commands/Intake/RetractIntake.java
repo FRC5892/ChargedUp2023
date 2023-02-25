@@ -10,9 +10,11 @@ import frc.robot.subsystems.Arm;
 
 public class RetractIntake extends CommandBase {
   private Arm arm;
+  private boolean finish;
   /** Creates a new RetractIntake. */
   public RetractIntake(Arm arm) {
     this.arm = arm;
+    finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(arm);
   }
@@ -27,6 +29,7 @@ public class RetractIntake extends CommandBase {
     if(arm.returnClawPosition() == Value.kForward) {
       arm.setClawPosition(Value.kReverse);
     }
+    finish = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -36,6 +39,6 @@ public class RetractIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return finish;
   }
 }

@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 
@@ -25,7 +24,6 @@ public class Arm extends SubsystemBase {
   private CANSparkMax armMotor = new CANSparkMax(Constants.ArmConstants.ARM_MOTOR_PORT, MotorType.kBrushed);
 
   private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
-  private Timer timer;
   private PIDController pid = new PIDController(Constants.ArmConstants.ARM_PIDF[0], Constants.ArmConstants.ARM_PIDF[1],
       Constants.ArmConstants.ARM_PIDF[2]);
 
@@ -34,8 +32,6 @@ public class Arm extends SubsystemBase {
     positionSolenoid.set(Value.kReverse);
     extendSolenoid.set(Value.kReverse);
     pid.setTolerance(Constants.ArmConstants.PID_POSITION_TOLERANCE);
-    timer = new Timer();
-    timer.reset();
   }
 
   /* toggle pistons */
@@ -90,11 +86,11 @@ public class Arm extends SubsystemBase {
   }
 
   /* Mootroz */
-  public void raiseArm() {
+  public void setArmUp() {
     armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_UP));
   }
 
-  public void lowerArm() {
+  public void setArmDown() {
     armMotor.set(pid.calculate(armEncoder.get(), Constants.ArmConstants.ARM_SETPOINT_DOWN));
   }
 
