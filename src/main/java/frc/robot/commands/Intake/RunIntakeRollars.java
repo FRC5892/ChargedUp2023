@@ -33,7 +33,7 @@ public class RunIntakeRollars extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean isTriggerActive = RobotContainer.driver.getRightTriggerAxis() > 0.05;
+    boolean isTriggerActive = RobotContainer.driver.getRightBumperPressed();
     boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
 
     if (!isClawDeployed && isTriggerActive) {
@@ -45,8 +45,6 @@ public class RunIntakeRollars extends CommandBase {
     } else {
       claw.setMotors(0);
     }
-
-    finish = true;
   }
 
   // Called once the command ends or is interrupted.
@@ -57,6 +55,6 @@ public class RunIntakeRollars extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finish;
+    return !RobotContainer.driver.getRightBumperPressed();
   }
 }

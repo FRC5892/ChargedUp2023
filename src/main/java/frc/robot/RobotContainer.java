@@ -44,12 +44,13 @@ public class RobotContainer {
   /* Driver Buttons */
   private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
-  private final JoystickButton rotation0 = new JoystickButton(driver, XboxController.Button.kA.value);
+  // private final JoystickButton rotation0 = new JoystickButton(driver,
+  // XboxController.Button.kA.value);
 
-  private final JoystickButton runIntakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
-  private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
+  private final JoystickButton runIntakeButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kA.value);
   private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
-  private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
+  private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kB.value);
 
   /* Subsystems */
   private final Swerve s_Swerve = new Swerve();
@@ -108,8 +109,8 @@ public class RobotContainer {
     zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
     retractIntakeButton.onTrue(retractIntake);
     scoreMidButton.onTrue(scoreMid);
-    scoreLowButton.onTrue(scoreLow);
-    runIntakeButton.onTrue(runIntakeRollars);
+    scoreLowButton.whileTrue(scoreLow);
+    runIntakeButton.whileTrue(runIntakeRollars);
     retractIntakeButton.onTrue(retractIntake);
   }
 

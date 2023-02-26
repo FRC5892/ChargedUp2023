@@ -40,9 +40,9 @@ public class ScoreLow extends CommandBase {
     }
     if (isClawDeployed) {
       claw.outtakeGamePiece(-Constants.ArmConstants.SPIT_OUT_SPEED);
+    } else {
+      claw.setMotors(0);
     }
-
-    finish = true;
   }
 
   // Called once the command ends or is interrupted.
