@@ -30,12 +30,12 @@
         "y": 4.592147755724083
       },
       "prevControl": {
-        "x": 6.068434994012844,
-        "y": 4.632424979135673
+        "x": 4.9540984796255305,
+        "y": 4.719692296527451
       },
       "nextControl": {
-        "x": 6.068434994012844,
-        "y": 4.632424979135673
+        "x": 4.9540984796255305,
+        "y": 4.719692296527451
       },
       "holonomicAngle": 0.0,
       "isReversal": true,
@@ -54,16 +54,16 @@
     },
     {
       "anchorPoint": {
-        "x": 1.8218117192670369,
-        "y": 4.348458736380625
+        "x": 1.825900794658732,
+        "y": 4.424325991509127
       },
       "prevControl": {
-        "x": 1.8309856263322715,
-        "y": 4.892165298625225
+        "x": 1.8228629428911505,
+        "y": 4.968101457906178
       },
       "nextControl": {
-        "x": 1.8057621829529373,
-        "y": 3.3972567945135896
+        "x": 1.8326136652273306,
+        "y": 3.222722159730034
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -72,21 +72,21 @@
       "isStopPoint": true,
       "stopEvent": {
         "names": [
-          "score"
+          "scoreFull"
         ],
         "executionBehavior": "parallel",
-        "waitBehavior": "none",
-        "waitTime": 0
+        "waitBehavior": "after",
+        "waitTime": 1.0
       }
     },
     {
       "anchorPoint": {
-        "x": 4.061286694001959,
-        "y": 3.518088464748359
+        "x": 3.94045502376719,
+        "y": 3.336840959396205
       },
       "prevControl": {
-        "x": 1.83261366522733,
-        "y": 3.5113755941797606
+        "x": 1.7184948655611596,
+        "y": 3.2965637359846154
       },
       "nextControl": null,
       "holonomicAngle": 179.59651526494127,
@@ -102,8 +102,27 @@
       }
     }
   ],
-  "maxVelocity": 5.0,
-  "maxAcceleration": 7.0,
+  "maxVelocity": 4.0,
+  "maxAcceleration": 4.0,
   "isReversed": null,
-  "markers": []
+  "markers": [
+    {
+      "position": 1.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 2.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 2.75,
+      "names": [
+        "intake"
+      ]
+    }
+  ]
 }
