@@ -12,7 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 // This command self=balances on the charging station using gyroscope pitch as feedback
-public class ActiveBalance extends CommandBase {
+public class ActiveBalanceDavis extends CommandBase {
 
   private Swerve m_Swerve;
 
@@ -25,7 +25,7 @@ public class ActiveBalance extends CommandBase {
    * Command to use Gyro data to resist the tip angle from the beam - to stabalize
    * and balanace
    */
-  public ActiveBalance(Swerve s_Swerve, Pigeon2 gyro) {
+  public ActiveBalanceDavis(Swerve s_Swerve, Pigeon2 gyro) {
     this.m_Swerve = s_Swerve;
     this.gyro = gyro;
     addRequirements(s_Swerve);

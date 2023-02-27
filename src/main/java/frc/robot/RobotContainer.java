@@ -51,7 +51,7 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
-  private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  public final static JoystickButton activeBalanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
   private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
   
@@ -62,7 +62,8 @@ public class RobotContainer {
   /* Commands */
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
-  private final ActiveBalance autobalance = new ActiveBalance(s_Swerve, gyro);
+  //private final ActiveBalanceDavis autobalance = new ActiveBalanceDavis(s_Swerve, gyro);
+  private final ActiceBalance activeBalance = new ActiceBalance(s_Swerve, gyro);
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
 
 
@@ -152,7 +153,7 @@ public class RobotContainer {
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
-    balanceButton.onTrue(autobalance);
+    activeBalanceButton.onTrue(activeBalance);
     passiveBalanceButton.onTrue(passiveBalance);
     intakeFullButton.onTrue(outtakeFull);
 
