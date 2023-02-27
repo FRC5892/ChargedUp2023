@@ -17,7 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "retract"
+          "score"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -30,12 +30,12 @@
         "y": 0.9134946841322259
       },
       "prevControl": {
-        "x": 5.981167676621068,
-        "y": 0.8060887550346536
+        "x": 4.076205917256526,
+        "y": 0.6892946581316752
       },
       "nextControl": {
-        "x": 5.981167676621068,
-        "y": 0.8060887550346536
+        "x": 4.076205917256526,
+        "y": 0.6892946581316752
       },
       "holonomicAngle": -0.0,
       "isReversal": true,
@@ -152,8 +152,39 @@
       }
     }
   ],
-  "maxVelocity": 5.0,
-  "maxAcceleration": 5.0,
+  "maxVelocity": 4.0,
+  "maxAcceleration": 4.0,
   "isReversed": null,
-  "markers": []
+  "markers": [
+    {
+      "position": 1.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 2.0,
+      "names": [
+        "scoreFull"
+      ]
+    },
+    {
+      "position": 2.5,
+      "names": [
+        "retract"
+      ]
+    },
+    {
+      "position": 3.0,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 4.0,
+      "names": [
+        "score"
+      ]
+    }
+  ]
 }

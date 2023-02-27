@@ -20,8 +20,8 @@
           "score"
         ],
         "executionBehavior": "parallel",
-        "waitBehavior": "none",
-        "waitTime": 0
+        "waitBehavior": "after",
+        "waitTime": 2.0
       }
     },
     {
@@ -44,7 +44,7 @@
           "retract"
         ],
         "executionBehavior": "parallel",
-        "waitBehavior": "minimum",
+        "waitBehavior": "after",
         "waitTime": 5.0
       }
     }
