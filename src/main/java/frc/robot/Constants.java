@@ -158,10 +158,10 @@ public final class Constants {
     public static final double PID_POSITION_TOLERANCE = 0;
     public static final double ARM_SETPOINT_UP = 0;
     public static final double ARM_SETPOINT_DOWN = 0;
-    public static final int LEFT_INTAKE_MOTOR_PORT = 0;
-    public static final int RIGHT_INTAKE_MOTOR_PORT = 0;
+    public static final int LEFT_INTAKE_MOTOR_PORT = 4;
+    public static final int RIGHT_INTAKE_MOTOR_PORT = 5;
     public static final edu.wpi.first.wpilibj.DigitalSource[] INTAKE_ENCODER = null;
-    public static final int OUTTAKE_SECONDS = 0;
+    public static final int OUTTAKE_SECONDS = 5;
 
   }
 
