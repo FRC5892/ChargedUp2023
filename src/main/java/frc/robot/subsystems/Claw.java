@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
-public class Intake extends SubsystemBase {
+public class Claw extends SubsystemBase {
   private CANSparkMax leftMotor(int motorID, boolean inverted) {
     CANSparkMax leftMotor = new CANSparkMax(motorID, MotorType.kBrushed);
     leftMotor.restoreFactoryDefaults();
@@ -44,7 +44,7 @@ public class Intake extends SubsystemBase {
       Constants.ArmConstants.INTAKE_ENCODER[1], false);
 
   /** Creates a new Intake. */
-  public Intake() {
+  public Claw() {
   }
 
   public void setMotors(double speed) {
