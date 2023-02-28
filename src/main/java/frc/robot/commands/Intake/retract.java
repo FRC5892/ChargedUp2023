@@ -2,43 +2,51 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Intake;
 
-import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Swerve;
+import frc.robot.subsystems.Ground_Intake;
 
-public class PassiveBalance extends CommandBase {
-  
-  private Swerve m_Swerve;
+public class retract extends CommandBase {
+  private Ground_Intake ground_Intake;
   private Timer timer;
+  private boolean finish;
 
-  /** Creates a new PassiveBalance. */
-  public PassiveBalance(Swerve s_Swerve) {
-    this.m_Swerve = s_Swerve;
-    timer.reset();
-    addRequirements(s_Swerve);
+  /** Creates a new score. */
+  public retract(Ground_Intake intake) {
+    this.ground_Intake = intake;
+    timer = new Timer();
+    finish = false;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(ground_Intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Swerve.drive(
-      new Translation2d(0, 0), 1, true, false);
+
+    ground_Intake.sendKicker();
+    finish = true;
   }
+
+  // delay(1.5);
+  // ground_Intake.returnKicker();
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return timer.get() < 0.005;
+    return finish;
   }
 }

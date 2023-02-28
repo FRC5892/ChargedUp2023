@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.commands.scoreShort;
+import frc.robot.commands.Scoring.scoreShort;
 
 /*
 This is a class for the swerve drive system on the robot. It utilizes a navX gyro to measure the angle of the robot and a SwerveDriveOdometry to measure the position of the robot. There are four SwerveModule objects, each of which is responsible for the individual swerve module. The class also holds a Field2d object which is used for the robot's position with respect to the field.

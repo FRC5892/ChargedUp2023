@@ -21,6 +21,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.Balance.ActiveBalance;
+import frc.robot.commands.Balance.PassiveBalance;
+import frc.robot.commands.Intake.intake;
+import frc.robot.commands.Intake.retract;
+import frc.robot.commands.Scoring.scoreFull;
+import frc.robot.commands.Scoring.scoreShort;
 import frc.robot.subsystems.*;
 
 /* 
@@ -63,7 +69,7 @@ public class RobotContainer {
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
   //private final ActiveBalanceDavis autobalance = new ActiveBalanceDavis(s_Swerve, gyro);
-  private final ActiceBalance activeBalance = new ActiceBalance(s_Swerve, gyro);
+  private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
 
 

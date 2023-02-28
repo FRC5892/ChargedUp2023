@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Balance;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;;
 
-public class ActiceBalance extends CommandBase {
+public class ActiveBalance extends CommandBase {
 
   private Swerve s_Swerve;
   private Pigeon2 gyro;
   private boolean finish;
 
   /** Creates a new ActiceBalance. */
-  public ActiceBalance(Swerve swerve, Pigeon2 gyro) {
+  public ActiveBalance(Swerve swerve, Pigeon2 gyro) {
     this.s_Swerve = swerve;
     this.gyro = gyro;
     finish = false;
