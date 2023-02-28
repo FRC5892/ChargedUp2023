@@ -13,16 +13,13 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Ground_Intake extends SubsystemBase {
 	/* Solenoid */
   public DoubleSolenoid clampSolenoid;
   public DoubleSolenoid kickerSolenoid;
   public DoubleSolenoid tiltSolenoid;
-
-  /* LED Strip */
-  public AddressableLED m_led;
-  public AddressableLEDBuffer m_ledBuffer;
 
   /** Creates a new Ground_Intake. */
   public Ground_Intake() {
@@ -38,32 +35,26 @@ public class Ground_Intake extends SubsystemBase {
 	/* PORT[4] forward channel
 	 * PORT[5] backward channel
 	 */
-
-	 /* Setting data */
-	m_led = new AddressableLED(Constants.LEDConstants.LED_PORT);
-	m_ledBuffer = new AddressableLEDBuffer(Constants.LEDConstants.LED_LENGTH);
-	m_led.setData(m_ledBuffer);
-	m_led.start();
   }
 
   	//set LED Orange (w/piece)
   	public void setLEDOrange() {
-		for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+		for (var i = 0; i < RobotContainer.m_ledBuffer.getLength(); i++) {
 			// Sets the specified LED to the RGB values for red
-			m_ledBuffer.setRGB(i, 255, 85, 48);
+			RobotContainer.m_ledBuffer.setRGB(i, 255, 85, 48);
 		 }
 		 
-		 m_led.setData(m_ledBuffer);
+		 RobotContainer.m_led.setData(RobotContainer.m_ledBuffer);
 	}
 
 	//set LED White (w/o piece)
 	public void setLEDWhite() {
-		for (var i = 0; i < m_ledBuffer.getLength(); i++) {
+		for (var i = 0; i < RobotContainer.m_ledBuffer.getLength(); i++) {
 			// Sets the specified LED to the RGB values for red
-			m_ledBuffer.setRGB(i, 255, 255, 255);
+			RobotContainer.m_ledBuffer.setRGB(i, 255, 255, 255);
 		 }
 		 
-		 m_led.setData(m_ledBuffer);
+		 RobotContainer.m_led.setData(RobotContainer.m_ledBuffer);
 	}
 
   	//open clamp
