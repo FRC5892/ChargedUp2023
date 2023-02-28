@@ -44,7 +44,7 @@ public final class Constants {
 
     /* Swerve Current Limiting */
     public static final int angleContinuousCurrentLimit = 20;
-    public static final int driveContinuousCurrentLimit = 80;
+    public static final int driveContinuousCurrentLimit = 60;
 
     /* TODO: test Angle Motor PID Values (these are default, may tune if needed) */
     public static final double angleKP = 0.02;

@@ -60,6 +60,7 @@ public class RobotContainer {
   public final static JoystickButton activeBalanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
   private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
+  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
@@ -133,7 +134,7 @@ public class RobotContainer {
             () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
-            () -> false));
+            () -> robotCentric.getAsBoolean()));
     SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
 
     // Configure the button bindings
@@ -198,6 +199,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
-    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake);
+    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, passiveBalance, outtakeFull);
   }
 }
