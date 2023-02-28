@@ -4,19 +4,20 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
 public class PassiveBalance extends CommandBase {
   
   private Swerve m_Swerve;
-  private boolean finish;
+  private Timer timer;
 
   /** Creates a new PassiveBalance. */
   public PassiveBalance(Swerve s_Swerve) {
     this.m_Swerve = s_Swerve;
-    finish = false;
+    timer.reset();
     addRequirements(s_Swerve);
   }
 
@@ -27,12 +28,8 @@ public class PassiveBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_Swerve.setModule0(Constants.Swerve.Mod0.balanceOffset);
-    m_Swerve.setModule1(Constants.Swerve.Mod1.balanceOffset);
-    m_Swerve.setModule2(Constants.Swerve.Mod2.balanceOffset);
-    m_Swerve.setModule3(Constants.Swerve.Mod3.balanceOffset);
-    finish = true;
-
+    m_Swerve.drive(
+      new Translation2d(0, 0), 1, true, false);
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +39,6 @@ public class PassiveBalance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finish;
+    return timer.get() < 0.005;
   }
 }
