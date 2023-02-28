@@ -35,6 +35,9 @@ public class scoreShort extends CommandBase {
     ground_Intake.openClamp();
   
     ground_Intake.returnKicker();
+
+    ground_Intake.setLEDWhite();
+
     }
 
   

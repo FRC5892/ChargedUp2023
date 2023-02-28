@@ -37,6 +37,7 @@ public class intake extends CommandBase {
     // Timer.delay(1);
     // delay(3.5);
     ground_Intake.tiltUpward();
+    ground_Intake.setLEDOrange();
     finish = true;
 
     // We can also use: new WaitCommand(5.0) if needed

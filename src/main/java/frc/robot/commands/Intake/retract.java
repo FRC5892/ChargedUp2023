@@ -33,6 +33,7 @@ public class retract extends CommandBase {
   public void execute() {
 
     ground_Intake.sendKicker();
+    ground_Intake.setLEDWhite();
     finish = true;
   }
 

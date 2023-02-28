@@ -35,6 +35,9 @@ public class scoreFull extends CommandBase {
     ground_Intake.openClamp();
   
     ground_Intake.returnKicker();
+
+    ground_Intake.setLEDWhite();
+
     finish = true;
     }
 

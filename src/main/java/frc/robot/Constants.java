@@ -19,6 +19,7 @@ public final class Constants {
     public static final double balanceSpeed = 0.1;
 
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
+    public static final int LED_PORT = 9;
 
     /* Drivetrain Constants */
     public static final double trackWidth = Units.inchesToMeters(20.5);
@@ -153,15 +154,13 @@ public final class Constants {
 
   }
 
-  // Balancing Constants
-  public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 1.35;
-  public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
-  public static final double BEAM_BALANACED_DRIVE_KP = 0.015; // P (Proportional) constant of a PID loop
-  public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 10;
-
-
   // public static final int[] GROUND_INTAKE_PORTS = {0, 0};
   public static final int[] GROUND_INTAKE_SOLENOID_PORTS = { 0, 1, 2, 3, 4, 5 };
 
+  /* LED Ports */
+  public static final class LEDConstants {
+    public static final int LED_PORT = 9;
+    public static final int LED_LENGTH = 60;
+  }
 
 }
