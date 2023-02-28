@@ -30,12 +30,12 @@
         "y": 0.9470590369752175
       },
       "prevControl": {
-        "x": 4.229108458216917,
-        "y": 0.8463659784462428
+        "x": 5.9099861672625815,
+        "y": 0.8528383846067047
       },
       "nextControl": {
-        "x": 4.229108458216917,
-        "y": 0.8463659784462428
+        "x": 5.9099861672625815,
+        "y": 0.8528383846067047
       },
       "holonomicAngle": 0.0,
       "isReversal": true,
@@ -58,12 +58,12 @@
         "y": 1.034428549661233
       },
       "prevControl": {
-        "x": 1.8054025800452191,
-        "y": 0.5160702846360475
+        "x": 1.7968195860446834,
+        "y": 0.5163096926774436
       },
       "nextControl": {
-        "x": 1.8370476534142464,
-        "y": 2.1299690264564726
+        "x": 1.8601197846402857,
+        "y": 2.265775408116112
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -75,18 +75,18 @@
           "score"
         ],
         "executionBehavior": "parallel",
-        "waitBehavior": "after",
-        "waitTime": 1.0
+        "waitBehavior": "none",
+        "waitTime": 0
       }
     },
     {
       "anchorPoint": {
-        "x": 3.839761965238216,
-        "y": 2.014405457382344
+        "x": 4.513084661231935,
+        "y": 2.7103262793287666
       },
       "prevControl": {
-        "x": 1.8719545803709576,
-        "y": 2.0252482455863396
+        "x": 2.9930074886983418,
+        "y": 2.380498213590345
       },
       "nextControl": null,
       "holonomicAngle": 179.59651526494127,
@@ -95,19 +95,21 @@
       "isLocked": false,
       "isStopPoint": false,
       "stopEvent": {
-        "names": [],
+        "names": [
+          "passive"
+        ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
         "waitTime": 0
       }
     }
   ],
-  "maxVelocity": 4.0,
-  "maxAcceleration": 4.0,
+  "maxVelocity": 5.0,
+  "maxAcceleration": 5.0,
   "isReversed": null,
   "markers": [
     {
-      "position": 2.181818181818178,
+      "position": 0.5,
       "names": [
         "retract"
       ]

@@ -52,7 +52,7 @@ public class scoreShort extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (timer.get() > 0.11);
+    return (timer.get() > 0.08);
   }
 }
 

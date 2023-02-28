@@ -54,6 +54,7 @@ public class RobotContainer {
   private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
   private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
+  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
@@ -63,7 +64,7 @@ public class RobotContainer {
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
   private final ActiveBalance autobalance = new ActiveBalance(s_Swerve, gyro);
-  private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
+  private final Command passiveBalance = new PassiveBalance(s_Swerve);
 
 
   /* Pneumatics Commands */
@@ -126,7 +127,7 @@ public class RobotContainer {
             () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
-            () -> false));
+            () -> robotCentric.getAsBoolean()));
     SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
 
     // Configure the button bindings
@@ -191,6 +192,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
-    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake);
+    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, passiveBalance, outtakeFull);
   }
 }
