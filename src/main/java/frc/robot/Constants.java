@@ -19,7 +19,6 @@ public final class Constants {
     public static final double balanceSpeed = 0.1;
 
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
-    public static final int LED_PORT = 9;
 
     /* Drivetrain Constants */
     public static final double trackWidth = Units.inchesToMeters(20.5);
@@ -133,6 +132,7 @@ public final class Constants {
           canCoderID, angleOffset);
     }
   }
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 4;
     public static final double kMaxAccelerationMetersPerSecondSquared = 4;
@@ -144,13 +144,12 @@ public final class Constants {
     public static final double kPThetaController = 1;
   }
 
-
   public static final class VisionConstants {
     public static final String USB_CAMERA_NAME = null;
     public static final double TRACKED_TAG_ROATION_KP = 0;
-    public static final Transform3d CAMERA_TO_ROBOT =
-    new Transform3d(new Translation3d(-0.3425, 0.0, -0.233), new Rotation3d());
-  public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
+    public static final Transform3d CAMERA_TO_ROBOT = new Transform3d(new Translation3d(-0.3425, 0.0, -0.233),
+        new Rotation3d());
+    public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
 
   }
 
