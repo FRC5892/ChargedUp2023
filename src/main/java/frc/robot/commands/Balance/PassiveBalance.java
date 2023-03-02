@@ -2,31 +2,35 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
+package frc.robot.commands.Balance;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.Flapper_Intake;
+import frc.robot.subsystems.Swerve;
 
-public class Flapper_IntakeCommand extends CommandBase {
-  /** Creates a new Flapper_IntakeCommand. */
-  private Flapper_Intake flapper_Intake;
-  public Flapper_IntakeCommand(Flapper_Intake fl) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    flapper_Intake = fl;
-    addRequirements(flapper_Intake);
+public class PassiveBalance extends CommandBase {
+  
+  private Swerve m_Swerve;
+  private Timer timer;
 
+  /** Creates a new PassiveBalance. */
+  public PassiveBalance(Swerve s_Swerve) {
+    this.m_Swerve = s_Swerve;
+    timer.reset();
+    addRequirements(s_Swerve);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    flapper_Intake.openClamp();
-    //flapper_Intake.
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_Swerve.drive(
+      new Translation2d(0, 0), 1, true, false);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
@@ -35,6 +39,6 @@ public class Flapper_IntakeCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return timer.get() < 0.005;
   }
 }

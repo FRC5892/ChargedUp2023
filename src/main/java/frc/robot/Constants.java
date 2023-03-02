@@ -16,6 +16,7 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;
     public static final int pigeonID = 13;
+    public static final double balanceSpeed = 0.1;
 
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
@@ -43,7 +44,7 @@ public final class Constants {
 
     /* Swerve Current Limiting */
     public static final int angleContinuousCurrentLimit = 20;
-    public static final int driveContinuousCurrentLimit = 80;
+    public static final int driveContinuousCurrentLimit = 60;
 
     /* TODO: test Angle Motor PID Values (these are default, may tune if needed) */
     public static final double angleKP = 0.02;
@@ -131,6 +132,7 @@ public final class Constants {
           canCoderID, angleOffset);
     }
   }
+
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 4;
     public static final double kMaxAccelerationMetersPerSecondSquared = 4;
@@ -142,25 +144,22 @@ public final class Constants {
     public static final double kPThetaController = 1;
   }
 
-
   public static final class VisionConstants {
     public static final String USB_CAMERA_NAME = null;
     public static final double TRACKED_TAG_ROATION_KP = 0;
-    public static final Transform3d CAMERA_TO_ROBOT =
-    new Transform3d(new Translation3d(-0.3425, 0.0, -0.233), new Rotation3d());
-  public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
+    public static final Transform3d CAMERA_TO_ROBOT = new Transform3d(new Translation3d(-0.3425, 0.0, -0.233),
+        new Rotation3d());
+    public static final Transform3d ROBOT_TO_CAMERA = CAMERA_TO_ROBOT.inverse();
 
   }
-
-  // Balancing Constants
-  public static final double BACKWARDS_BALANCING_EXTRA_POWER_MULTIPLIER = 1.35;
-  public static final double BEAM_BALANCED_GOAL_DEGREES = 0;
-  public static final double BEAM_BALANACED_DRIVE_KP = 0.015; // P (Proportional) constant of a PID loop
-  public static final double BEAM_BALANCED_ANGLE_TRESHOLD_DEGREES = 10;
-
 
   // public static final int[] GROUND_INTAKE_PORTS = {0, 0};
   public static final int[] GROUND_INTAKE_SOLENOID_PORTS = { 0, 1, 2, 3, 4, 5 };
 
+  /* LED Ports */
+  public static final class LEDConstants {
+    public static final int LED_PORT = 9;
+    public static final int LED_LENGTH = 60;
+  }
 
 }

@@ -9,6 +9,8 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -21,6 +23,12 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.Balance.ActiveBalance;
+import frc.robot.commands.Balance.PassiveBalance;
+import frc.robot.commands.Intake.intake;
+import frc.robot.commands.Intake.retract;
+import frc.robot.commands.Scoring.scoreFull;
+import frc.robot.commands.Scoring.scoreShort;
 import frc.robot.subsystems.*;
 
 /* 
@@ -30,12 +38,15 @@ This code is for the robot container and has a joy stick, joystick buttons, swer
 
 public class RobotContainer {
   /* Controllers */
-  private final Joystick driver = new Joystick(0);
+  public final static Joystick driver = new Joystick(0);
   private final Joystick codriver = new Joystick(1);
 
   /* Compressor */
-
   private Compressor compressor;
+
+  /* LED Strip */
+  public static AddressableLED m_led;
+  public static AddressableLEDBuffer m_ledBuffer;
 
   // Gyro Sensor
   private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
@@ -51,18 +62,19 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
-  private final JoystickButton balanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  public final static JoystickButton activeBalanceButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
   private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
+  private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
 
-
   /* Commands */
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
-  private final ActiveBalance autobalance = new ActiveBalance(s_Swerve, gyro);
+  //private final ActiveBalanceDavis autobalance = new ActiveBalanceDavis(s_Swerve, gyro);
+  private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
 
 
@@ -119,6 +131,12 @@ public class RobotContainer {
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
 
+    m_led = new AddressableLED(Constants.LEDConstants.LED_PORT);
+	  m_ledBuffer = new AddressableLEDBuffer(1);
+	  m_led.setData(m_ledBuffer);
+    m_led.setLength(Constants.LEDConstants.LED_LENGTH);
+    m_led.start();
+
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(
             s_Swerve,
@@ -126,7 +144,7 @@ public class RobotContainer {
             () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
             () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
-            () -> false));
+            () -> robotCentric.getAsBoolean()));
     SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
 
     // Configure the button bindings
@@ -152,7 +170,7 @@ public class RobotContainer {
     intakeButton.onTrue(intake);
     outtakeButton.onTrue(outtake);
     retractButton.onTrue(retract);
-    balanceButton.onTrue(autobalance);
+    activeBalanceButton.onTrue(activeBalance);
     passiveBalanceButton.onTrue(passiveBalance);
     intakeFullButton.onTrue(outtakeFull);
 
@@ -191,6 +209,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
-    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake);
+    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, passiveBalance, outtakeFull);
   }
 }
