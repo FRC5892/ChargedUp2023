@@ -128,7 +128,7 @@
           "3,6": {
             "size": [
               5,
-              4
+              6
             ],
             "content": {
               "_type": "List Layout",
@@ -180,8 +180,7 @@
               "_showGlyph": false,
               "Game/Game": "A2023_Charged_Up",
               "Visuals/Robot Icon Size": 50.0,
-              "Visuals/Show Outside Circles": false,
-              "Colors/Field": "#FFFFFFFF"
+              "Visuals/Show Outside Circles": false
             }
           },
           "10,6": {
@@ -200,7 +199,7 @@
           "13,0": {
             "size": [
               10,
-              9
+              10
             ],
             "content": {
               "_type": "Camera Stream",
@@ -211,7 +210,7 @@
               "Crosshair/Show crosshair": true,
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": true,
-              "Controls/Rotation": "NONE",
+              "Controls/Rotation": "QUARTER_CW",
               "compression": -1.0,
               "fps": -1,
               "imageWidth": -1,
@@ -245,6 +244,71 @@
                   "_showGlyph": false
                 }
               ]
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
+              "_title": "Pigeon2 Yaw",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
+              "_title": "Pigeon2 Pitch",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
+              "_title": "Pigeon2 Roll",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Acceleration",
+              "_title": "Acceleration",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "0,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Timer",
+              "_title": "Timer",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           }
         }
