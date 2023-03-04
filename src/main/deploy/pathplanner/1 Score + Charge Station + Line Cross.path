@@ -2,13 +2,13 @@
   "waypoints": [
     {
       "anchorPoint": {
-        "x": 1.819187924087085,
-        "y": 0.48387096774410354
+        "x": 1.829923568938047,
+        "y": 4.873519292493131
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9131681120505097,
-        "y": 0.8732174607206368
+        "x": 3.1598933197866397,
+        "y": 4.764206710231603
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -26,19 +26,19 @@
     },
     {
       "anchorPoint": {
-        "x": 6.840415109401647,
-        "y": 0.9470590369752175
+        "x": 5.445207455710081,
+        "y": 4.76099642718069
       },
       "prevControl": {
-        "x": 4.860118291665155,
-        "y": 0.6449798613882946
+        "x": 2.5939709350552222,
+        "y": 4.888527773152473
       },
       "nextControl": {
-        "x": 4.860118291665155,
-        "y": 0.6449798613882946
+        "x": 6.8926102944586916,
+        "y": 4.696256364105673
       },
-      "holonomicAngle": 0.0,
-      "isReversal": true,
+      "holonomicAngle": 180.0,
+      "isReversal": false,
       "velOverride": null,
       "isLocked": false,
       "isStopPoint": false,
@@ -54,12 +54,12 @@
     },
     {
       "anchorPoint": {
-        "x": 1.8213092057330724,
-        "y": 1.0330473580397814
+        "x": 3.2224530996468084,
+        "y": 2.6816455779602086
       },
       "prevControl": {
-        "x": 2.1636656047315848,
-        "y": 0.6437008650610814
+        "x": 5.602951313237153,
+        "y": 2.6386245259073706
       },
       "nextControl": null,
       "holonomicAngle": 180.0,
@@ -69,7 +69,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "scoreFull"
+          "score"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -77,14 +77,14 @@
       }
     }
   ],
-  "maxVelocity": 4.0,
-  "maxAcceleration": 4.0,
+  "maxVelocity": 3.0,
+  "maxAcceleration": 2.0,
   "isReversed": null,
   "markers": [
     {
-      "position": 1.0000000000000002,
+      "position": 2.0,
       "names": [
-        "intake"
+        "balance"
       ]
     }
   ]
