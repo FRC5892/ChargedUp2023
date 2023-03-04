@@ -17,13 +17,17 @@ public class PassiveBalance extends CommandBase {
   /** Creates a new PassiveBalance. */
   public PassiveBalance(Swerve s_Swerve) {
     this.m_Swerve = s_Swerve;
-    timer.reset();
+    timer = new Timer();
+    //timer.reset();
     addRequirements(s_Swerve);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    timer.reset();
+    timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -34,7 +38,9 @@ public class PassiveBalance extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    timer.stop();
+  }
 
   // Returns true when the command should end.
   @Override

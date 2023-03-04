@@ -9,7 +9,7 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "titleType": 0,
+        "titleType": 1,
         "tiles": {
           "23,7": {
             "size": [
@@ -125,10 +125,10 @@
               }
             }
           },
-          "3,6": {
+          "2,0": {
             "size": [
-              5,
-              6
+              3,
+              5
             ],
             "content": {
               "_type": "List Layout",
@@ -167,25 +167,9 @@
               ]
             }
           },
-          "3,0": {
+          "0,3": {
             "size": [
-              10,
-              6
-            ],
-            "content": {
-              "_type": "Field",
-              "_source0": "network_table:///SmartDashboard/Field",
-              "_title": "Field",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Game/Game": "A2023_Charged_Up",
-              "Visuals/Robot Icon Size": 50.0,
-              "Visuals/Show Outside Circles": false
-            }
-          },
-          "10,6": {
-            "size": [
-              3,
+              2,
               2
             ],
             "content": {
@@ -196,28 +180,7 @@
               "_showGlyph": false
             }
           },
-          "13,0": {
-            "size": [
-              10,
-              10
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Crosshair/Show crosshair": true,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": true,
-              "Controls/Rotation": "QUARTER_CW",
-              "compression": -1.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
-            }
-          },
-          "8,6": {
+          "0,0": {
             "size": [
               2,
               3
@@ -246,67 +209,81 @@
               ]
             }
           },
-          "0,0": {
+          "18,0": {
             "size": [
-              2,
-              1
+              3,
+              7
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
-              "_title": "Pigeon2 Yaw",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_type": "List Layout",
+              "_title": "Odometry",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Label position": "TOP",
+              "_children": [
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
+                  "_title": "Pigeon2 Roll",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Range/Min": -180.0,
+                  "Range/Max": 180.0,
+                  "Visuals/Show value": true
+                },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
+                  "_title": "Pigeon2 Pitch",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Range/Min": -180.0,
+                  "Range/Max": 180.0,
+                  "Visuals/Show value": true
+                },
+                {
+                  "_type": "Simple Dial",
+                  "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
+                  "_title": "Pigeon2 Yaw",
+                  "_glyph": 148,
+                  "_showGlyph": false,
+                  "Range/Min": -180.0,
+                  "Range/Max": 180.0,
+                  "Visuals/Show value": true
+                }
+              ]
             }
           },
-          "0,1": {
+          "5,0": {
             "size": [
-              2,
-              1
+              13,
+              7
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
-              "_title": "Pigeon2 Pitch",
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0",
               "_glyph": 148,
-              "_showGlyph": false
+              "_showGlyph": false,
+              "Crosshair/Show crosshair": false,
+              "Crosshair/Crosshair color": "#FFFFFFFF",
+              "Controls/Show controls": false,
+              "Controls/Rotation": "NONE",
+              "compression": -1.0,
+              "fps": 30,
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           },
-          "0,2": {
+          "0,5": {
             "size": [
-              2,
-              1
+              5,
+              2
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
-              "_title": "Pigeon2 Roll",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "0,3": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Acceleration",
-              "_title": "Acceleration",
-              "_glyph": 148,
-              "_showGlyph": false
-            }
-          },
-          "0,4": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Timer",
-              "_title": "Timer",
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
+              "_title": "SmartDashboard/SendableChooser[0]",
               "_glyph": 148,
               "_showGlyph": false
             }
@@ -326,12 +303,132 @@
         "titleType": 0,
         "tiles": {}
       }
+    },
+    {
+      "title": "FMSInfo",
+      "autoPopulate": true,
+      "autoPopulatePrefix": "network_table:///FMSInfo/",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "titleType": 0,
+        "tiles": {
+          "0,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/GameSpecificMessage",
+              "_title": "GameSpecificMessage",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "1,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/EventName",
+              "_title": "EventName",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/MatchNumber",
+              "_title": "MatchNumber",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/ReplayNumber",
+              "_title": "ReplayNumber",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/MatchType",
+              "_title": "MatchType",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///FMSInfo/IsRedAlliance",
+              "_title": "IsRedAlliance",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "6,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/StationNumber",
+              "_title": "StationNumber",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          },
+          "7,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/FMSControlData",
+              "_title": "FMSControlData",
+              "_glyph": 148,
+              "_showGlyph": false
+            }
+          }
+        }
+      }
     }
   ],
   "windowGeometry": {
     "x": -8.0,
     "y": -8.0,
-    "width": 1936.0,
-    "height": 1048.0
+    "width": 1382.0,
+    "height": 736.0
   }
 }
