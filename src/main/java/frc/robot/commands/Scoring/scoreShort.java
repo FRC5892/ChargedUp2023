@@ -7,13 +7,17 @@ package frc.robot.commands.Scoring;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LED;
 
 public class scoreShort extends CommandBase {
   private Ground_Intake ground_Intake;
   public static Timer timer;
+  private LED LEDs;
+
   /** Creates a new score. */
-  public scoreShort(Ground_Intake intake) {
+  public scoreShort(Ground_Intake intake, LED LEDs) {
     this.ground_Intake = intake;
+    this.LEDs = LEDs;
     timer = new Timer();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
@@ -31,16 +35,14 @@ public class scoreShort extends CommandBase {
   public void execute() {
     // Tilt robot down, open clamp, send out kicker, wait 0.3s, bring kicker back in
     ground_Intake.tiltDownward();
-    
+
     ground_Intake.openClamp();
-  
+
     ground_Intake.returnKicker();
 
-    ground_Intake.setLEDWhite();
+    LEDs.setLEDWhite();
 
-    }
-
-  
+  }
 
   // delay(1.5);
   // ground_Intake.returnKicker();
@@ -58,4 +60,3 @@ public class scoreShort extends CommandBase {
     return (timer.get() > 0.08);
   }
 }
-

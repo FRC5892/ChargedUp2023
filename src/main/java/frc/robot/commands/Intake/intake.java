@@ -8,18 +8,21 @@ package frc.robot.commands.Intake;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LED;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
   private boolean finish;
+  private LED LEDs;
 
   /** Creates a new intake. */
-  public intake(Ground_Intake intake) {
+  public intake(Ground_Intake intake, LED LEDs) {
     ground_Intake = intake;
+    this.LEDs = LEDs;
     finish = false;
     // this.ground_Intake = ground_Intake;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake);
+    addRequirements(ground_Intake, LEDs);
 
   }
 
@@ -37,7 +40,7 @@ public class intake extends CommandBase {
     // Timer.delay(1);
     // delay(3.5);
     ground_Intake.tiltUpward();
-    ground_Intake.setLEDOrange();
+    LEDs.setLEDOrange();
     finish = true;
 
     // We can also use: new WaitCommand(5.0) if needed

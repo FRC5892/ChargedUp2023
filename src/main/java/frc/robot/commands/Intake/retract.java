@@ -7,19 +7,22 @@ package frc.robot.commands.Intake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LED;
 
 public class retract extends CommandBase {
   private Ground_Intake ground_Intake;
   private Timer timer;
   private boolean finish;
+  private LED LEDs;
 
   /** Creates a new score. */
-  public retract(Ground_Intake intake) {
+  public retract(Ground_Intake intake, LED LEDs) {
     this.ground_Intake = intake;
+    this.LEDs = LEDs;
     timer = new Timer();
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(ground_Intake);
+    addRequirements(ground_Intake, LEDs);
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +36,7 @@ public class retract extends CommandBase {
   public void execute() {
 
     ground_Intake.sendKicker();
-    ground_Intake.setLEDWhite();
+    LEDs.setLEDWhite();
     finish = true;
   }
 
