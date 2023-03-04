@@ -38,7 +38,7 @@ public class Swerve extends SubsystemBase {
   public Swerve(Pigeon2 gyro) {
     accelerometer = new BuiltInAccelerometer();
     this.gyro = gyro;
-    //gyro.configFactoryDefault();
+    // gyro.configFactoryDefault();
     zeroGyro();
 
     mSwerveMods = new SwerveModule[] {
@@ -80,8 +80,8 @@ public class Swerve extends SubsystemBase {
 
   public void stop() {
     drive(new Translation2d(0, 0).times(Constants.Swerve.maxSpeed),
-    0 * Constants.Swerve.maxAngularVelocity,
-    true, false); 
+        0 * Constants.Swerve.maxAngularVelocity,
+        true, false);
   }
 
   /* Used by SwerveControllerCommand in Auto */
@@ -97,7 +97,7 @@ public class Swerve extends SubsystemBase {
       mod.setDesiredState(desiredStates[mod.moduleNumber], false);
     }
   }
-  
+
   /**
    * Sets the desired rotation for each SwerveModule.
    * 
@@ -113,12 +113,15 @@ public class Swerve extends SubsystemBase {
   public void setModule0(Rotation2d rotation) {
     mSwerveMods[0].setDesiredState(new SwerveModuleState(0, rotation), false);
   }
+
   public void setModule1(Rotation2d rotation) {
     mSwerveMods[1].setDesiredState(new SwerveModuleState(0, rotation), false);
   }
+
   public void setModule2(Rotation2d rotation) {
     mSwerveMods[2].setDesiredState(new SwerveModuleState(0, rotation), false);
   }
+
   public void setModule3(Rotation2d rotation) {
     mSwerveMods[3].setDesiredState(new SwerveModuleState(0, rotation), false);
   }
@@ -213,15 +216,15 @@ public class Swerve extends SubsystemBase {
 
     SmartDashboard.putNumber("Pigeon2 Yaw", gyro.getYaw());
     SmartDashboard.putNumber("Pigeon2 Pitch", gyro.getPitch());
-   // SmartDashboard.putNumber("Acceleration", gyro.getBiasedAccelerometer(null);
+    // SmartDashboard.putNumber("Acceleration", gyro.getBiasedAccelerometer(null);
 
     SmartDashboard.putNumber("Pigeon2 Roll", gyro.getRoll());
-    //SmartDashboard.putData("Distance:", getPose());
+    // SmartDashboard.putData("Distance:", getPose());
 
     SmartDashboard.putNumber("Acceleration", accelerometer.getX());
     for (SwerveModule mod : mSwerveMods) {
-      //SmartDashboard.putNumber(
-        //  "Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
+      // SmartDashboard.putNumber(
+      // "Mod " + mod.moduleNumber + " Cancoder", mod.getCanCoder().getDegrees());
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Integrated", mod.getState().angle.getDegrees());
       SmartDashboard.putNumber(
