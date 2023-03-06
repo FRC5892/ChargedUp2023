@@ -2,13 +2,13 @@
   "waypoints": [
     {
       "anchorPoint": {
-        "x": 1.829923568938047,
-        "y": 4.873519292493131
+        "x": 1.8457794339560063,
+        "y": 4.330785906652315
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.1598933197866397,
-        "y": 4.764206710231603
+        "x": 3.2081127489625283,
+        "y": 4.58891221896934
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -17,7 +17,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "score"
+          "scoreFull"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -26,16 +26,16 @@
     },
     {
       "anchorPoint": {
-        "x": 5.445207455710081,
-        "y": 4.76099642718069
+        "x": 5.602951313237153,
+        "y": 4.6606139723907365
       },
       "prevControl": {
-        "x": 2.5939709350552222,
-        "y": 4.888527773152473
+        "x": 2.751946247488628,
+        "y": 4.793218859169742
       },
       "nextControl": {
-        "x": 6.8926102944586916,
-        "y": 4.696256364105673
+        "x": 6.219586392661157,
+        "y": 4.631933271022177
       },
       "holonomicAngle": 180.0,
       "isReversal": false,
@@ -54,12 +54,12 @@
     },
     {
       "anchorPoint": {
-        "x": 3.2224530996468084,
-        "y": 2.6816455779602086
+        "x": 4.799891674917518,
+        "y": 2.853729786171559
       },
       "prevControl": {
-        "x": 5.602951313237153,
-        "y": 2.6386245259073706
+        "x": 6.291288146082554,
+        "y": 2.753347331381605
       },
       "nextControl": null,
       "holonomicAngle": 180.0,
@@ -69,7 +69,7 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
-          "score"
+          "active"
         ],
         "executionBehavior": "parallel",
         "waitBehavior": "none",
@@ -82,9 +82,9 @@
   "isReversed": null,
   "markers": [
     {
-      "position": 2.0,
+      "position": 1.1636363636363631,
       "names": [
-        "balance"
+        "intake"
       ]
     }
   ]

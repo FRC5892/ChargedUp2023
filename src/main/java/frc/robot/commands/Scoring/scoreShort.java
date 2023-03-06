@@ -11,6 +11,7 @@ import frc.robot.subsystems.Ground_Intake;
 public class scoreShort extends CommandBase {
   private Ground_Intake ground_Intake;
   public static Timer timer;
+
   /** Creates a new score. */
   public scoreShort(Ground_Intake intake) {
     this.ground_Intake = intake;
@@ -31,16 +32,14 @@ public class scoreShort extends CommandBase {
   public void execute() {
     // Tilt robot down, open clamp, send out kicker, wait 0.3s, bring kicker back in
     ground_Intake.tiltDownward();
-    
+
     ground_Intake.openClamp();
-  
+
     ground_Intake.returnKicker();
 
     ground_Intake.setLEDWhite();
 
-    }
-
-  
+  }
 
   // delay(1.5);
   // ground_Intake.returnKicker();
@@ -55,7 +54,6 @@ public class scoreShort extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (timer.get() > 0.08);
+    return (timer.get() > 0.11);
   }
 }
-

@@ -209,7 +209,7 @@
               ]
             }
           },
-          "18,0": {
+          "13,0": {
             "size": [
               3,
               7
@@ -256,7 +256,7 @@
           },
           "5,0": {
             "size": [
-              13,
+              8,
               7
             ],
             "content": {
@@ -267,7 +267,7 @@
               "_showGlyph": false,
               "Crosshair/Show crosshair": false,
               "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": false,
+              "Controls/Show controls": true,
               "Controls/Rotation": "NONE",
               "compression": -1.0,
               "fps": 30,
@@ -286,6 +286,95 @@
               "_title": "SmartDashboard/SendableChooser[0]",
               "_glyph": 148,
               "_showGlyph": false
+            }
+          },
+          "16,0": {
+            "size": [
+              5,
+              3
+            ],
+            "content": {
+              "_type": "Field",
+              "_source0": "network_table:///SmartDashboard/Field",
+              "_title": "Field",
+              "_glyph": 148,
+              "_showGlyph": false,
+              "Game/Game": "A2023_Charged_Up",
+              "Visuals/Robot Icon Size": 50.0,
+              "Visuals/Show Outside Circles": false
+            }
+          },
+          "16,3": {
+            "size": [
+              5,
+              4
+            ],
+            "content": {
+              "_type": "Grid Layout",
+              "_title": "Grid Layout",
+              "_glyph": 149,
+              "_showGlyph": false,
+              "Layout/Number of columns": 2,
+              "Layout/Number of rows": 4,
+              "Layout/Label position": "TOP",
+              "_children": {
+                "0,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 0 Position",
+                  "_title": "Mod 0 Pose",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,1": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 1 Position",
+                  "_title": "Mod 1 Pose",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,3": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 3 Position",
+                  "_title": "Mod 3 Pose",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "0,2": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 2 Position",
+                  "_title": "Mod 2 Pose",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 0 Velocity",
+                  "_title": "Mod 0 Vel",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "2,0": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 2 Velocity",
+                  "_title": "Mod 2 Vel",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,1": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 1 Velocity",
+                  "_title": "Mod 1 Vel",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                },
+                "1,3": {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Mod 3 Velocity",
+                  "_title": "Mod 3 Vel",
+                  "_glyph": 148,
+                  "_showGlyph": false
+                }
+              }
             }
           }
         }

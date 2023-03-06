@@ -28,27 +28,33 @@ public class ActiveBalance extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    finish = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (gyro.getRoll() > 5) {
+    if (gyro.getRoll() > 10) {
       s_Swerve.drive(
-        new Translation2d(0, 1).times(Constants.Swerve.balanceSpeed),
-        0,false, true);
-    } else if (gyro.getRoll() < -5) {
+          new Translation2d(1, 0).times(-Constants.Swerve.balanceSpeed),
+          0, false, true);
+    } else if (gyro.getRoll() < -10) {
       s_Swerve.drive(
-        new Translation2d(0, 1).times(-Constants.Swerve.balanceSpeed),
-        0,false, true);
+          new Translation2d(1, 0).times(Constants.Swerve.balanceSpeed),
+          0, false, true);
+    } else {
+      s_Swerve.drive(
+          new Translation2d(0, 0).times(Constants.Swerve.balanceSpeed),
+          0, false, true);
+      finish = true;
     }
-
-    finish = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

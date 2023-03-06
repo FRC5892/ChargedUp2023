@@ -16,7 +16,7 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;
     public static final int pigeonID = 13;
-    public static final double balanceSpeed = 0.1;
+    public static final double balanceSpeed = 0.45;
 
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
 
@@ -44,7 +44,7 @@ public final class Constants {
 
     /* Swerve Current Limiting */
     public static final int angleContinuousCurrentLimit = 20;
-    public static final int driveContinuousCurrentLimit = 60;
+    public static final int driveContinuousCurrentLimit = 50;
 
     /* TODO: test Angle Motor PID Values (these are default, may tune if needed) */
     public static final double angleKP = 0.02;
@@ -134,8 +134,8 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 2;
+    public static final double kMaxSpeedMetersPerSecond = 2.5;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
@@ -145,7 +145,7 @@ public final class Constants {
   }
 
   public static final class VisionConstants {
-    public static final String USB_CAMERA_NAME = null;
+    public static final String USB_CAMERA_NAME = "photonvision";
     public static final double TRACKED_TAG_ROATION_KP = 0;
     public static final Transform3d CAMERA_TO_ROBOT = new Transform3d(new Translation3d(-0.3425, 0.0, -0.233),
         new Rotation3d());
