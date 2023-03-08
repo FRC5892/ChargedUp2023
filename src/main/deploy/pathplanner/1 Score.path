@@ -20,7 +20,7 @@
           "scoreFull"
         ],
         "executionBehavior": "parallel",
-        "waitBehavior": "after",
+        "waitBehavior": "none",
         "waitTime": 2.0
       }
     },

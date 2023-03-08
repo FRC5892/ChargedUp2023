@@ -1,0 +1,98 @@
+{
+  "waypoints": [
+    {
+      "anchorPoint": {
+        "x": 1.8326136652273306,
+        "y": 1.0678907072099861
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.685148227439312,
+        "y": 0.7456729199172693
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [
+          "scoreFull"
+        ],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 2.0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 4.725860880293189,
+        "y": 0.8329402373090464
+      },
+      "prevControl": {
+        "x": 4.041337543505658,
+        "y": 0.8490466687628705
+      },
+      "nextControl": {
+        "x": 5.2964548786240435,
+        "y": 0.81951449617185
+      },
+      "holonomicAngle": 180.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    },
+    {
+      "anchorPoint": {
+        "x": 7.055226967596792,
+        "y": 0.9134946841322259
+      },
+      "prevControl": {
+        "x": 5.766355818425922,
+        "y": 0.8530788490148415
+      },
+      "nextControl": null,
+      "holonomicAngle": 0.0,
+      "isReversal": false,
+      "velOverride": null,
+      "isLocked": false,
+      "isStopPoint": false,
+      "stopEvent": {
+        "names": [],
+        "executionBehavior": "parallel",
+        "waitBehavior": "none",
+        "waitTime": 0
+      }
+    }
+  ],
+  "maxVelocity": 3.0,
+  "maxAcceleration": 2.0,
+  "isReversed": null,
+  "markers": [
+    {
+      "position": 0.3090909090909091,
+      "names": [
+        "intake"
+      ]
+    },
+    {
+      "position": 1.5636363636363606,
+      "names": [
+        "score"
+      ]
+    },
+    {
+      "position": 2.0,
+      "names": [
+        "intake"
+      ]
+    }
+  ]
+}

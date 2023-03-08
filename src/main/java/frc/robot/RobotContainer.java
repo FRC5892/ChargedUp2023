@@ -102,6 +102,8 @@ public class RobotContainer {
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory Score1LCC = PathPlanner.loadPath("1 Score + Line Cross Cable",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -163,6 +165,7 @@ public class RobotContainer {
     autoChooser.addOption("1 Score + Charge Station", Score1ChargeStation);
     autoChooser.addOption("2 Score Left", Score2);
     autoChooser.addOption("1 Score + Charge Station + Line Cross", Score1CSLC);
+    autoChooser.addOption("1 Score + Line Cross Cable", Score1LCC);
 
     SmartDashboard.putData(autoChooser);
   }
