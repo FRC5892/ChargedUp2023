@@ -16,9 +16,12 @@ public final class Constants {
   public static final class Swerve {
     public static final double stickDeadband = 0.1;
     public static final int pigeonID = 13;
-    public static final double balanceSpeed = 0.45;
-
     public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
+
+    /* Autonomous Speeds */
+    public static final double balanceSpeed = 0.45;
+    public static final double speedyBalanceSpeed = 0.7;
+    public static final double speedyBackup = 0.3;
 
     /* Drivetrain Constants */
     public static final double trackWidth = Units.inchesToMeters(20.5);
