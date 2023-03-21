@@ -17,6 +17,7 @@ public class SpeedyBalance extends CommandBase {
   private Pigeon2 gyro;
   private boolean finish;
   private Timer timer;
+  private Timer timer2;
 
   private double initialAngle;
   private double currentAngle;
@@ -37,6 +38,7 @@ public class SpeedyBalance extends CommandBase {
   public void initialize() {
     timer.reset();
     timer.start();
+    timer2.reset();
     initialAngle = gyro.getRoll();
 
     //immediately drive fast
@@ -63,14 +65,16 @@ public class SpeedyBalance extends CommandBase {
     
     //how's the robot doin
     boolean robotTipped = angleDiff < 0;
-    boolean robotBalanced = angleDiff == 0;
+    boolean enoughBackingUp = timer2.get() > 0.5;
     
+    //drive while timer goes
     if (robotTipped) {
+      timer2.start();
       s_Swerve.drive(new Translation2d(1, 0).times(-Constants.Swerve.speedyBackup),
     0, false, true);
     }
 
-    if (robotBalanced) {
+    if (enoughBackingUp) {
       s_Swerve.drive(new Translation2d(0, 0).times(0),
     0, false, true);
       finish = true;
