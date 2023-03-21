@@ -36,7 +36,7 @@ public class executeTrajectory extends SequentialCommandGroup {
         s_Swerve);
 
     addCommands(
-        new InstantCommand(() -> s_Swerve.resetOdometry(trajectory.getInitialHolonomicPose())),
-        swerveControllerCommand.fullAuto(trajectory));
+      swerveControllerCommand.fullAuto(trajectory),
+        new InstantCommand(() -> s_Swerve.resetOdometry(trajectory.getInitialHolonomicPose())));
   }
 }

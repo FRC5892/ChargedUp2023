@@ -20,14 +20,17 @@ public class Ground_Intake extends SubsystemBase {
   public DoubleSolenoid clampSolenoid;
   public DoubleSolenoid kickerSolenoid;
   public DoubleSolenoid tiltSolenoid;
+  public DoubleSolenoid kickerSolenoid2;
 
   /** Creates a new Ground_Intake. */
   public Ground_Intake() {
     clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
+
 	/* PORT[0] forward channel
 	 * PORT[1] backward channel
 	 */
 	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+	kickerSolenoid2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
 	/* PORT[2] forward channel
 	 * PORT[3] backward channel
 	 */
@@ -69,12 +72,14 @@ public class Ground_Intake extends SubsystemBase {
 
 	//push kicker out
 	public void sendKicker(){
-		kickerSolenoid.set(Value.kForward);
+		kickerSolenoid.set(Value.kReverse);
+		kickerSolenoid2.set(Value.kReverse);
 	}
 
 	//bring kicker back in
 	public void returnKicker(){
-		kickerSolenoid.set(Value.kReverse);
+		kickerSolenoid.set(Value.kForward);
+		kickerSolenoid2.set(Value.kForward);
 	}
 	
 
