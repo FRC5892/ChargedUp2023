@@ -9,8 +9,6 @@ import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -25,6 +23,7 @@ import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.commands.Balance.ActiveBalance;
 import frc.robot.commands.Balance.PassiveBalance;
+import frc.robot.commands.Balance.SpeedyBalance;
 import frc.robot.commands.Intake.intake;
 import frc.robot.commands.Intake.retract;
 import frc.robot.commands.Scoring.scoreHigh;
@@ -44,10 +43,6 @@ public class RobotContainer {
 
   /* Compressor */
   private Compressor compressor;
-
-  /* LED Strip */
-  public static AddressableLED m_led;
-  public static AddressableLEDBuffer m_ledBuffer;
 
   // Gyro Sensor
   private Pigeon2 gyro = new Pigeon2(Constants.Swerve.pigeonID);
@@ -73,14 +68,14 @@ public class RobotContainer {
 
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
+  public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   /* Commands */
   private final Swerve s_Swerve = new Swerve(gyro);
   private final Ground_Intake ground_intake = new Ground_Intake();
-  // private final ActiveBalanceDavis autobalance = new
-  // ActiveBalanceDavis(s_Swerve, gyro);
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
   private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
+  private final SpeedyBalance speedyBalance = new SpeedyBalance(s_Swerve, gyro);
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
@@ -116,12 +111,6 @@ public class RobotContainer {
     CameraServer.startAutomaticCapture();
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
-
-    m_led = new AddressableLED(Constants.LEDConstants.LED_PORT);
-    m_ledBuffer = new AddressableLEDBuffer(1);
-    m_led.setData(m_ledBuffer);
-    m_led.setLength(Constants.LEDConstants.LED_LENGTH);
-    m_led.start();
 
     s_Swerve.setDefaultCommand(
         new TeleopSwerve(

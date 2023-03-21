@@ -7,9 +7,11 @@ package frc.robot.commands.Intake;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LEDSubsystem;
 
 public class retract extends CommandBase {
   private Ground_Intake ground_Intake;
+  private LEDSubsystem ledSubsystem;
   private Timer timer;
   private boolean finish;
 
@@ -33,7 +35,7 @@ public class retract extends CommandBase {
   public void execute() {
 
     ground_Intake.sendKicker();
-    ground_Intake.setLEDWhite();
+    ledSubsystem.setLEDWhite();
     finish = true;
   }
 

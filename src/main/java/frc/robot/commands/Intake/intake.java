@@ -8,9 +8,11 @@ package frc.robot.commands.Intake;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LEDSubsystem;
 
 public class intake extends CommandBase {
   private Ground_Intake ground_Intake;
+  private LEDSubsystem ledSubsystem;
   private boolean finish;
 
   /** Creates a new intake. */
@@ -37,7 +39,7 @@ public class intake extends CommandBase {
     // Timer.delay(1);
     // delay(3.5);
     ground_Intake.tiltUpward();
-    ground_Intake.setLEDOrange();
+    ledSubsystem.setLEDOrange();
     finish = true;
 
     // We can also use: new WaitCommand(5.0) if needed
