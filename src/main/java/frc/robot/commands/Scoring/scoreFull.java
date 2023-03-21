@@ -7,9 +7,11 @@ package frc.robot.commands.Scoring;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
+import frc.robot.subsystems.LEDSubsystem;
 
 public class scoreFull extends CommandBase {
   private Ground_Intake ground_Intake;
+  private LEDSubsystem ledSubsystem;
   public static Timer timer;
   private boolean finish;
 
@@ -36,7 +38,7 @@ public class scoreFull extends CommandBase {
   
     ground_Intake.returnKicker();
 
-    ground_Intake.setLEDWhite();
+    ledSubsystem.setLEDWhite();
 
     finish = true;
     }
