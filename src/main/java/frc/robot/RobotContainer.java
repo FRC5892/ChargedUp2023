@@ -27,8 +27,9 @@ import frc.robot.commands.Balance.ActiveBalance;
 import frc.robot.commands.Balance.PassiveBalance;
 import frc.robot.commands.Intake.intake;
 import frc.robot.commands.Intake.retract;
-import frc.robot.commands.Scoring.scoreFull;
-import frc.robot.commands.Scoring.scoreShort;
+import frc.robot.commands.Scoring.scoreHigh;
+import frc.robot.commands.Scoring.scoreMid;
+import frc.robot.commands.Scoring.scoreLow;
 import frc.robot.subsystems.*;
 
 /* 
@@ -62,6 +63,7 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
+  private final JoystickButton lowButton = new JoystickButton(codriver, XboxController.Button.kLeftBumper.value);
   public final static JoystickButton activeBalanceButton = new JoystickButton(driver,
       XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver,
@@ -82,9 +84,10 @@ public class RobotContainer {
 
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
-  public final Command outtake = new scoreShort(ground_intake);
+  public final Command outtake = new scoreMid(ground_intake);
   public final Command retract = new retract(ground_intake);
-  public final Command outtakeFull = new scoreFull(ground_intake);
+  public final Command outtakeFull = new scoreHigh(ground_intake);
+  public final Command outtakeLow = new scoreLow(ground_intake);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -156,6 +159,7 @@ public class RobotContainer {
     activeBalanceButton.onTrue(activeBalance);
     passiveBalanceButton.onTrue(passiveBalance);
     intakeFullButton.onTrue(outtakeFull);
+    lowButton.onTrue(outtakeLow);
 
   }
 

@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
 
-public class scoreFull extends CommandBase {
+public class scoreHigh extends CommandBase {
   private Ground_Intake ground_Intake;
   public static Timer timer;
   private boolean finish;
 
   /** Creates a new score. */
-  public scoreFull(Ground_Intake intake) {
+  public scoreHigh(Ground_Intake intake) {
     this.ground_Intake = intake;
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
