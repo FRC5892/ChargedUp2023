@@ -44,7 +44,7 @@ public class scoreLow extends CommandBase {
 
     ground_Intake.returnKicker();
 
-    ground_Intake.setLEDWhite();
+    
     }
 
   }

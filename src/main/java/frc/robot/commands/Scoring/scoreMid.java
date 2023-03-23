@@ -39,7 +39,7 @@ public class scoreMid extends CommandBase {
 
     ground_Intake.returnKicker();
 
-    ledSubsystem.setLEDWhite();
+    //ledSubsystem.setLEDWhite();
 
   }
 

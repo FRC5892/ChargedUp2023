@@ -38,7 +38,7 @@ public class scoreHigh extends CommandBase {
   
     ground_Intake.returnKicker();
 
-    ledSubsystem.setLEDWhite();
+    //ledSubsystem.setLEDWhite();
 
     finish = true;
     }
