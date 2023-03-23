@@ -29,6 +29,7 @@ import frc.robot.commands.Intake.retract;
 import frc.robot.commands.Scoring.scoreHigh;
 import frc.robot.commands.Scoring.scoreMid;
 import frc.robot.commands.Scoring.scoreLow;
+import frc.robot.commands.Scoring.scoreHighAuton;
 import frc.robot.subsystems.*;
 
 /* 
@@ -68,7 +69,7 @@ public class RobotContainer {
 
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
-  public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
+  //public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   /* Commands */
   private final Swerve s_Swerve = new Swerve(gyro);
@@ -76,7 +77,7 @@ public class RobotContainer {
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
   private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
   private final SpeedyBalance speedyBalance = new SpeedyBalance(s_Swerve, gyro);
-
+  public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new scoreMid(ground_intake);
@@ -101,6 +102,8 @@ public class RobotContainer {
   PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
       2, 1);
   PathPlannerTrajectory Score1LCC = PathPlanner.loadPath("1 Score + Line Cross Cable",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory LineCS = PathPlanner.loadPath("Line + Charge Station",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
 
   /**
@@ -160,7 +163,7 @@ public class RobotContainer {
     autoChooser.addOption("2 Score Left", Score2);
     autoChooser.addOption("1 Score + Charge Station + Line Cross", Score1CSLC);
     autoChooser.addOption("1 Score + Line Cross Cable", Score1LCC);
-
+    autoChooser.addOption("Line + Charge Station", LineCS);
     SmartDashboard.putData(autoChooser);
   }
 
@@ -176,6 +179,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
     return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, activeBalance,
-        outtakeFull);
+        outtakeFullAuto);
   }
 }

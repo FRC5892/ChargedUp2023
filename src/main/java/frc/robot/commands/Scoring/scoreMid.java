@@ -7,11 +7,11 @@ package frc.robot.commands.Scoring;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
-import frc.robot.subsystems.LEDSubsystem;
+//import frc.robot.subsystems.LEDSubsystem;
 
 public class scoreMid extends CommandBase {
   private Ground_Intake ground_Intake;
-  private LEDSubsystem ledSubsystem;
+  //private LEDSubsystem ledSubsystem;
   public static Timer timer;
 
   /** Creates a new score. */
@@ -56,6 +56,6 @@ public class scoreMid extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (timer.get() > 0.16);
+    return (timer.get() > 0.142);
   }
 }

@@ -17,9 +17,10 @@
       "isStopPoint": false,
       "stopEvent": {
         "names": [
+          "intake",
           "scoreFull"
         ],
-        "executionBehavior": "parallel",
+        "executionBehavior": "sequential",
         "waitBehavior": "none",
         "waitTime": 0
       }

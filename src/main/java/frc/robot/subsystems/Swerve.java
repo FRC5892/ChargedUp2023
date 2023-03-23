@@ -191,6 +191,9 @@ public class Swerve extends SubsystemBase {
   public void zeroGyro() {
     gyro.setYaw(0);
   }
+  public void invertGyro() {
+    gyro.setYaw(180);
+  }
 
   /**
    * Returns the yaw of the robot.
