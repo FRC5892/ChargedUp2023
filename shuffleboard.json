@@ -167,9 +167,9 @@
               ]
             }
           },
-          "9,0": {
+          "4,0": {
             "size": [
-              7,
+              12,
               7
             ],
             "content": {
@@ -180,10 +180,10 @@
               "_showGlyph": false,
               "Crosshair/Show crosshair": false,
               "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": false,
+              "Controls/Show controls": true,
               "Controls/Rotation": "NONE",
               "compression": -1.0,
-              "fps": 30,
+              "fps": -1,
               "imageWidth": 0,
               "imageHeight": 0
             }
@@ -212,27 +212,6 @@
               "_title": "Acceleration",
               "_glyph": 148,
               "_showGlyph": false
-            }
-          },
-          "2,0": {
-            "size": [
-              7,
-              8
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 1",
-              "_title": "USB Camera 1",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Crosshair/Show crosshair": false,
-              "Crosshair/Crosshair color": "#FFFFFFFF",
-              "Controls/Show controls": false,
-              "Controls/Rotation": "NONE",
-              "compression": 36.0,
-              "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
             }
           },
           "21,2": {
@@ -546,9 +525,9 @@
     }
   ],
   "windowGeometry": {
-    "x": -8.0,
-    "y": -8.0,
-    "width": 1382.0,
-    "height": 736.0
+    "x": 1.0,
+    "y": 1.0,
+    "width": 1364.0,
+    "height": 718.0
   }
 }

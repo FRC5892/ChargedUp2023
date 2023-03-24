@@ -26,6 +26,7 @@ import frc.robot.commands.Balance.PassiveBalance;
 import frc.robot.commands.Balance.SpeedyBalance;
 import frc.robot.commands.Intake.intake;
 import frc.robot.commands.Intake.retract;
+import frc.robot.commands.Scoring.scoreCones;
 import frc.robot.commands.Scoring.scoreHigh;
 import frc.robot.commands.Scoring.scoreMid;
 import frc.robot.commands.Scoring.scoreLow;
@@ -60,6 +61,7 @@ public class RobotContainer {
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
   private final JoystickButton lowButton = new JoystickButton(codriver, XboxController.Button.kLeftBumper.value);
+  private final JoystickButton coneButton = new JoystickButton(codriver, XboxController.Button.kRightBumper.value);
   public final static JoystickButton activeBalanceButton = new JoystickButton(driver,
       XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver,
@@ -78,6 +80,7 @@ public class RobotContainer {
   private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
   private final SpeedyBalance speedyBalance = new SpeedyBalance(s_Swerve, gyro);
   public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
+  public final scoreCones ScoreCones = new scoreCones(ground_intake);
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
   public final Command outtake = new scoreMid(ground_intake);
@@ -111,7 +114,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     CameraServer.startAutomaticCapture();
-    CameraServer.startAutomaticCapture();
+    //CameraServer.startAutomaticCapture();
     compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
     compressor.enableDigital();
 
@@ -152,6 +155,7 @@ public class RobotContainer {
     passiveBalanceButton.onTrue(passiveBalance);
     intakeFullButton.onTrue(outtakeFull);
     lowButton.onTrue(outtakeLow);
+    coneButton.onTrue(ScoreCones);
 
   }
 

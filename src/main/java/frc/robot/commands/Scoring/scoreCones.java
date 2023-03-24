@@ -7,17 +7,17 @@ package frc.robot.commands.Scoring;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Ground_Intake;
-//import frc.robot.subsystems.LEDSubsystem;
 
-public class scoreMid extends CommandBase {
+public class scoreCones extends CommandBase {
   private Ground_Intake ground_Intake;
-  //private LEDSubsystem ledSubsystem;
   public static Timer timer;
+  public static Timer timer2;
 
   /** Creates a new score. */
-  public scoreMid(Ground_Intake intake) {
+  public scoreCones(Ground_Intake intake) {
     this.ground_Intake = intake;
     timer = new Timer();
+    timer2 = new Timer();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
   }
@@ -26,20 +26,26 @@ public class scoreMid extends CommandBase {
   @Override
   public void initialize() {
     timer.reset();
-    timer.start();
+    timer2.reset();
+    timer2.start();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     // Tilt robot down, open clamp, send out kicker, wait 0.3s, bring kicker back in
     ground_Intake.tiltDownward();
 
     ground_Intake.openClamp();
+    if(timer2.get() > 0.4){
+      timer.start();
 
     ground_Intake.returnKicker();
 
-    //ledSubsystem.setLEDWhite();
+    
+    }
 
   }
 
@@ -50,12 +56,18 @@ public class scoreMid extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     timer.stop();
+    timer2.stop();
     ground_Intake.sendKicker();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (timer.get() > 0.107);
+    if(timer2.get() > 0.4){
+    return (timer.get() > 0.17);
+    }
+    else{
+      return false;
+    }
   }
 }
