@@ -181,7 +181,7 @@
               "Crosshair/Show crosshair": false,
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": false,
-              "Controls/Rotation": "QUARTER_CW",
+              "Controls/Rotation": "NONE",
               "compression": -1.0,
               "fps": 30,
               "imageWidth": 0,
@@ -378,7 +378,21 @@
               "_showGlyph": false,
               "Game/Game": "A2023_Charged_Up",
               "Visuals/Robot Icon Size": 50.0,
-              "Visuals/Show Outside Circles": false
+              "Visuals/Show Outside Circles": false,
+              "Colors/Field": "#FFFFFFFF"
+            }
+          },
+          "16,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Intake Time",
+              "_title": "Intake Time",
+              "_glyph": 148,
+              "_showGlyph": false
             }
           }
         }

@@ -26,8 +26,10 @@ import frc.robot.commands.Balance.PassiveBalance;
 import frc.robot.commands.Balance.SpeedyBalance;
 import frc.robot.commands.Intake.intake;
 import frc.robot.commands.Intake.retract;
-import frc.robot.commands.Scoring.scoreFull;
-import frc.robot.commands.Scoring.scoreShort;
+import frc.robot.commands.Scoring.scoreHigh;
+import frc.robot.commands.Scoring.scoreMid;
+import frc.robot.commands.Scoring.scoreLow;
+import frc.robot.commands.Scoring.scoreHighAuton;
 import frc.robot.subsystems.*;
 
 /* 
@@ -57,6 +59,7 @@ public class RobotContainer {
   private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
   private final JoystickButton retractButton = new JoystickButton(codriver, XboxController.Button.kA.value);
   private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
+  private final JoystickButton lowButton = new JoystickButton(codriver, XboxController.Button.kLeftBumper.value);
   public final static JoystickButton activeBalanceButton = new JoystickButton(driver,
       XboxController.Button.kRightBumper.value);
   private final JoystickButton passiveBalanceButton = new JoystickButton(driver,
@@ -66,7 +69,7 @@ public class RobotContainer {
 
   /* Subsystems */
   public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
-  public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
+  //public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   /* Commands */
   private final Swerve s_Swerve = new Swerve(gyro);
@@ -74,12 +77,13 @@ public class RobotContainer {
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
   private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
   private final SpeedyBalance speedyBalance = new SpeedyBalance(s_Swerve, gyro);
-
+  public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
   /* Pneumatics Commands */
   public final Command intake = new intake(ground_intake);
-  public final Command outtake = new scoreShort(ground_intake);
+  public final Command outtake = new scoreMid(ground_intake);
   public final Command retract = new retract(ground_intake);
-  public final Command outtakeFull = new scoreFull(ground_intake);
+  public final Command outtakeFull = new scoreHigh(ground_intake);
+  public final Command outtakeLow = new scoreLow(ground_intake);
 
   /* Autonomous Mode Chooser */
   private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
@@ -98,6 +102,8 @@ public class RobotContainer {
   PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
       2, 1);
   PathPlannerTrajectory Score1LCC = PathPlanner.loadPath("1 Score + Line Cross Cable",
+      Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+  PathPlannerTrajectory LineCS = PathPlanner.loadPath("Line + Charge Station",
       Constants.AutoConstants.kMaxSpeedMetersPerSecond, Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
 
   /**
@@ -145,6 +151,7 @@ public class RobotContainer {
     activeBalanceButton.onTrue(activeBalance);
     passiveBalanceButton.onTrue(passiveBalance);
     intakeFullButton.onTrue(outtakeFull);
+    lowButton.onTrue(outtakeLow);
 
   }
 
@@ -156,7 +163,7 @@ public class RobotContainer {
     autoChooser.addOption("2 Score Left", Score2);
     autoChooser.addOption("1 Score + Charge Station + Line Cross", Score1CSLC);
     autoChooser.addOption("1 Score + Line Cross Cable", Score1LCC);
-
+    autoChooser.addOption("Line + Charge Station", LineCS);
     SmartDashboard.putData(autoChooser);
   }
 
@@ -172,6 +179,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
     return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, activeBalance,
-        outtakeFull);
+        outtakeFullAuto);
   }
 }
