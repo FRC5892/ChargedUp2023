@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.Vision;
 
 import static frc.robot.Constants.VisionConstants.ROBOT_TO_CAMERA;
 
@@ -21,16 +21,16 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
-public class ChaseTagCommand extends CommandBase {
+public class AimToScore extends CommandBase {
   
   private static final TrapezoidProfile.Constraints X_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
   private static final TrapezoidProfile.Constraints Y_CONSTRAINTS = new TrapezoidProfile.Constraints(3, 2);
   private static final TrapezoidProfile.Constraints OMEGA_CONSTRAINTS =   new TrapezoidProfile.Constraints(8, 8);
   
-  private static final int TAG_TO_CHASE = 2;
+  private static final int TAG_TO_CHASE = Constants.VisionConstants.TAG_TO_CHASE;
   private static final Transform3d TAG_TO_GOAL = 
       new Transform3d(
-          new Translation3d(1.5, 0.0, 0.0),
+          new Translation3d(0.5, 0.0, 0.0),
           new Rotation3d(0.0, 0.0, Math.PI));
 
   private final PhotonCamera photonCamera;
@@ -43,8 +43,9 @@ public class ChaseTagCommand extends CommandBase {
   private final ProfiledPIDController omegaController = new ProfiledPIDController(2, 0, 0, OMEGA_CONSTRAINTS);
 
   private PhotonTrackedTarget lastTarget;
+  private boolean finish;
 
-  public ChaseTagCommand(
+  public AimToScore(
         PhotonCamera photonCamera, 
         Swerve drivetrainSubsystem,
         Supplier<Pose2d> poseProvider,
@@ -65,6 +66,7 @@ public class ChaseTagCommand extends CommandBase {
   @Override
   public void initialize() {
     lastTarget = null;
+    finish = false;
     var robotPose = poseProvider.get();
     omegaController.reset(robotPose.getRotation().getRadians());
     xController.reset(robotPose.getX());
@@ -138,13 +140,21 @@ public class ChaseTagCommand extends CommandBase {
         // drivetrainSubsystem.drive(
         //   ChassisSpeeds.fromFieldRelativeSpeeds(xSpeed, ySpeed, omegaSpeed, robotPose2d.getRotation()));
       
-
+        if (xController.atGoal() && yController. atGoal() && omegaController.atGoal()) {
+          finish = true;
+        }
     }
   }
 
   @Override
   public void end(boolean interrupted) {
     drivetrainSubsystem.stop();
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return finish;
   }
 
 }

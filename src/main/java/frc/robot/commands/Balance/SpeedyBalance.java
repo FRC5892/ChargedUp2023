@@ -65,7 +65,7 @@ public class SpeedyBalance extends CommandBase {
     
     //how's the robot doin
     boolean robotTipped = angleDiff < 0;
-    boolean enoughBackingUp = timer2.get() > 0.5;
+    boolean backedUpEnough = timer2.get() > 0.5;
     
     //drive while timer goes
     if (robotTipped) {
@@ -74,7 +74,7 @@ public class SpeedyBalance extends CommandBase {
     0, false, true);
     }
 
-    if (enoughBackingUp) {
+    if (backedUpEnough) {
       s_Swerve.drive(new Translation2d(0, 0).times(0),
     0, false, true);
       finish = true;

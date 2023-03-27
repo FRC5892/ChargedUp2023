@@ -13,12 +13,10 @@ public class scoreHighAuton extends CommandBase {
   private Ground_Intake ground_Intake;
   //private LEDSubsystem ledSubsystem;
   public static Timer timer;
-  private boolean finish;
 
   /** Creates a new score. */
   public scoreHighAuton(Ground_Intake intake) {
     this.ground_Intake = intake;
-    finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(ground_Intake);
      timer = new Timer();
