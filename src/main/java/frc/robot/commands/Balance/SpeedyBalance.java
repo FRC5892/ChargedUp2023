@@ -19,7 +19,7 @@ public class SpeedyBalance extends CommandBase {
   private Timer timer;
   private Timer timer2;
 
-  private double initialAngle;
+  private double previousAngle;
   private double currentAngle;
   private double angleDiff;
 
@@ -39,10 +39,11 @@ public class SpeedyBalance extends CommandBase {
     timer.reset();
     timer.start();
     timer2.reset();
-    initialAngle = gyro.getRoll();
+    previousAngle = gyro.getRoll();
 
+    double goUpSpeed = 10;
     //immediately drive fast
-    s_Swerve.drive(new Translation2d(1, 0).times(Constants.Swerve.speedyBalanceSpeed),
+    s_Swerve.drive(new Translation2d(goUpSpeed, 0).times(Constants.Swerve.speedyBalanceSpeed),
     0, false, true);
 
     finish = false;
@@ -51,34 +52,38 @@ public class SpeedyBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //get the angle diff
-    if (timer.get() == 0.05) {
-      currentAngle = gyro.getRoll();
-      angleDiff = initialAngle - currentAngle;
-    }
+    currentAngle = gyro.getRoll();
+    double delta = previousAngle - currentAngle;
 
-    //reset timer & angles
-    if (timer.get() == 0.06) {
-      currentAngle = initialAngle;
-      timer.reset();
-    }
+    // //get the angle diff
+    // if (timer.get() == 0.05) {
+    //   currentAngle = gyro.getRoll();
+    //   angleDiff = previousAngle - currentAngle;
+    // }
+
+    // //reset timer & angles
+    // if (timer.get() == 0.06) {
+    //   currentAngle = previousAngle;
+    //   timer.reset();
+    // }
     
     //how's the robot doin
-    boolean robotTipped = angleDiff < 0;
-    boolean backedUpEnough = timer2.get() > 0.5;
+    boolean robotTipped = delta < 0;
+    //boolean backedUpEnough = timer2.get() > 0.5;
+    int snapBackDistance = 5;
     
     //drive while timer goes
     if (robotTipped) {
-      timer2.start();
-      s_Swerve.drive(new Translation2d(1, 0).times(-Constants.Swerve.speedyBackup),
+      //timer2.start();
+      s_Swerve.drive(new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
     0, false, true);
     }
 
-    if (backedUpEnough) {
-      s_Swerve.drive(new Translation2d(0, 0).times(0),
-    0, false, true);
-      finish = true;
-    }
+    // if (backedUpEnough) {
+    //   s_Swerve.drive(new Translation2d(0, 0).times(0),
+    // 0, false, true);
+    //   finish = true;
+    // }
 
   }
 
