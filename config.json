@@ -19,7 +19,7 @@
   ],
   "primary motor ports": [
     6,
-    2
+    4
   ],
   "primary motors inverted": [
     false,
@@ -32,7 +32,7 @@
   ],
   "secondary motor ports": [
     8,
-    4
+    2
   ],
   "secondary motors inverted": [
     true,
