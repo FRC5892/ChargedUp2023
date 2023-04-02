@@ -32,7 +32,7 @@ public class scoreHighAuton extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (timer.get()>2){
+    if (timer.get()>0.6){
     // Tilt robot down, open clamp, send out kicker, wait 0.3s, bring kicker back in
     ground_Intake.tiltDownward();
     
@@ -58,7 +58,7 @@ public class scoreHighAuton extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return timer.get()>2;
+    return timer.get()>0.6;
   }
 }
 
