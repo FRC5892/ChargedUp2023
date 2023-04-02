@@ -129,7 +129,6 @@ public class SwerveModule {
     driveMotor.setInverted(Constants.Swerve.driveInvert);
     driveMotor.setIdleMode(Constants.Swerve.driveNeutralMode);
     driveEncoder.setVelocityConversionFactor(Constants.Swerve.driveConversionVelocityFactor);
-    driveEncoder.setPositionConversionFactor(0.060509807);
     driveController.setP(Constants.Swerve.angleKP);
     driveController.setI(Constants.Swerve.angleKI);
     driveController.setD(Constants.Swerve.angleKD);

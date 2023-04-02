@@ -78,7 +78,7 @@ public class RobotContainer {
   private final Ground_Intake ground_intake = new Ground_Intake();
   private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
   private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
-  private final SpeedyBalance speedyBalance = new SpeedyBalance(s_Swerve, gyro);
+  private final Command speedyBalance = new SpeedyBalance(s_Swerve, gyro);
   public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
   public final scoreCones ScoreCones = new scoreCones(ground_intake);
   /* Pneumatics Commands */
@@ -182,7 +182,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
-    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, activeBalance,
+    return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, speedyBalance,
         outtakeFullAuto);
   }
 }

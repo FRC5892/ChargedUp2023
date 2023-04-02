@@ -6,20 +6,17 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.auto.PIDConstants;
 import com.pathplanner.lib.auto.SwerveAutoBuilder;
 
-import edu.wpi.first.math.geometry.Pose2d;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
-import frc.robot.commands.Scoring.scoreHigh;
 import frc.robot.subsystems.Swerve;
 
 public class executeTrajectory extends SequentialCommandGroup {
   public executeTrajectory(Swerve s_Swerve, PathPlannerTrajectory trajectory, Command s, Command r, Command i,
       Command a, Command sf) {
     s_Swerve.getField().getObject("Field").setTrajectory(trajectory);
-    Pose2d initPose = s_Swerve.getPose();
-
     HashMap<String, Command> eventMap = new HashMap<>();
     eventMap.put("scoreFull", sf);
     eventMap.put("score", s);

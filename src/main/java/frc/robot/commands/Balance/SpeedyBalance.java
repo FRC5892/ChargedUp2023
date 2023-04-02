@@ -7,7 +7,6 @@ package frc.robot.commands.Balance;
 import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
@@ -16,19 +15,20 @@ public class SpeedyBalance extends CommandBase {
   private Swerve s_Swerve;
   private Pigeon2 gyro;
   private boolean finish;
-  private Timer timer;
-  private Timer timer2;
-
   private double previousAngle;
   private double currentAngle;
-  private double angleDiff;
+
+  private boolean foward;
+  private double previousAngleSign;
+  private double goUpDistance;
+  private int snapBackDistance;
 
   /** Creates a new ActiceBalance. */
   public SpeedyBalance(Swerve swerve, Pigeon2 gyro) {
     this.s_Swerve = swerve;
     this.gyro = gyro;
-    timer = new Timer();
     finish = false;
+    foward = true;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(swerve);
   }
@@ -36,15 +36,22 @@ public class SpeedyBalance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    timer.reset();
-    timer.start();
-    timer2.reset();
     previousAngle = gyro.getRoll();
-
-    double goUpSpeed = 10;
+    previousAngleSign = Math.signum(previousAngle);
+    snapBackDistance = 5;
+    goUpDistance = 10;
     //immediately drive fast
-    s_Swerve.drive(new Translation2d(goUpSpeed, 0).times(Constants.Swerve.speedyBalanceSpeed),
+    if(previousAngleSign == 1.0){
+      s_Swerve.drive(new Translation2d(goUpDistance, 0).times(-Constants.Swerve.speedyBalanceSpeed),
     0, false, true);
+      foward = true;
+      
+    }
+    else{
+      s_Swerve.drive(new Translation2d(goUpDistance, 0).times(Constants.Swerve.speedyBalanceSpeed),
+    0, false, true);
+    foward = false;
+    }
 
     finish = false;
   }
@@ -52,44 +59,37 @@ public class SpeedyBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
+
     currentAngle = gyro.getRoll();
     double delta = previousAngle - currentAngle;
-
-    // //get the angle diff
-    // if (timer.get() == 0.05) {
-    //   currentAngle = gyro.getRoll();
-    //   angleDiff = previousAngle - currentAngle;
-    // }
-
-    // //reset timer & angles
-    // if (timer.get() == 0.06) {
-    //   currentAngle = previousAngle;
-    //   timer.reset();
-    // }
-    
-    //how's the robot doin
-    boolean robotTipped = delta < 0;
-    //boolean backedUpEnough = timer2.get() > 0.5;
-    int snapBackDistance = 5;
-    
-    //drive while timer goes
-    if (robotTipped) {
-      //timer2.start();
-      s_Swerve.drive(new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
-    0, false, true);
+    if(foward){
+      if(delta>previousAngle){
+        finish=true;
+      }
+    else{
+      if(delta<previousAngle){
+        finish=true;
+      }
+      }
     }
-
-    // if (backedUpEnough) {
-    //   s_Swerve.drive(new Translation2d(0, 0).times(0),
-    // 0, false, true);
-    //   finish = true;
-    // }
-
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    if(foward){
+    s_Swerve.drive(
+          new Translation2d(snapBackDistance, 0).times(Constants.Swerve.speedyBackup),
+          0, false, true);
+    }
+    else{
+      s_Swerve.drive(
+          new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
+          0, false, true);
+    }
+  }
 
   // Returns true when the command should end.
   @Override
