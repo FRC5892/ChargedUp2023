@@ -183,6 +183,6 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // Executes the autonomous command chosen in smart dashboard
     return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake, speedyBalance,
-        outtakeFullAuto);
+        outtakeFullAuto, outtakeFull);
   }
 }

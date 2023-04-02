@@ -82,7 +82,7 @@ public final class Constants {
     public static final boolean driveInvert = false;
     public static final boolean angleInvert = false;
 
-    /* TODO: check Angle Encoder Invert */
+
     public static final boolean canCoderInvert = false;
 
     /* Module Specific Constants */

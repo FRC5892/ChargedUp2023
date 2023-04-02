@@ -15,7 +15,7 @@ import frc.robot.subsystems.Swerve;
 
 public class executeTrajectory extends SequentialCommandGroup {
   public executeTrajectory(Swerve s_Swerve, PathPlannerTrajectory trajectory, Command s, Command r, Command i,
-      Command a, Command sf) {
+      Command a, Command sf, Command sfr) {
     s_Swerve.getField().getObject("Field").setTrajectory(trajectory);
     HashMap<String, Command> eventMap = new HashMap<>();
     eventMap.put("scoreFull", sf);
@@ -23,6 +23,7 @@ public class executeTrajectory extends SequentialCommandGroup {
     eventMap.put("retract", r);
     eventMap.put("intake", i);
     eventMap.put("active", a);
+    eventMap.put("scoreFullReg", sfr);
 
     SwerveAutoBuilder swerveControllerCommand = new SwerveAutoBuilder(
         s_Swerve::getPose,
