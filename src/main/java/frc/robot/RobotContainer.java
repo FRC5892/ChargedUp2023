@@ -70,7 +70,7 @@ public class RobotContainer {
   private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
 
   /* Subsystems */
-  public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
+  //public final static VisionSubsystem s_visionSubsystem = new VisionSubsystem();
   //public final static LEDSubsystem ledSubsystem = new LEDSubsystem();
 
   /* Commands */
