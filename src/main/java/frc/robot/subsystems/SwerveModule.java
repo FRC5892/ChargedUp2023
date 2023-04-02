@@ -55,6 +55,7 @@ public class SwerveModule {
     driveMotor = new CANSparkMax(moduleConstants.driveMotorID, MotorType.kBrushless);
     driveEncoder = driveMotor.getEncoder();
     driveController = driveMotor.getPIDController();
+    //driveEncoder.setPositionConversionFactor(moduleConstants.conversionFactor)
     configDriveMotor();
 
     lastAngle = getState().angle;
@@ -128,6 +129,7 @@ public class SwerveModule {
     driveMotor.setSmartCurrentLimit(Constants.Swerve.driveContinuousCurrentLimit);
     driveMotor.setInverted(Constants.Swerve.driveInvert);
     driveMotor.setIdleMode(Constants.Swerve.driveNeutralMode);
+    driveEncoder.setPositionConversionFactor(0.060509807);
     driveEncoder.setVelocityConversionFactor(Constants.Swerve.driveConversionVelocityFactor);
     driveController.setP(Constants.Swerve.angleKP);
     driveController.setI(Constants.Swerve.angleKI);
