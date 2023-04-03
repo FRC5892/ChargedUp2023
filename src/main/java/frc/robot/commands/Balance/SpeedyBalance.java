@@ -4,7 +4,6 @@ import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
@@ -16,17 +15,15 @@ public class SpeedyBalance extends CommandBase {
   private Timer timer;
   private Timer timer2;
 
-  private double initAngle;
+  private double previousAngle;
   private double currentAngle;
   private double angleDiff;
-  private double initSign;
 
   /** Creates a new ActiceBalance. */
   public SpeedyBalance(Swerve swerve, Pigeon2 gyro) {
     this.s_Swerve = swerve;
     this.gyro = gyro;
-    timer2 = new Timer();
-
+    timer = new Timer();
     finish = false;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(swerve);
@@ -35,52 +32,53 @@ public class SpeedyBalance extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    timer.reset();
+    timer.start();
     timer2.reset();
+    previousAngle = gyro.getRoll();
+
     // immediately drive fast
+    s_Swerve.drive(new Translation2d(1, 0).times(Constants.Swerve.speedyBalanceSpeed),
+        0, false, true);
 
     finish = false;
-    initAngle = gyro.getRoll();
-    initSign = Math.signum(initAngle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // currentAngle = gyro.getRoll();
+    // double delta = previousAngle - currentAngle;
 
-    currentAngle = gyro.getRoll();
-
-    double delta = currentAngle - initAngle;
-    // previousAngle = currentAngle;
-    SmartDashboard.putNumber("delta", delta);
-    boolean robotTipped = false;
-    if (initSign == 1.0) {
-      robotTipped = delta < -2;
-    } else {
-      robotTipped = delta > 2;
+    // get the angle diff
+    if (timer.get() == 0.05) {
+      currentAngle = gyro.getRoll();
+      angleDiff = previousAngle - currentAngle;
     }
-    // boolean backedUpEnough = timer2.get() > 0.5;
-    int snapBackDistance = 10;
+
+    // reset timer & angles
+    if (timer.get() == 0.06) {
+      currentAngle = previousAngle;
+      timer.reset();
+    }
+
+    // how's the robot doin
+    boolean robotTipped = angleDiff < 0;
+    boolean backedUpEnough = timer2.get() > 0.5;
+    int snapBackDistance = 5;
 
     // drive while timer goes
     if (robotTipped) {
       timer2.start();
-      if (timer2.get() < 0.5) {
-        s_Swerve.drive(new Translation2d(1, 0).times(initSign * Constants.Swerve.speedyBackup),
-            0, false, true);
-      } else {
-        timer2.stop();
-        finish = true;
-      }
-    } else {
-      s_Swerve.drive(new Translation2d(1, 0).times(-initSign * 2),
+      s_Swerve.drive(new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
           0, false, true);
     }
 
-    // if (backedUpEnough) {
-    // s_Swerve.drive(new Translation2d(0, 0).times(0),
-    // 0, false, true);
-    // finish = true;
-    // }
+    if (backedUpEnough) {
+      s_Swerve.drive(new Translation2d(0, 0).times(0),
+          0, false, true);
+      finish = true;
+    }
 
   }
 
