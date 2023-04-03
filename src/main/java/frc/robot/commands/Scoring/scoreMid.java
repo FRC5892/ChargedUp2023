@@ -11,7 +11,7 @@ import frc.robot.subsystems.Ground_Intake;
 
 public class scoreMid extends CommandBase {
   private Ground_Intake ground_Intake;
-  //private LEDSubsystem ledSubsystem;
+  // private LEDSubsystem ledSubsystem;
   public static Timer timer;
 
   /** Creates a new score. */
@@ -39,7 +39,7 @@ public class scoreMid extends CommandBase {
 
     ground_Intake.returnKicker();
 
-    //ledSubsystem.setLEDWhite();
+    // ledSubsystem.setLEDWhite();
 
   }
 
