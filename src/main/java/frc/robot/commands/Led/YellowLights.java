@@ -11,17 +11,16 @@ import frc.robot.Constants;
 import frc.robot.subsystems.Led;
 
 public class YellowLights extends CommandBase {
-  // private AddressableLED m_led;
-  // private AddressableLEDBuffer m_ledBuffer;
-
+  private AddressableLED m_led;
+  private AddressableLEDBuffer m_ledBuffer;
   private Led led;
   private boolean finish;
 
   /** Creates a new YellowLights. */
   public YellowLights(Led led) {
     this.led = led;
-    // this.m_led = m_led;
-    // this.m_ledBuffer = m_ledBuffer;
+    this.m_led = led.m_led;
+    this.m_ledBuffer = led.m_ledBuffer;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -36,10 +35,10 @@ public class YellowLights extends CommandBase {
   public void execute() {
     for (var i = 0; i < Constants.LEDConstants.LED_LENGTH; i++) {
       // Sets the specified LED to the RGB values for red
-      led.m_ledBuffer.setRGB(i, 255, 195, 35);
+      m_ledBuffer.setRGB(i, 255, 195, 35);
     }
 
-    led.m_led.setData(led.m_ledBuffer);
+    m_led.setData(m_ledBuffer);
     finish = true;
   }
 
