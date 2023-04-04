@@ -12,66 +12,67 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Ground_Intake extends SubsystemBase {
 	/* Solenoid */
-  public DoubleSolenoid clampSolenoid;
-  public DoubleSolenoid kickerSolenoid;
-  public DoubleSolenoid tiltSolenoid;
-  public DoubleSolenoid kickerSolenoid2;
+	DoubleSolenoid clampSolenoid;
+	DoubleSolenoid kickerSolenoid;
+	DoubleSolenoid kickerSolenoid2;
+	DoubleSolenoid tiltSolenoid;
 
-  /** Creates a new Ground_Intake. */
-  public Ground_Intake() {
-    clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
+	/** Creates a new Ground_Intake. */
+	public Ground_Intake(DoubleSolenoid cs, DoubleSolenoid ks, DoubleSolenoid ks2, DoubleSolenoid ts) {
+		clampSolenoid = cs;
+		/*
+		 * PORT[0] forward channel
+		 * PORT[1] backward channel
+		 */
+		kickerSolenoid = ks;
+		kickerSolenoid2 = ks2;
+		/*
+		 * PORT[2] forward channel
+		 * PORT[3] backward channel
+		 */
+		this.tiltSolenoid = ts;
+		/*
+		 * PORT[4] forward channel
+		 * PORT[5] backward channel
+		 */
+	}
 
-	/* PORT[0] forward channel
-	 * PORT[1] backward channel
-	 */
-	kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
-	kickerSolenoid2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
-	/* PORT[2] forward channel
-	 * PORT[3] backward channel
-	 */
-	tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-	/* PORT[4] forward channel
-	 * PORT[5] backward channel
-	 */
-  }
-  	//open clamp
-	public void openClamp(){
-			clampSolenoid.set(Value.kForward);
-			}
+	// open clamp
+	public void openClamp() {
+		clampSolenoid.set(Value.kForward);
+	}
 
-  	//close clamp
-	public void closeClamp(){
+	// close clamp
+	public void closeClamp() {
 		clampSolenoid.set(Value.kReverse);
 	}
 
-	//push kicker out
-	public void sendKicker(){
+	// push kicker out
+	public void sendKicker() {
 		kickerSolenoid.set(Value.kReverse);
 		kickerSolenoid2.set(Value.kReverse);
 	}
 
-	//bring kicker back in
-	public void returnKicker(){
+	// bring kicker back in
+	public void returnKicker() {
 		kickerSolenoid.set(Value.kForward);
 		kickerSolenoid2.set(Value.kForward);
 	}
-	
 
-	//Tilt robot forward
-	public void tiltUpward(){
-			tiltSolenoid.set(Value.kReverse);
+	// Tilt robot forward
+	public void tiltUpward() {
+		tiltSolenoid.set(Value.kReverse);
 	}
 
-	//Tilt robot back upright
-	public void tiltDownward(){
+	// Tilt robot back upright
+	public void tiltDownward() {
 		tiltSolenoid.set(Value.kForward);
 	}
 
-
-  @Override
-  public void periodic() {
-    SmartDashboard.putData("Clamp Piston/s", clampSolenoid);
-	SmartDashboard.putData("Kicker Piston", kickerSolenoid);
-	SmartDashboard.putData("Tilt Piston", tiltSolenoid);
-  }
+	@Override
+	public void periodic() {
+		SmartDashboard.putData("Clamp Piston/s", clampSolenoid);
+		SmartDashboard.putData("Kicker Piston", kickerSolenoid);
+		SmartDashboard.putData("Tilt Piston", tiltSolenoid);
+	}
 }
