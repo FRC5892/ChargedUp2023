@@ -61,12 +61,14 @@ public class SpeedyBalance extends CommandBase {
           0, false, true);
     }
 
+    // stop once timer's done
     if (backedUpEnoughTime) {
       s_Swerve.drive(new Translation2d(0, 0).times(0),
           0, false, true);
       finish = true;
     }
 
+    // preparing for next execute cycle if we're not tipped yet
     previousAngle = currentAngle;
 
   }
