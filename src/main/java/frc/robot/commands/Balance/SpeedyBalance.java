@@ -49,13 +49,13 @@ public class SpeedyBalance extends CommandBase {
 
     // how's the robot doin
     boolean robotTipped = angleDiff < 0;
-    boolean backedUpEnoughTime = timer.get() > 0.5;
-    int snapBackDistance = 5;
+    double snapBackTime = 0.8;
+    boolean backedUpEnoughTime = timer.get() > snapBackTime;
 
     // drive while timer goes
     if (robotTipped) {
       timer.start();
-      s_Swerve.drive(new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
+      s_Swerve.drive(new Translation2d(1, 0).times(-Constants.Swerve.speedyBackup),
           0, false, true);
     }
 
