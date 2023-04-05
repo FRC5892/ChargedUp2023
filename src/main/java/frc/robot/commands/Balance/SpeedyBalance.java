@@ -13,7 +13,6 @@ public class SpeedyBalance extends CommandBase {
   private Pigeon2 gyro;
   private boolean finish;
   private Timer timer;
-  private Timer timer2;
 
   private double previousAngle;
   private double currentAngle;
@@ -33,8 +32,6 @@ public class SpeedyBalance extends CommandBase {
   @Override
   public void initialize() {
     timer.reset();
-    timer.start();
-    timer2.reset();
     previousAngle = gyro.getRoll();
 
     // immediately drive fast
@@ -47,38 +44,28 @@ public class SpeedyBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // currentAngle = gyro.getRoll();
-    // double delta = previousAngle - currentAngle;
-
-    // get the angle diff
-    if (timer.get() == 0.05) {
-      currentAngle = gyro.getRoll();
-      angleDiff = previousAngle - currentAngle;
-    }
-
-    // reset timer & angles
-    if (timer.get() == 0.06) {
-      currentAngle = previousAngle;
-      timer.reset();
-    }
+    currentAngle = gyro.getRoll();
+    angleDiff = previousAngle - currentAngle;
 
     // how's the robot doin
     boolean robotTipped = angleDiff < 0;
-    boolean backedUpEnough = timer2.get() > 0.5;
+    boolean backedUpEnoughTime = timer.get() > 0.5;
     int snapBackDistance = 5;
 
     // drive while timer goes
     if (robotTipped) {
-      timer2.start();
+      timer.start();
       s_Swerve.drive(new Translation2d(snapBackDistance, 0).times(-Constants.Swerve.speedyBackup),
           0, false, true);
     }
 
-    if (backedUpEnough) {
+    if (backedUpEnoughTime) {
       s_Swerve.drive(new Translation2d(0, 0).times(0),
           0, false, true);
       finish = true;
     }
+
+    previousAngle = currentAngle;
 
   }
 
