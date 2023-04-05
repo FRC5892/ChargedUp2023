@@ -18,25 +18,12 @@ public class Ground_Intake extends SubsystemBase {
 	DoubleSolenoid tiltSolenoid;
 
 	/** Creates a new Ground_Intake. */
-	public Ground_Intake(DoubleSolenoid cs, DoubleSolenoid ks, DoubleSolenoid ks2, DoubleSolenoid ts) {
-		clampSolenoid = cs;
-		/*
-		 * PORT[0] forward channel
-		 * PORT[1] backward channel
-		 */
-		kickerSolenoid = ks;
-		kickerSolenoid2 = ks2;
-		/*
-		 * PORT[2] forward channel
-		 * PORT[3] backward channel
-		 */
-		this.tiltSolenoid = ts;
-		/*
-		 * PORT[4] forward channel
-		 * PORT[5] backward channel
-		 */
+	public Ground_Intake() {
+		 clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
+         kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
+         tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
+         kickerSolenoid2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
 	}
-
 	// open clamp
 	public void openClamp() {
 		clampSolenoid.set(Value.kForward);
@@ -69,6 +56,10 @@ public class Ground_Intake extends SubsystemBase {
 		tiltSolenoid.set(Value.kForward);
 	}
 
+	public Value getTilt(){
+		return tiltSolenoid.get();
+	}
+
 	@Override
 	public void periodic() {
 		SmartDashboard.putData("Clamp Piston/s", clampSolenoid);
@@ -76,3 +67,4 @@ public class Ground_Intake extends SubsystemBase {
 		SmartDashboard.putData("Tilt Piston", tiltSolenoid);
 	}
 }
+

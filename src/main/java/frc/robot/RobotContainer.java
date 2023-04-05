@@ -56,10 +56,7 @@ public class RobotContainer {
         private static final int rotationAxis = XboxController.Axis.kRightX.value;
         private double SPEED_MULTIPLIER = 1.0;
 
-        public static DoubleSolenoid clampSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 4, 5);
-        public static DoubleSolenoid kickerSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 2, 3);
-        public static DoubleSolenoid tiltSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 0, 1);
-        public static DoubleSolenoid kickerSolenoid2 = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, 6, 7);
+        
         /* Driver Buttons */
         private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
         private final JoystickButton outtakeButton = new JoystickButton(codriver, XboxController.Button.kB.value);
@@ -79,18 +76,19 @@ public class RobotContainer {
         /* Subsystems */
         // public final static VisionSubsystem s_visionSubsystem = new
         // VisionSubsystem();
-        public final static Led ledSubsystem = new Led(gyro, tiltSolenoid);
-
+        
         /* Commands */
         private final Swerve s_Swerve = new Swerve(gyro);
-        private final Ground_Intake ground_intake = new Ground_Intake(clampSolenoid, kickerSolenoid, kickerSolenoid2,
-                        tiltSolenoid);
+        private final static Ground_Intake ground_intake = new Ground_Intake();
         private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
         private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
         private final Command speedyBalance = new SpeedyBalance(s_Swerve, gyro);
         public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
         public final scoreCones ScoreCones = new scoreCones(ground_intake);
-
+        
+        
+        public final static Led ledSubsystem = new Led(gyro, ground_intake);
+        
         /* Pneumatics Commands */
         public final Command intake = new intake(ground_intake);
         public final Command outtake = new scoreMid(ground_intake);

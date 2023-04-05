@@ -22,12 +22,13 @@ public class Led extends SubsystemBase {
   DoubleSolenoid tiltpiston;
   Timer timer;
   Boolean on;
+  Ground_Intake ground;
 
   /** Creates a new Led. */
-  public Led(Pigeon2 gyro, DoubleSolenoid ts) {
+  public Led(Pigeon2 gyro, Ground_Intake gi) {
     this.gyro = gyro;
-    tiltpiston = ts;
     on = true;
+    ground = gi;
 
     m_led = new AddressableLED(Constants.LEDConstants.LED_PORT);
     m_ledBuffer = new AddressableLEDBuffer(Constants.LEDConstants.LED_LENGTH);
@@ -35,6 +36,7 @@ public class Led extends SubsystemBase {
 
     m_led.setData(m_ledBuffer);
     timer = new Timer();
+    
   }
 
   @Override
@@ -290,7 +292,7 @@ public class Led extends SubsystemBase {
       m_led.setData(m_ledBuffer);
     }
 
-    if (tiltpiston.get() == Value.kReverse) {
+    if (ground.getTilt() == Value.kReverse) {
       timer.start();
       if (timer.hasElapsed(0.5)) {
         if (on) {
