@@ -49,6 +49,8 @@ public class SpeedyBalance extends CommandBase {
 
     // how's the robot doin
     boolean robotTipped = angleDiff < 0;
+
+    // how long to go backwards
     double snapBackTime = 0.8;
     boolean backedUpEnoughTime = timer.get() > snapBackTime;
 
