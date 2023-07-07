@@ -35,11 +35,13 @@ public class ActiveBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (gyro.getRoll() > 10) {
+    double gyroAngle = gyro.getRoll();
+
+    if (gyroAngle > 10) {
       s_Swerve.drive(
           new Translation2d(1, 0).times(-Constants.Swerve.balanceSpeed),
           0, false, true);
-    } else if (gyro.getRoll() < -10) {
+    } else if (gyroAngle < -10) {
       s_Swerve.drive(
           new Translation2d(1, 0).times(Constants.Swerve.balanceSpeed),
           0, false, true);
