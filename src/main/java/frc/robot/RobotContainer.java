@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
@@ -79,7 +80,8 @@ public class RobotContainer {
         
         /* Commands */
         private final Swerve s_Swerve = new Swerve(gyro);
-        private final static Ground_Intake ground_intake = new Ground_Intake();
+        private final Ground_Intake ground_intake = new Ground_Intake();
+        private final LedSub ledsub = new LedSub();
         private final PassiveBalance passiveBalance = new PassiveBalance(s_Swerve);
         private final ActiveBalance activeBalance = new ActiveBalance(s_Swerve, gyro);
         private final Command speedyBalance = new SpeedyBalance(s_Swerve, gyro);
@@ -87,10 +89,14 @@ public class RobotContainer {
         public final scoreCones ScoreCones = new scoreCones(ground_intake);
         
         
-        public final static Led ledSubsystem = new Led(gyro, ground_intake);
+        //public final static Led ledSubsystem = new Led(gyro, ground_intake);
         
         /* Pneumatics Commands */
         public final Command intake = new intake(ground_intake);
+        public final Command ledcommand = new ledCommand(gyro, ground_intake,ledsub);
+
+
+        
         public final Command outtake = new scoreMid(ground_intake);
         public final Command retract = new retract(ground_intake);
         public final Command outtakeFull = new scoreHigh(ground_intake);
@@ -142,6 +148,9 @@ public class RobotContainer {
                                                 () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
                                                 () -> robotCentric.getAsBoolean()));
                 SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
+
+                ledsub.setDefaultCommand(ledcommand);
+                
 
                 // Configure the button bindings
                 configureButtonBindings();
