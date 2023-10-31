@@ -79,7 +79,7 @@ public final class Constants {
     public static final IdleMode angleNeutralMode = IdleMode.kBrake;
     public static final IdleMode driveNeutralMode = IdleMode.kBrake;
 
-    public static final boolean driveInvert = false;
+    // public static final boolean driveInvert = true;
     public static final boolean angleInvert = false;
 
     public static final boolean canCoderInvert = false;
@@ -90,54 +90,62 @@ public final class Constants {
       public static final int driveMotorID = 8;
       public static final int angleMotorID = 7;
       public static final int canCoderID = 12;
-      public static final double offsetDegree = -140.976;
+      public static final boolean driveInvert = false;
+      public static final double offsetDegree = 40.976;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(offsetDegree);
       public static final Rotation2d balanceOffset = Rotation2d.fromDegrees(offsetDegree + 45);
       public static final double conversionFactor = 0.060509807;
 
-      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
+      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveInvert, driveMotorID,
+          angleMotorID,
           canCoderID, angleOffset);
     }
 
     /* Front Right Module - Module 1 */
     public static final class Mod1 {
+      public static final boolean driveInvert = false;
       public static final int driveMotorID = 6;
       public static final int angleMotorID = 5;
       public static final int canCoderID = 11;
-      public static final double offsetDegree = 148.88671;
+      public static final double offsetDegree = -32.88671;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(offsetDegree);
       public static final Rotation2d balanceOffset = Rotation2d.fromDegrees(offsetDegree - 45);
       public static final double conversionFactor = 0.060509807;
 
-      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
+      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveInvert, driveMotorID,
+          angleMotorID,
           canCoderID, angleOffset);
     }
 
     /* Back Left Module - Module 2 */
     public static final class Mod2 {
+      public static final boolean driveInvert = true;
       public static final int driveMotorID = 4;
       public static final int angleMotorID = 3;
       public static final int canCoderID = 10;
-      public static final double offsetDegree = -40.957;
+      public static final double offsetDegree = -25.957;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(offsetDegree);
       public static final Rotation2d balanceOffset = Rotation2d.fromDegrees(offsetDegree + 45);
       public static final double conversionFactor = 0.060509807;
 
-      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
+      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveInvert, driveMotorID,
+          angleMotorID,
           canCoderID, angleOffset);
     }
 
     /* Back Right Module - Module 3 */
     public static final class Mod3 {
+      public static final boolean driveInvert = true;
       public static final int driveMotorID = 2;
       public static final int angleMotorID = 1;
       public static final int canCoderID = 9;
-      public static final double offsetDegree = 73.0371;
+      public static final double offsetDegree = 43.0371;
       public static final Rotation2d angleOffset = Rotation2d.fromDegrees(offsetDegree);
       public static final Rotation2d balanceOffset = Rotation2d.fromDegrees(offsetDegree - 45);
       public static final double conversionFactor = 0.060509807;
 
-      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveMotorID, angleMotorID,
+      public static final SwerveModuleConstants constants = new SwerveModuleConstants(driveInvert, driveMotorID,
+          angleMotorID,
           canCoderID, angleOffset);
     }
   }

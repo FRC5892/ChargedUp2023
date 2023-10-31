@@ -55,7 +55,9 @@ public class SwerveModule {
     driveMotor = new CANSparkMax(moduleConstants.driveMotorID, MotorType.kBrushless);
     driveEncoder = driveMotor.getEncoder();
     driveController = driveMotor.getPIDController();
-    //driveEncoder.setPositionConversionFactor(moduleConstants.conversionFactor)
+    driveMotor.setInverted(moduleConstants.driverInvert);
+
+    // driveEncoder.setPositionConversionFactor(moduleConstants.conversionFactor)
     configDriveMotor();
 
     lastAngle = getState().angle;
@@ -127,7 +129,6 @@ public class SwerveModule {
     driveMotor.restoreFactoryDefaults();
     CANSparkMaxUtil.setCANSparkMaxBusUsage(driveMotor, Usage.kVelocityOnly);
     driveMotor.setSmartCurrentLimit(Constants.Swerve.driveContinuousCurrentLimit);
-    driveMotor.setInverted(Constants.Swerve.driveInvert);
     driveMotor.setIdleMode(Constants.Swerve.driveNeutralMode);
     driveEncoder.setPositionConversionFactor(0.060509807);
     driveEncoder.setVelocityConversionFactor(Constants.Swerve.driveConversionVelocityFactor);
@@ -138,6 +139,8 @@ public class SwerveModule {
     driveMotor.enableVoltageCompensation(Constants.Swerve.voltageComp);
     driveMotor.burnFlash();
     driveEncoder.setPosition(0.0);
+
+    // driveMotor.setInverted(Constants.Swerve.driveInvert);
   }
 
   public Rotation2d getCanCoder() {
@@ -152,8 +155,6 @@ public class SwerveModule {
     double velocity = driveEncoder.getVelocity();
     return new SwerveModuleState(velocity, getAngle());
   }
-
-  
 
   public SwerveModulePosition getPosition() {
     double position = driveEncoder.getPosition();
