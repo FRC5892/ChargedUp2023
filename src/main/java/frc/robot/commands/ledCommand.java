@@ -4,8 +4,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.AddressableLED;
-import edu.wpi.first.wpilibj.AddressableLEDBuffer;
+
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
@@ -29,9 +28,11 @@ public class ledCommand extends CommandBase {
 
   /** Creates a new ledCommand. */
   public ledCommand(Pigeon2 g, Ground_Intake i, LedSub l) {
+    //set subsystems
     this.gyro = g;
     this.intake = i;
-    sub = l;
+    this.sub = l;
+
     on = true;
     timer = new Timer();
     
@@ -48,6 +49,7 @@ public class ledCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute(){
+    //find direction and angle to use
     double roll = Math.abs(gyro.getRoll());
     double tilt = Math.abs(gyro.getPitch());
 
@@ -56,6 +58,7 @@ public class ledCommand extends CommandBase {
     } else {
       angle = tilt;
     }
+    //calculate blue value based on angle
     int point = (int)Math.floor((angle-0.1)*10)/5-1;
     if (point <= 0 ) {
         point = 0;
@@ -63,15 +66,14 @@ public class ledCommand extends CommandBase {
       point = 29;
     }
     final int[] blues = {30,42,52,60,68,75,81,87,93,98,104,109,114,119,123,128,133,137,141,146,150,154,158,162,166,170,174,178,182};
-
+    //set color on all leds
     for (var i = 0; i < sub.getLength(); i++) {
         sub.setRGB(i, 255, blues[point], 0);
       }
       sub.setData();
 
-    // This method will be )called once per scheduler run
     
-
+      // i have no idea
     if (intake.getTilt() == Value.kReverse) {
       timer.start();
       if (timer.hasElapsed(0.5)) {
