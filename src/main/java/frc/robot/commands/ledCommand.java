@@ -55,18 +55,18 @@ public class ledCommand extends CommandBase {
     } else {
       angle = tilt;
     }
-    // calculate blue value based on angle
+    // calculate the green value based on angle
     int point = (int) Math.floor((angle - 0.1) * 10) / 5 - 1;
     if (point <= 0) {
       point = 0;
     } else if (point > 15) {
       point = 29;
     }
-    final int[] blues = { 30, 42, 52, 60, 68, 75, 81, 87, 93, 98, 104, 109, 114, 119, 123, 128, 133, 137, 141, 146, 150,
+    final int[] greens = { 30, 42, 52, 60, 68, 75, 81, 87, 93, 98, 104, 109, 114, 119, 123, 128, 133, 137, 141, 146, 150,
         154, 158, 162, 166, 170, 174, 178, 182 };
     // set color on all leds
     for (var i = 0; i < sub.getLength(); i++) {
-      sub.setRGB(i, 255, blues[point], 0);
+      sub.setRGB(i, 255, greens[point], 0);
     }
     sub.setData();
 
