@@ -19,9 +19,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
-              "_title": "Auton Chooser",
-              "_glyph": 318,
-              "_showGlyph": true
+              "_title": "Auton Chooser"
             }
           },
           "23,0": {
@@ -32,8 +30,6 @@
             "content": {
               "_type": "Grid Layout",
               "_title": "Swerve Modules",
-              "_glyph": 149,
-              "_showGlyph": false,
               "Layout/Number of columns": 3,
               "Layout/Number of rows": 4,
               "Layout/Label position": "TOP",
@@ -41,86 +37,62 @@
                 "0,1": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 1 Velocity",
-                  "_title": "Mod 1 Velocity",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 1 Velocity"
                 },
                 "0,0": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 0 Velocity",
-                  "_title": "Mod 0 Velocity",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 0 Velocity"
                 },
                 "0,2": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 2 Velocity",
-                  "_title": "Mod 2 Velocity",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 2 Velocity"
                 },
                 "2,1": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 1 Position",
-                  "_title": "Mod 1 Position",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 1 Position"
                 },
                 "2,2": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 2 Position",
-                  "_title": "Mod 2 Position",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 2 Position"
                 },
                 "2,3": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 3 Position",
-                  "_title": "Mod 3 Position",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 3 Position"
                 },
                 "1,1": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 1 Integrated",
-                  "_title": "Mod 1 Angle",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 1 Angle"
                 },
                 "1,2": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 2 Integrated",
-                  "_title": "Mod 2 Angle",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 2 Angle"
                 },
                 "1,3": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 3 Integrated",
-                  "_title": "Mod 3 Angle",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 3 Angle"
                 },
                 "0,3": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 3 Velocity",
-                  "_title": "Mod 3 Velocity",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 3 Velocity"
                 },
                 "1,0": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 0 Integrated",
-                  "_title": "Mod 0 Angle",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 0 Angle"
                 },
                 "2,0": {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Mod 0 Position",
-                  "_title": "Mod 0 Position",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Mod 0 Position"
                 }
               }
             }
@@ -133,9 +105,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Speed Multipler",
-              "_title": "Speed Multipler",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Speed Multipler"
             }
           },
           "0,0": {
@@ -146,23 +116,17 @@
             "content": {
               "_type": "List Layout",
               "_title": "Pose",
-              "_glyph": 149,
-              "_showGlyph": false,
               "Layout/Label position": "TOP",
               "_children": [
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Robot Pose X",
-                  "_title": "Robot Pose X",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Robot Pose X"
                 },
                 {
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Robot Pose Y",
-                  "_title": "Robot Pose Y",
-                  "_glyph": 148,
-                  "_showGlyph": false
+                  "_title": "Robot Pose Y"
                 }
               ]
             }
@@ -176,8 +140,6 @@
               "_type": "Camera Stream",
               "_source0": "camera_server://USB Camera 0",
               "_title": "USB Camera 0",
-              "_glyph": 148,
-              "_showGlyph": false,
               "Crosshair/Show crosshair": false,
               "Crosshair/Crosshair color": "#FFFFFFFF",
               "Controls/Show controls": true,
@@ -196,9 +158,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Timer",
-              "_title": "Timer",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Timer"
             }
           },
           "21,1": {
@@ -209,9 +169,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Acceleration",
-              "_title": "Acceleration",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Acceleration"
             }
           },
           "21,2": {
@@ -222,9 +180,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Clamp Piston/s/Value",
-              "_title": "Clamp Piston/s/Value",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Clamp Piston/s/Value"
             }
           },
           "21,3": {
@@ -235,9 +191,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Kicker Piston/Value",
-              "_title": "Kicker Piston/Value",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Kicker Piston/Value"
             }
           },
           "21,4": {
@@ -248,9 +202,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Tilt Piston/Value",
-              "_title": "Tilt Piston/Value",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Tilt Piston/Value"
             }
           },
           "0,5": {
@@ -261,9 +213,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Pigeon2 Roll",
-              "_title": "Pigeon2 Roll",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Pigeon2 Roll"
             }
           },
           "16,5": {
@@ -274,9 +224,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Pigeon2 Pitch",
-              "_title": "Pigeon2 Pitch",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Pigeon2 Pitch"
             }
           },
           "18,5": {
@@ -287,9 +235,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Pigeon2 Yaw",
-              "_title": "Pigeon2 Yaw",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Pigeon2 Yaw"
             }
           },
           "20,5": {
@@ -300,9 +246,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/PPSwerveControllerCommand/xErrorMeters",
-              "_title": "PPSwerveControllerCommand/xErrorMeters",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "PPSwerveControllerCommand/xErrorMeters"
             }
           },
           "0,6": {
@@ -313,9 +257,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/PPSwerveControllerCommand/yErrorMeters",
-              "_title": "PPSwerveControllerCommand/yErrorMeters",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "PPSwerveControllerCommand/yErrorMeters"
             }
           },
           "16,6": {
@@ -326,9 +268,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/PPSwerveControllerCommand/rotationErrorDegrees",
-              "_title": "PPSwerveControllerCommand/rotationErrorDegrees",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "PPSwerveControllerCommand/rotationErrorDegrees"
             }
           },
           "16,0": {
@@ -339,9 +279,7 @@
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/SendableChooser[0]",
-              "_title": "/SmartDashboard/SendableChooser[0]",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "/SmartDashboard/SendableChooser[0]"
             }
           },
           "16,3": {
@@ -353,12 +291,9 @@
               "_type": "Field",
               "_source0": "network_table:///SmartDashboard/Field",
               "_title": "Field",
-              "_glyph": 148,
-              "_showGlyph": false,
-              "Game/Game": "A2023_Charged_Up",
+              "Game/Game": "A2022_Rapid_React",
               "Visuals/Robot Icon Size": 50.0,
-              "Visuals/Show Outside Circles": false,
-              "Colors/Field": "#FFFFFFFF"
+              "Visuals/Show Outside Circles": false
             }
           },
           "16,4": {
@@ -369,9 +304,286 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/Intake Time",
-              "_title": "Intake Time",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "Intake Time"
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Flywheel P",
+              "_title": "Flywheel P"
+            }
+          },
+          "2,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Flywheel I",
+              "_title": "Flywheel I"
+            }
+          },
+          "2,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Flywheel D",
+              "_title": "Flywheel D"
+            }
+          },
+          "18,6": {
+            "size": [
+              3,
+              4
+            ],
+            "content": {
+              "_type": "PID Controller",
+              "_source0": "network_table:///SmartDashboard/Turret PID",
+              "_title": "Turret PID"
+            }
+          },
+          "2,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood P",
+              "_title": "Hood P"
+            }
+          },
+          "2,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood I",
+              "_title": "Hood I"
+            }
+          },
+          "18,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood D",
+              "_title": "Hood D"
+            }
+          },
+          "2,5": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Setpoint",
+              "_title": "Hood Setpoint"
+            }
+          },
+          "2,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Flywheel Setpoint",
+              "_title": "Flywheel Setpoint"
+            }
+          },
+          "21,6": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Point Angle",
+              "_title": "Point Angle"
+            }
+          },
+          "0,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveTrain P",
+              "_title": "DriveTrain P"
+            }
+          },
+          "2,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveTrain I",
+              "_title": "DriveTrain I"
+            }
+          },
+          "4,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveTrain D",
+              "_title": "DriveTrain D"
+            }
+          },
+          "6,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Encoder",
+              "_title": "Left Encoder"
+            }
+          },
+          "8,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Encoder",
+              "_title": "Right Encoder"
+            }
+          },
+          "10,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Flywheel Velocity",
+              "_title": "Flywheel Velocity"
+            }
+          },
+          "12,7": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Flywheel At Setpoint",
+              "_title": "Flywheel At Setpoint",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "15,7": {
+            "size": [
+              3,
+              3
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Tower Sensor",
+              "_title": "Tower Sensor",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "21,7": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Encoder",
+              "_title": "Hood Encoder"
+            }
+          },
+          "0,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Pot Voltage",
+              "_title": "Hood Pot Voltage"
+            }
+          },
+          "2,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Angle",
+              "_title": "Hood Angle"
+            }
+          },
+          "4,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Set Setpoint",
+              "_title": "Hood Set Setpoint"
+            }
+          },
+          "6,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Hood Motor Commanded",
+              "_title": "Hood Motor Commanded"
+            }
+          },
+          "8,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Target Distance",
+              "_title": "Target Distance"
+            }
+          },
+          "10,8": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Climb Solenoid/Value",
+              "_title": "Climb Solenoid/Value"
             }
           }
         }
@@ -409,9 +621,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/GameSpecificMessage",
-              "_title": "GameSpecificMessage",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "GameSpecificMessage"
             }
           },
           "1,0": {
@@ -422,9 +632,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/EventName",
-              "_title": "EventName",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "EventName"
             }
           },
           "2,0": {
@@ -435,9 +643,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/MatchNumber",
-              "_title": "MatchNumber",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "MatchNumber"
             }
           },
           "3,0": {
@@ -448,9 +654,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/ReplayNumber",
-              "_title": "ReplayNumber",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "ReplayNumber"
             }
           },
           "4,0": {
@@ -461,9 +665,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/MatchType",
-              "_title": "MatchType",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "MatchType"
             }
           },
           "5,0": {
@@ -475,8 +677,6 @@
               "_type": "Boolean Box",
               "_source0": "network_table:///FMSInfo/IsRedAlliance",
               "_title": "IsRedAlliance",
-              "_glyph": 148,
-              "_showGlyph": false,
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }
@@ -489,9 +689,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/StationNumber",
-              "_title": "StationNumber",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "StationNumber"
             }
           },
           "7,0": {
@@ -502,9 +700,7 @@
             "content": {
               "_type": "Text View",
               "_source0": "network_table:///FMSInfo/FMSControlData",
-              "_title": "FMSControlData",
-              "_glyph": 148,
-              "_showGlyph": false
+              "_title": "FMSControlData"
             }
           }
         }
