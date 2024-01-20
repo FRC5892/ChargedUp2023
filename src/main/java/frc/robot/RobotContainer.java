@@ -6,6 +6,7 @@ package frc.robot;
 
 import com.ctre.phoenix6.hardware.Pigeon2;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -106,6 +107,7 @@ public class RobotContainer {
          * The container for the robot. Contains subsystems, OI devices, and commands.
          */
         public RobotContainer() {
+                System.out.print("init");
                 CameraServer.startAutomaticCapture();
                 // CameraServer.startAutomaticCapture();
                 compressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
@@ -123,6 +125,9 @@ public class RobotContainer {
 
                 ledsub.setDefaultCommand(ledcommand);
                 
+                autoChooser = AutoBuilder.buildAutoChooser("New Auto");
+
+                SmartDashboard.putData("Auto Chooser", autoChooser);
 
                 // Configure the button bindings
                 configureButtonBindings();
@@ -130,9 +135,7 @@ public class RobotContainer {
                 // Configure Smart Dashboard options
                 configureSmartDashboard();
 
-                autoChooser = AutoBuilder.buildAutoChooser();
-
-                SmartDashboard.putData("Auto Chooser", autoChooser);
+                
         }
 
         /**
@@ -175,5 +178,7 @@ public class RobotContainer {
         public Command getAutonomousCommand() {
                 // Executes the autonomous command chosen in smart dashboard
                 return autoChooser.getSelected();
+                        // return new PathPlannerAuto("New Auto");
+
         }
 }
