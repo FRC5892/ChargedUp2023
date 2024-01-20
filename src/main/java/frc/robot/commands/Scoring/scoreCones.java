@@ -5,10 +5,10 @@
 package frc.robot.commands.Scoring;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Ground_Intake;
 
-public class scoreCones extends CommandBase {
+public class scoreCones extends Command {
   private Ground_Intake ground_Intake;
   public static Timer timer;
   public static Timer timer2;

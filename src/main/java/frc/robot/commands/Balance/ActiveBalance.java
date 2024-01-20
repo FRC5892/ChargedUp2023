@@ -4,14 +4,14 @@
 
 package frc.robot.commands.Balance;
 
-import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;;
 
-public class ActiveBalance extends CommandBase {
+public class ActiveBalance extends Command {
 
   private Swerve s_Swerve;
   private Pigeon2 gyro;
@@ -35,7 +35,7 @@ public class ActiveBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double gyroAngle = gyro.getRoll();
+    double gyroAngle = gyro.getRoll().getValue();
 
     if (gyroAngle > 10) {
       s_Swerve.drive(

@@ -6,10 +6,10 @@ package frc.robot.commands.Balance;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Swerve;
 
-public class PassiveBalance extends CommandBase {
+public class PassiveBalance extends Command {
   
   private Swerve m_Swerve;
   private Timer timer;

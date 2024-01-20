@@ -6,10 +6,10 @@ package frc.robot.commands.Intake;
 
 //import edu.wpi.first.wpilibj.DoubleSolenoid;
 //import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Ground_Intake;
 
-public class intake extends CommandBase {
+public class intake extends Command {
   private Ground_Intake ground_Intake;
  // private LEDSubsystem ledSubsystem;
   private boolean finish;

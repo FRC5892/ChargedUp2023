@@ -4,9 +4,8 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.sensors.Pigeon2;
-import com.pathplanner.lib.PathPlanner;
-import com.pathplanner.lib.PathPlannerTrajectory;
+import com.ctre.phoenix6.hardware.Pigeon2;
+import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -21,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.autos.*;
+// import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.commands.Balance.ActiveBalance;
 import frc.robot.commands.Balance.PassiveBalance;
@@ -65,14 +64,14 @@ public class RobotContainer {
         private final JoystickButton intakeButton = new JoystickButton(codriver, XboxController.Button.kX.value);
         private final JoystickButton lowButton = new JoystickButton(codriver, XboxController.Button.kLeftBumper.value);
         private final JoystickButton coneButton = new JoystickButton(codriver,
-                        XboxController.Button.kRightBumper.value);
+                XboxController.Button.kRightBumper.value);
         public final static JoystickButton activeBalanceButton = new JoystickButton(driver,
-                        XboxController.Button.kRightBumper.value);
+                XboxController.Button.kRightBumper.value);
         private final JoystickButton passiveBalanceButton = new JoystickButton(driver,
-                        XboxController.Button.kLeftBumper.value);
+                XboxController.Button.kLeftBumper.value);
         private final JoystickButton intakeFullButton = new JoystickButton(codriver, XboxController.Button.kY.value);
         private final JoystickButton robotCentric = new JoystickButton(driver,
-                        XboxController.Button.kRightBumper.value);
+                XboxController.Button.kRightBumper.value);
 
         /* Subsystems */
         // public final static VisionSubsystem s_visionSubsystem = new
@@ -88,47 +87,20 @@ public class RobotContainer {
         public final Command outtakeFullAuto = new scoreHighAuton(ground_intake);
         public final scoreCones ScoreCones = new scoreCones(ground_intake);
         
-        
         //public final static Led ledSubsystem = new Led(gyro, ground_intake);
+        
+        /* LED Commands */
+        public final Command ledcommand = new ledCommand(gyro, ground_intake,ledsub);
         
         /* Pneumatics Commands */
         public final Command intake = new intake(ground_intake);
-        public final Command ledcommand = new ledCommand(gyro, ground_intake,ledsub);
-
-
-        
         public final Command outtake = new scoreMid(ground_intake);
         public final Command retract = new retract(ground_intake);
         public final Command outtakeFull = new scoreHigh(ground_intake);
         public final Command outtakeLow = new scoreLow(ground_intake);
 
-        /* Autonomous Mode Chooser */
-        private final SendableChooser<PathPlannerTrajectory> autoChooser = new SendableChooser<>();
-
-        /* Autonomous Modes */
-        PathPlannerTrajectory Score1 = PathPlanner.loadPath("1 Score",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory Score1andLineCrossShort = PathPlanner.loadPath("1 Score + Line Cross Short",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory Score1andLineCross = PathPlanner.loadPath("1 Score + Line Cross",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory Score1ChargeStation = PathPlanner.loadPath("1 Score + Charge Station",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory Score1CSLC = PathPlanner.loadPath("1 Score + Charge Station + Line Cross",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory Score2 = PathPlanner.loadPath("2 Score",
-                        2, 1);
-        PathPlannerTrajectory Score1LCC = PathPlanner.loadPath("1 Score + Line Cross Cable",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
-        PathPlannerTrajectory LineCS = PathPlanner.loadPath("Line + Charge Station",
-                        Constants.AutoConstants.kMaxSpeedMetersPerSecond,
-                        Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
+        /* SendableChooser */
+        public final SendableChooser<Command> autoChooser;
 
         /**
          * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -157,6 +129,10 @@ public class RobotContainer {
 
                 // Configure Smart Dashboard options
                 configureSmartDashboard();
+
+                autoChooser = AutoBuilder.buildAutoChooser();
+
+                SmartDashboard.putData("Auto Chooser", autoChooser);
         }
 
         /**
@@ -184,15 +160,7 @@ public class RobotContainer {
         }
 
         private void configureSmartDashboard() {
-                autoChooser.setDefaultOption("1 Score", Score1);
-                autoChooser.addOption("1 Score + Line Cross", Score1andLineCross);
-                autoChooser.addOption("1 Score + Line Cross Short", Score1andLineCrossShort);
-                autoChooser.addOption("1 Score + Charge Station", Score1ChargeStation);
-                autoChooser.addOption("2 Score Left", Score2);
-                autoChooser.addOption("1 Score + Charge Station + Line Cross", Score1CSLC);
-                autoChooser.addOption("1 Score + Line Cross Cable", Score1LCC);
-                autoChooser.addOption("Line + Charge Station", LineCS);
-                SmartDashboard.putData(autoChooser);
+        
         }
 
         public void disabledInit() {
@@ -206,8 +174,6 @@ public class RobotContainer {
          */
         public Command getAutonomousCommand() {
                 // Executes the autonomous command chosen in smart dashboard
-                return new executeTrajectory(s_Swerve, autoChooser.getSelected(), outtake, retract, intake,
-                                speedyBalance,
-                                outtakeFullAuto, outtakeFull);
+                return autoChooser.getSelected();
         }
 }

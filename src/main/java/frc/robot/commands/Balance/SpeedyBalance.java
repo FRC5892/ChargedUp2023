@@ -1,14 +1,14 @@
 package frc.robot.commands.Balance;
 
-import com.ctre.phoenix.sensors.Pigeon2;
+import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.subsystems.Swerve;
 
-public class SpeedyBalance extends CommandBase {
+public class SpeedyBalance extends Command {
   private Swerve s_Swerve;
   private Pigeon2 gyro;
   private boolean finish;
@@ -32,7 +32,7 @@ public class SpeedyBalance extends CommandBase {
   @Override
   public void initialize() {
     timer.reset();
-    previousAngle = gyro.getRoll();
+    previousAngle = gyro.getRoll().getValue();
 
     // immediately drive fast
     s_Swerve.drive(new Translation2d(1, 0).times(Constants.Swerve.speedyBalanceSpeed),
@@ -44,7 +44,7 @@ public class SpeedyBalance extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    currentAngle = gyro.getRoll();
+    currentAngle = gyro.getRoll().getValue();
     angleDiff = previousAngle - currentAngle;
 
     // how's the robot doin

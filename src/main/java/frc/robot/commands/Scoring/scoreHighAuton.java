@@ -5,11 +5,11 @@
 package frc.robot.commands.Scoring;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Ground_Intake;
 //import frc.robot.subsystems.LEDSubsystem;
 
-public class scoreHighAuton extends CommandBase {
+public class scoreHighAuton extends Command {
   private Ground_Intake ground_Intake;
   //private LEDSubsystem ledSubsystem;
   public static Timer timer;
