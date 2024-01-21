@@ -1,22 +1,24 @@
 package frc.lib.config;
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
+import com.ctre.phoenix6.signals.AbsoluteSensorRangeValue;
+import com.ctre.phoenix6.signals.SensorDirectionValue;
 
-import com.ctre.phoenix.sensors.AbsoluteSensorRange;
-import com.ctre.phoenix.sensors.CANCoderConfiguration;
-import com.ctre.phoenix.sensors.SensorInitializationStrategy;
-import com.ctre.phoenix.sensors.SensorTimeBase;
 import frc.robot.Constants;
 
 public final class CTREConfigs {
-  public CANCoderConfiguration swerveCanCoderConfig;
+  public CANcoderConfiguration swerveCanCoderConfig;
 
   public CTREConfigs() {
-    swerveCanCoderConfig = new CANCoderConfiguration();
+    swerveCanCoderConfig = new CANcoderConfiguration();
 
     /* Swerve CANCoder Configuration */
-    swerveCanCoderConfig.absoluteSensorRange = AbsoluteSensorRange.Signed_PlusMinus180;
-    swerveCanCoderConfig.sensorDirection = Constants.Swerve.canCoderInvert;
-    swerveCanCoderConfig.initializationStrategy =
-        SensorInitializationStrategy.BootToAbsolutePosition;
-    swerveCanCoderConfig.sensorTimeBase = SensorTimeBase.PerSecond;
+    swerveCanCoderConfig.MagnetSensor.AbsoluteSensorRange = AbsoluteSensorRangeValue.Signed_PlusMinusHalf;
+    swerveCanCoderConfig.MagnetSensor.SensorDirection = SensorDirectionValue.CounterClockwise_Positive;
+    
+    // swerveCanCoderConfig.initializationStrategy =
+    //     SensorInitializationStrategy.BootToAbsolutePosition;
+    
+
+    // swerveCanCoderConfig.sensorTimeBase = SensorTimeBase.PerSecond;
   }
 }

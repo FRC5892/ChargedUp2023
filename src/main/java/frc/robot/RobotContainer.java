@@ -114,13 +114,13 @@ public class RobotContainer {
                 compressor.enableDigital();
 
                 s_Swerve.setDefaultCommand(
-                                new TeleopSwerve(
-                                                s_Swerve,
+                        new TeleopSwerve(
+                                s_Swerve,
 
-                                                () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
-                                                () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
-                                                () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
-                                                () -> robotCentric.getAsBoolean()));
+                                () -> -driver.getRawAxis(translationAxis) * SPEED_MULTIPLIER,
+                                () -> -driver.getRawAxis(strafeAxis) * SPEED_MULTIPLIER,
+                                () -> -driver.getRawAxis(rotationAxis) * SPEED_MULTIPLIER,
+                                () -> robotCentric.getAsBoolean()));
                 SmartDashboard.putNumber("Speed Multipler", SPEED_MULTIPLIER);
 
                 ledsub.setDefaultCommand(ledcommand);

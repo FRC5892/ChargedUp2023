@@ -40,6 +40,7 @@ public class Swerve extends SubsystemBase {
   BuiltInAccelerometer accelerometer;
 
   public Swerve(Pigeon2 gyro) {
+    System.out.println("init swerve");
     accelerometer = new BuiltInAccelerometer();
     this.gyro = gyro;
     //gyro.configFactoryDefault();
@@ -284,6 +285,10 @@ public class Swerve extends SubsystemBase {
           "Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);
       SmartDashboard.putNumber(
           "Mod " + mod.moduleNumber + " Position", mod.getPosition().distanceMeters);
+      SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Can Coder", mod.getCanCoder().getDegrees());
+      SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Can Absolute Position", mod.getAbsolutePosition());
+      SmartDashboard.putBoolean("Teleop",DriverStation.isTeleopEnabled());
+
     }
   }
 }
